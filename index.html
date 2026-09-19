@@ -14,35 +14,35 @@
 <meta name="twitter:image" content="https://nexohub19.site/logo.png">
 <title>Lumina Invest — Grow Your Wealth</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0F3D28">
+<meta name="theme-color" content="#0F1720">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
- --bg:#0A0D0A;
- --surface:#0A0D0A;
- --surface2:#111611;
- --surface3:#111611;
- --border:#1E2A20;
- --accent:#39FF88;
- --accent2:#2ECC71;
- --accent3:#39FF88;
- --warn:#FF6B5E;
- --gold:#D9A441;
- --text:#E8FFF0;
- --muted:#5C7A67;
- --success:#39FF88;
- --danger:#FF6B5E;
- --teal:#39FF88;
- --orange:#D9A441;
- --card:#0A0D0A;
- --card-border:#1E2A20;
- --card-border-hover:#39FF88;
- --navy:#0F1A12;
- --navy2:#14231A;
+ --bg:#0F1720;
+ --surface:#0F1720;
+ --surface2:#1B2733;
+ --surface3:#1B2733;
+ --border:#243040;
+ --accent:#38BDF8;
+ --accent2:#0EA5E9;
+ --accent3:#38BDF8;
+ --warn:#F87171;
+ --gold:#38BDF8;
+ --text:#E8F1F5;
+ --muted:#7C93A3;
+ --success:#4ADE80;
+ --danger:#F87171;
+ --teal:#38BDF8;
+ --orange:#38BDF8;
+ --card:#1B2733;
+ --card-border:#243040;
+ --card-border-hover:#38BDF8;
+ --navy:#1B2733;
+ --navy2:#22303F;
 }
-*{margin:0;padding:0;box-sizing:border-box;border-radius:0 !important;box-shadow:none !important;}
-body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);min-height:100vh;max-width:500px;margin:0 auto;position:relative;overflow-x:hidden;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:500px;margin:0 auto;position:relative;overflow-x:hidden;}
 
 /* Avatar Styles */
 .avatar{
@@ -66,12 +66,12 @@ body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--tex
 .auth-page{display:none;flex-direction:column;min-height:100vh;padding:40px 24px;position:relative;}
 .auth-corner-logo{position:absolute;top:16px;left:16px;width:42px;height:42px;border-radius:12px;overflow:hidden;box-shadow:0 6px 16px rgba(22,35,74,.25);}
 .auth-corner-logo img{width:100%;height:100%;object-fit:cover;}
-.auth-plan-btn{position:absolute;top:16px;right:16px;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(22,35,74,.25);z-index:5;}
+.auth-plan-btn{position:absolute;top:16px;right:16px;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(22,35,74,.25);z-index:5;}
 .plan-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10001;align-items:center;justify-content:center;padding:20px;}
 .plan-modal-overlay.show{display:flex;}
-.plan-modal-card{background:#0f0f0f;border-radius:16px;max-width:480px;width:100%;max-height:80vh;overflow-y:auto;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.5);}
+.plan-modal-card{background:#1B2733;border-radius:16px;max-width:480px;width:100%;max-height:80vh;overflow-y:auto;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.5);}
 .plan-modal-close{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;border:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;}
-.plan-modal-header{background:linear-gradient(135deg,var(--gold),#8F6A22);color:#15201A;text-align:center;font-weight:800;font-size:13px;padding:16px 40px 14px 16px;line-height:1.4;}
+.plan-modal-header{background:linear-gradient(135deg,var(--gold),#38BDF8);color:#1B2733;text-align:center;font-weight:800;font-size:13px;padding:16px 40px 14px 16px;line-height:1.4;}
 /* Welcome guidance popup */
 .welcome-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10001;align-items:center;justify-content:center;padding:20px;}
 .welcome-overlay.show{display:flex;}
@@ -91,16 +91,16 @@ body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--tex
 .auth-hero{text-align:center;margin-bottom:28px;}
 .auth-logo{width:72px;height:72px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);border-radius:22px;display:grid;place-items:center;font-size:34px;margin:0 auto 14px;color:#fff;box-shadow:0 8px 24px rgba(22,35,74,.25);overflow:hidden;}
 .auth-logo img{width:100%;height:100%;object-fit:cover;}
-.auth-brand{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:900;color:var(--accent);margin-bottom:4px;letter-spacing:0.5px;}
+.auth-brand{font-family:'Manrope',sans-serif;font-size:30px;font-weight:900;color:var(--accent);margin-bottom:4px;letter-spacing:0.5px;}
 .auth-tagline{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
 .auth-card{background:transparent;border:none;border-radius:0;padding:0;box-shadow:none;}
-.auth-title{font-family:'JetBrains Mono',monospace;font-size:21px;font-weight:800;margin-bottom:4px;color:var(--accent);}
+.auth-title{font-family:'Manrope',sans-serif;font-size:21px;font-weight:800;margin-bottom:4px;color:var(--accent);}
 .auth-subtitle{font-size:12px;color:var(--muted);margin-bottom:20px;}
 .field-group{margin-bottom:11px;}
 .field-label{font-size:9.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;display:block;}
 .field-wrap{position:relative;display:flex;align-items:center;}
 .field-icon{position:absolute;left:14px;font-size:16px;pointer-events:none;z-index:2;}
-input,select{width:100%;background:rgba(20,32,58,0.8);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#fff;outline:none;transition:border-color .2s, box-shadow .2s;}
+input,select{width:100%;background:rgba(20,32,58,0.8);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:13px;color:#fff;outline:none;transition:border-color .2s, box-shadow .2s;}
 input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,215,0,.12);}
 select{cursor:pointer;}select option{background:var(--surface2);}
 .eye-btn{position:absolute;right:14px;background:none;border:none;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;cursor:pointer;padding:4px;color:var(--muted);}
@@ -113,7 +113,7 @@ input[type="password"]{padding-right:46px;}
 .pw-strength{display:flex;gap:4px;margin-top:8px;}
 .pw-bar{flex:1;height:3px;border-radius:3px;background:var(--surface2);}
 .pw-bar.weak{background:var(--warn)}.pw-bar.medium{background:var(--gold)}.pw-bar.strong{background:var(--accent3)}
-.submit-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:14px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:6px;transition:transform .2s;}
+.submit-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:14px;padding:16px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:6px;transition:transform .2s;}
 .submit-btn:active{transform:scale(.98);}
 .auth-switch{text-align:center;margin-top:18px;font-size:13px;color:var(--muted);}
 .auth-switch a{color:var(--accent);font-weight:700;cursor:pointer;text-decoration:none;}
@@ -121,7 +121,7 @@ input[type="password"]{padding-right:46px;}
 /* Phone Prefix */
 .phone-prefix-wrap{display:flex;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 .phone-prefix-wrap:focus-within{border-color:var(--accent);}
-.phone-prefix-badge{background:var(--surface3);border-right:1px solid var(--border);padding:10px 12px;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:12px;color:var(--accent);font-weight:700;white-space:nowrap;flex-shrink:0;}
+.phone-prefix-badge{background:var(--surface3);border-right:1px solid var(--border);padding:10px 12px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:12px;color:var(--accent);font-weight:700;white-space:nowrap;flex-shrink:0;}
 .phone-prefix-wrap input{background:transparent;border:none;border-radius:0;padding:10px 14px;flex:1;color:var(--text);}
 .phone-prefix-wrap input:focus{border:none;}
 
@@ -136,7 +136,7 @@ input[type="password"]{padding-right:46px;}
 .brand{display:flex;align-items:center;gap:8px;}
 .brand-icon{width:32px;height:32px;background:var(--navy);border-radius:9px;display:grid;place-items:center;font-size:15px;color:#fff;overflow:hidden;}
 .brand-icon img{width:100%;height:100%;object-fit:cover;}
-.brand-name{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:0.2px;}
+.brand-name{font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:0.2px;}
 .topbar-right{display:flex;align-items:center;gap:10px;}
 .username-top{background:var(--navy);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;flex-shrink:0;cursor:pointer;}
 .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;opacity:0;pointer-events:none;transition:opacity .3s;}
@@ -144,7 +144,7 @@ input[type="password"]{padding-right:46px;}
 .side-menu{position:fixed;top:0;left:-280px;width:270px;height:100vh;background:rgba(15,29,58,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-right:1px solid var(--card-border);z-index:600;transition:left .35s;display:flex;flex-direction:column;overflow-y:auto;}
 .side-menu.open{left:0;}
 .side-menu-header{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid var(--border);}
-.side-menu-brand{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:var(--accent);}
+.side-menu-brand{font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;color:var(--accent);}
 .close-menu{width:32px;height:32px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:18px;cursor:pointer;display:grid;place-items:center;}
 .side-menu-items{flex:1;padding:16px;}
 .menu-item{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;cursor:pointer;margin-bottom:4px;font-size:14px;font-weight:600;color:#fff;}
@@ -155,10 +155,10 @@ input[type="password"]{padding-right:46px;}
 .menu-subitem{padding:10px 14px;border-radius:10px;cursor:pointer;margin-bottom:2px;font-size:13px;font-weight:500;color:rgba(255,255,255,.75);}
 .menu-subitem:hover{background:rgba(255,255,255,.08);color:#fff;}
 .menu-item:hover{background:rgba(255,255,255,.08);}
-.menu-item.active-menu{background:rgba(255,255,255,.12);color:var(--gold, #F0D28B);}
+.menu-item.active-menu{background:rgba(255,255,255,.12);color:var(--gold, #38BDF8);}
 .menu-item-icon{font-size:20px;width:28px;}
 .menu-divider{height:1px;background:rgba(255,255,255,.12);margin:10px 0;}
-.menu-logout{margin:12px;display:flex;align-items:center;justify-content:center;gap:12px;padding:14px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:700;background:var(--warn);color:#fff;border:none;width:calc(100% - 24px);font-family:'JetBrains Mono',monospace;}
+.menu-logout{margin:12px;display:flex;align-items:center;justify-content:center;gap:12px;padding:14px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:700;background:var(--warn);color:#fff;border:none;width:calc(100% - 24px);font-family:'Manrope',sans-serif;}
 .menu-logout:active{transform:scale(.98);}
 
 /* Sections */
@@ -168,28 +168,33 @@ input[type="password"]{padding-right:46px;}
 .welcome-card{background:var(--navy);border-radius:18px;padding:18px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 24px rgba(22,35,74,.25);}
 .welcome-avatar{width:52px;height:52px;border-radius:50%;background:var(--navy2);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0;}
 .welcome-text{flex:1;}
-.welcome-greeting{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;}
+.home-greeting{font-family:'Manrope',sans-serif;font-size:13px;color:var(--muted);margin-bottom:14px;}
+.balance-hero-label{font-family:'Manrope',sans-serif;font-size:11px;color:var(--muted);margin-bottom:4px;}
+.balance-hero{font-family:'Sora',sans-serif;font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.5px;}
+.balance-hero-delta{font-family:'Manrope',sans-serif;font-size:12px;color:var(--accent);font-weight:700;margin-top:4px;}
+.stats-grid-2{grid-template-columns:1fr 1fr !important;}
 .welcome-greeting span{font-weight:800;}
-.welcome-copy-link{background:var(--teal);border:none;border-radius:9px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.2px;cursor:pointer;display:flex;align-items:center;gap:6px;padding:9px 14px;}
+.welcome-copy-link{background:var(--teal);border:none;border-radius:9px;color:#fff;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2px;cursor:pointer;display:flex;align-items:center;gap:6px;padding:9px 14px;}
 .welcome-copy-link:active{transform:scale(.96);}
-.welcome-share-btn{background:#3FA35B;border:none;border-radius:10px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 12px;flex-shrink:0;align-self:flex-start;}
+.welcome-share-btn{background:#4ADE80;border:none;border-radius:10px;color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 12px;flex-shrink:0;align-self:flex-start;}
 .welcome-share-btn:active{transform:scale(.96);}
 .stats-card{background:transparent;border:none;padding:0;}
 .balance-big{text-align:center;padding:8px 0 16px;}
 .balance-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:8px;}
-.balance-amount{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:32px;font-weight:700;color:var(--accent);}
+.balance-amount{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:32px;font-weight:700;color:var(--accent);}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:0;}
-.stat-box{background:var(--navy);border-radius:14px;padding:14px 6px;text-align:center;box-shadow:0 6px 16px rgba(22,35,74,.18);}
+.stat-box{background:var(--surface2);border-radius:16px;padding:14px;text-align:left;}
 .stat-icon{font-size:15px;margin-bottom:6px;}
-.stat-label{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.65);margin-top:6px;font-weight:600;}
-.stat-value{font-size:13px;font-weight:800;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:#fff;}
+.stat-label{font-family:'Manrope',sans-serif;font-size:10px;color:var(--muted);margin-bottom:5px;font-weight:600;}
+.stat-value{font-size:15px;font-weight:700;font-family:'Sora',sans-serif;font-variant-numeric:tabular-nums;color:var(--text);}
 .stat-value.dep{color:#fff}.stat-value.earn{color:#fff}.stat-value.with{color:#fff}.stat-value.total{color:#fff}
 .ref-box{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(10,22,61,.06);}
-.ref-url{flex:1;font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.copy-btn{background:var(--navy);border:none;border-radius:8px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:800;padding:7px 14px;cursor:pointer;}
+.ref-url{flex:1;font-size:11px;color:var(--muted);font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.copy-btn{background:var(--navy);border:none;border-radius:8px;color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;padding:7px 14px;cursor:pointer;}
 .copy-btn:active{transform:scale(.95);}
-.action-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;padding:0;}
-.action-btn{border:none;border-radius:12px;padding:10px 2px;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.1px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:100%;background:var(--navy);color:#fff;transition:transform .2s, filter .2s;box-shadow:0 6px 16px rgba(22,35,74,.18);}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0;}
+.action-btn{border:none;border-radius:14px;padding:14px 4px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:100%;background:var(--surface2);color:var(--text);transition:transform .2s, filter .2s;}
+.action-btn-primary{background:var(--accent);color:#0F1720;}
 .action-btn[disabled]{opacity:.4;pointer-events:none;box-shadow:none;}
 .action-btn:active{transform:scale(.95);filter:brightness(1.15);}
 .btn-icon{font-size:17px;}
@@ -220,7 +225,7 @@ input[type="password"]{padding-right:46px;}
 /* Investment Active Card */
 .investment-card{background:transparent;border:none;border-radius:0;padding:0;margin-bottom:16px;box-shadow:none;}
 .investment-title{font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-.investment-amount{font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text);margin-bottom:8px;}
+.investment-amount{font-size:20px;font-weight:800;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;color:var(--text);margin-bottom:8px;}
 .investment-progress{background:var(--surface2);border-radius:10px;height:8px;margin:12px 0;overflow:hidden;}
 .investment-progress-fill{background:var(--accent);height:100%;border-radius:10px;transition:width 0.3s;}
 .investment-days{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;}
@@ -228,45 +233,45 @@ input[type="password"]{padding-right:46px;}
 
 /* Table (Scrollable) */
 .plan-wrap{background:#000000;border:1px solid rgba(255,255,255,.1);border-radius:0;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.4);max-width:340px;margin:0 auto;}
-.plan-header{background:linear-gradient(135deg, #C79A3D 0%, #B8862F 100%);padding:9px 12px;text-align:center;}
-.plan-header-title{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:#10291D;letter-spacing:0.4px;}
+.plan-header{background:linear-gradient(135deg, #38BDF8 0%, #38BDF8 100%);padding:9px 12px;text-align:center;}
+.plan-header-title{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;color:#1B2733;letter-spacing:0.4px;}
 .table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0;background:#000000;}
 .plan-table{width:100%;border-collapse:collapse;min-width:0;background:#000000;}
-.plan-table thead tr{background:#101710;}
-.plan-table thead th{padding:8px 6px;font-size:8.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#F0D28B;text-align:center;border-bottom:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.08);}
+.plan-table thead tr{background:#1B2733;}
+.plan-table thead th{padding:8px 6px;font-size:8.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#38BDF8;text-align:center;border-bottom:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.08);}
 .plan-table thead th:last-child{border-right:none;}
 .plan-table tbody tr{border-bottom:1px solid rgba(255,255,255,.08);}
 .plan-table tbody tr:nth-child(odd){background:#0D120D;}
 .plan-table tbody tr:nth-child(even){background:#000000;}
-.plan-table tbody td{padding:7px 5px;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:10px;font-weight:600;text-align:center;border-right:1px solid rgba(255,255,255,.08);color:#fff;}
+.plan-table tbody td{padding:7px 5px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:10px;font-weight:600;text-align:center;border-right:1px solid rgba(255,255,255,.08);color:#fff;}
 .plan-table tbody td:last-child{border-right:none;}
 .plan-table tbody td:first-child{color:#fff;font-weight:800;font-size:10.5px;}
-.plan-table tbody td:nth-child(2){color:#4FAE7C;font-weight:700;font-size:10px;}
-.plan-table tbody td:nth-child(3){color:#F0D28B;font-weight:800;font-size:10.5px;}
+.plan-table tbody td:nth-child(2){color:#4ADE80;font-weight:700;font-size:10px;}
+.plan-table tbody td:nth-child(3){color:#38BDF8;font-weight:800;font-size:10.5px;}
 .plan-footer{padding:12px;background:var(--surface2);}
-.start-invest-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:12px;padding:13px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#fff;cursor:pointer;}
+.start-invest-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:12px;padding:13px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#fff;cursor:pointer;}
 .start-invest-btn:active{transform:scale(.98);}
 
 /* Inner Pages */
 .inner-header{display:flex;align-items:center;gap:12px;padding:16px 16px 8px;}
-.inner-title{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:var(--accent);}
+.inner-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);}
 .inner-sub{font-size:12px;color:var(--muted);margin-top:2px;}
 .empty-state{text-align:center;padding:50px 20px;color:var(--muted);}
 .empty-icon{font-size:48px;margin-bottom:14px;}
 .empty-title{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--text);}
 .empty-text{font-size:13px;}
 .profile-card{background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--card-border);border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.3);}
-.profile-name{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:800;margin-bottom:4px;}
+.profile-name{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;}
 .profile-country{font-size:13px;color:var(--muted);margin-bottom:16px;}
 .profile-detail{display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border-radius:12px;padding:12px 16px;margin-bottom:10px;font-size:13px;}
 .profile-detail-label{color:var(--muted);}
-.profile-detail-val{font-weight:700;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:12px;}
+.profile-detail-val{font-weight:700;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:12px;}
 .profile-avatar-container{display:flex;justify-content:center;margin-bottom:14px;}
 
 /* Profile Styles */
 .profile-header-section{background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);border-radius:20px;padding:28px 20px;text-align:center;margin-bottom:16px;color:#fff;}
 .profile-avatar-lg{width:90px;height:90px;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 16px;font-weight:700;}
-.profile-name-header{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:900;margin-bottom:4px;}
+.profile-name-header{font-family:'Manrope',sans-serif;font-size:26px;font-weight:900;margin-bottom:4px;}
 .profile-country-header{font-size:12px;opacity:.85;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;}
 .profile-status-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
 .profile-info-section{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:16px;margin-bottom:14px;overflow:hidden;}
@@ -274,27 +279,27 @@ input[type="password"]{padding-right:46px;}
 .profile-info-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);}
 .profile-info-item:last-child{border-bottom:none;}
 .profile-info-label{font-size:12px;color:var(--muted);font-weight:600;}
-.profile-info-value{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;}
+.profile-info-value{font-size:13px;font-weight:700;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;}
 .profile-stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;}
 .profile-stat-card{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:14px;padding:16px;text-align:center;}
 .profile-stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:700;}
-.profile-stat-value{font-size:18px;font-weight:800;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--accent);}
-.logout-dash-new{width:100%;background:var(--warn);border:none;border-radius:14px;color:#fff;padding:15px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
+.profile-stat-value{font-size:18px;font-weight:800;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;color:var(--accent);}
+.logout-dash-new{width:100%;background:var(--warn);border:none;border-radius:14px;color:#fff;padding:15px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
 .logout-dash-new:active{transform:scale(.98);}
 .profile-simple-info{display:flex;flex-direction:column;gap:16px;margin-bottom:24px;}
 .profile-simple-item{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:space-between;}
 .profile-simple-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:0.5px;}
-.profile-simple-value{font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--accent);}
+.profile-simple-value{font-size:14px;font-weight:700;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;color:var(--accent);}
 .profile-compact-row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 4px 14px rgba(10,22,61,.06);}
 .profile-compact-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0;overflow:hidden;}
 .profile-compact-name{font-size:16px;font-weight:800;color:var(--text);margin-bottom:5px;}
-.profile-compact-status{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;padding:3px 10px;border-radius:10px;background:rgba(16,185,129,.15);color:#0a8a5f;}
+.profile-compact-status{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;padding:3px 10px;border-radius:10px;background:rgba(16,185,129,.15);color:#4ADE80;}
 .settings-list{background:var(--card);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;margin-bottom:14px;}
 .settings-row{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
 .avatar-picker-overlay{display:none;position:fixed;inset:0;background:rgba(15,27,60,.55);z-index:10000;align-items:flex-end;justify-content:center;}
 .avatar-picker-overlay.show{display:flex;}
 .avatar-picker-card{background:var(--surface);width:100%;max-width:500px;border-radius:24px 24px 0 0;padding:22px 20px 28px;box-shadow:0 -10px 40px rgba(0,0,0,.3);}
-.avatar-picker-title{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:800;color:var(--text);margin-bottom:2px;}
+.avatar-picker-title{font-family:'Manrope',sans-serif;font-size:17px;font-weight:800;color:var(--text);margin-bottom:2px;}
 .avatar-picker-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
 .emoji-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;}
 .emoji-option{background:var(--surface2);border:2px solid transparent;border-radius:14px;font-size:26px;padding:10px 0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s, border-color .15s;}
@@ -302,7 +307,7 @@ input[type="password"]{padding-right:46px;}
 .avatar-img-option img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
 .emoji-option:active{transform:scale(.9);}
 .emoji-option.selected{border-color:var(--accent3);background:rgba(16,185,129,.12);}
-.avatar-picker-skip{width:100%;background:transparent;border:none;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;padding:8px;cursor:pointer;text-align:center;}
+.avatar-picker-skip{width:100%;background:transparent;border:none;color:var(--muted);font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:600;padding:8px;cursor:pointer;text-align:center;}
 .settings-list .settings-row:last-child{border-bottom:none;}
 .settings-row-label{font-size:13px;font-weight:600;color:var(--text);}
 .settings-chevron{color:var(--muted);font-size:14px;transition:transform .2s;}
@@ -314,17 +319,17 @@ input[type="password"]{padding-right:46px;}
 .settings-btn-save{flex:1;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:11px;font-weight:700;font-size:12px;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;}
 .settings-btn-save:active{transform:scale(.98);}
 .settings-btn-cancel{flex:1;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:11px;font-weight:700;font-size:12px;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;}
-.logout-btn-new{width:auto;min-width:140px;margin:4px auto 0;background:var(--warn);border:none;border-radius:10px;color:#fff;padding:10px 22px;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.logout-btn-new{width:auto;min-width:140px;margin:4px auto 0;background:var(--warn);border:none;border-radius:10px;color:#fff;padding:10px 22px;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
 .logout-btn-new:active{transform:scale(.98);}
 
 /* Bottom Nav */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;background:#10291D;display:flex;align-items:center;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:200;height:58px;box-sizing:content-box;}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;background:#1B2733;display:flex;align-items:center;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:200;height:58px;box-sizing:content-box;}
 .nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:4px 2px;border-radius:10px;transition:transform .15s;background:transparent;flex:1;min-width:0;}
 .nav-item:active{transform:scale(.92);}
 .nav-icon{font-size:20px;line-height:1;filter:grayscale(1) opacity(.55);transition:filter .2s;}
-.nav-label{font-size:9.5px;font-weight:600;letter-spacing:0.1px;color:#7C8C7F;white-space:nowrap;transition:color .2s;}
+.nav-label{font-size:9.5px;font-weight:600;letter-spacing:0.1px;color:#7C93A3;white-space:nowrap;transition:color .2s;}
 .nav-item.active .nav-icon{filter:none;}
-.nav-item.active .nav-label{color:#F0D28B;font-weight:800;}
+.nav-item.active .nav-label{color:#38BDF8;font-weight:800;}
 
 
 /* Toast - kept but never shown to users */
@@ -333,13 +338,13 @@ input[type="password"]{padding-right:46px;}
 
 /* Forms */
 .action-card{background:transparent;border:none;border-radius:0;padding:0;box-shadow:none;}
-.green-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:14px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:8px;transition:transform .2s, filter .2s;}
+.green-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:14px;padding:16px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:8px;transition:transform .2s, filter .2s;}
 .green-btn:active{transform:scale(.98);filter:brightness(1.1);}
 .green-btn:disabled{opacity:0.4;cursor:not-allowed;}
-.red-btn{width:100%;background:var(--orange);border:none;border-radius:14px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:8px;transition:transform .2s, filter .2s;}
+.red-btn{width:100%;background:var(--orange);border:none;border-radius:14px;padding:16px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:8px;transition:transform .2s, filter .2s;}
 .red-btn:active{transform:scale(.98);filter:brightness(1.1);}
 .red-btn:disabled{opacity:0.4;cursor:not-allowed;}
-.amber-btn{width:100%;background:var(--teal);border:none;border-radius:14px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:8px;transition:transform .2s, filter .2s;}
+.amber-btn{width:100%;background:var(--teal);border:none;border-radius:14px;padding:16px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;cursor:pointer;margin-top:8px;transition:transform .2s, filter .2s;}
 .amber-btn:active{transform:scale(.98);filter:brightness(1.1);}
 .amber-btn:disabled{opacity:0.4;cursor:not-allowed;}
 
@@ -348,9 +353,9 @@ input[type="password"]{padding-right:46px;}
 #sec-withdraw .action-card{background:linear-gradient(135deg, rgba(255,107,91,.1) 0%, rgba(255,107,91,.05) 100%);border:1px solid rgba(255,107,91,.3);}
 #sec-reinvest .action-card{background:linear-gradient(135deg, rgba(6,182,212,.1) 0%, rgba(6,182,212,.05) 100%);border:1px solid rgba(6,182,212,.3);}
 
-.popup-banner{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);background:#16281D;color:#fff;font-size:13px;font-weight:600;padding:14px 22px;border-radius:16px;opacity:0;transition:.35s;z-index:9998;pointer-events:none;text-align:center;max-width:320px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.25);line-height:1.5;}
+.popup-banner{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);background:#1B2733;color:#fff;font-size:13px;font-weight:600;padding:14px 22px;border-radius:16px;opacity:0;transition:.35s;z-index:9998;pointer-events:none;text-align:center;max-width:320px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.25);line-height:1.5;}
 .popup-banner.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.readonly-field{width:100%;background:rgba(20,32,58,0.6);border:1px solid var(--border);border-radius:12px;padding:13px 14px 13px 42px;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:14px;font-weight:700;color:#fff;}
+.readonly-field{width:100%;background:rgba(20,32,58,0.6);border:1px solid var(--border);border-radius:12px;padding:13px 14px 13px 42px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:14px;font-weight:700;color:#fff;}
 .charge-note{background:var(--surface2);border:1px solid var(--warn);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--warn);margin-bottom:12px;line-height:1.6;}
 .deposit-note{background:var(--surface2);border:1px solid var(--accent);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--accent);margin-bottom:12px;line-height:1.6;}
 .locked-banner{background:var(--surface2);border:1px solid var(--warn);border-radius:12px;padding:12px 16px;font-size:12px;color:var(--warn);text-align:center;margin-bottom:12px;font-weight:700;}
@@ -360,9 +365,9 @@ input[type="password"]{padding-right:46px;}
 .modal-overlay.open{display:flex;}
 .modal-box{background:rgba(15,29,58,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--card-border);border-radius:24px;padding:30px 24px;text-align:center;max-width:340px;width:100%;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.5);}
 .modal-icon{font-size:48px;margin-bottom:14px;flex-shrink:0;}
-.modal-title{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:800;margin-bottom:10px;color:#F0D28B;flex-shrink:0;}
+.modal-title{font-family:'Sora',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text);flex-shrink:0;}
 .modal-msg{font-size:13px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:22px;overflow-y:auto;max-height:50vh;text-align:left;flex:1;}
-.modal-close{background:linear-gradient(135deg, #F0D28B 0%, #C79A3D 100%);border:none;border-radius:12px;padding:13px 32px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:#10291D;cursor:pointer;flex-shrink:0;}
+.modal-close{background:linear-gradient(135deg, #38BDF8 0%, #38BDF8 100%);border:none;border-radius:12px;padding:13px 32px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:#1B2733;cursor:pointer;flex-shrink:0;}
 .modal-close:active{transform:scale(.97);}
 
 /* Transaction List */
@@ -374,7 +379,7 @@ input[type="password"]{padding-right:46px;}
 .tx-table tbody tr:last-child{border-bottom:none;}
 .tx-table tbody tr:hover{background:var(--surface2);}
 .tx-table td{padding:11px 10px;vertical-align:middle;}
-.tx-table .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:11px;color:var(--muted);}
+.tx-table .mono{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:11px;color:var(--muted);}
 .tx-table .amount.positive{color:var(--accent3);font-weight:700;}
 .tx-table .amount.negative{color:var(--warn);font-weight:700;}
 .tx-table .amount.gold{color:var(--gold);font-weight:700;}
@@ -386,7 +391,7 @@ input[type="password"]{padding-right:46px;}
 .tx-pill:active{transform:scale(0.98);}
 .tx-pill.active{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-.tx-search-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text);outline:none;margin-bottom:12px;}
+.tx-search-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'Manrope',sans-serif;font-size:14px;color:var(--text);outline:none;margin-bottom:12px;}
 .tx-search-input:focus{border-color:var(--accent);}
 
 .tx-cards-grid{display:flex;flex-direction:column;gap:8px;}
@@ -395,17 +400,17 @@ input[type="password"]{padding-right:46px;}
 .tx-card-header{display:flex;align-items:center;gap:10px;flex:1;min-width:0;margin-bottom:0;}
 .tx-card-icon{font-size:15px;width:34px;height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--surface2);border-radius:9px;}
 .tx-card-type{font-size:12.5px;color:var(--text);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.tx-card-date{font-size:9.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;}
-.tx-card-amount{font-size:12.5px;font-weight:800;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text);margin-bottom:0;text-align:right;white-space:nowrap;}
+.tx-card-date{font-size:9.5px;color:var(--muted);font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;}
+.tx-card-amount{font-size:12.5px;font-weight:800;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;color:var(--text);margin-bottom:0;text-align:right;white-space:nowrap;}
 .tx-card-status{display:block;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px;text-align:right;margin-top:2px;}
 @media (min-width:480px){.tx-cards-grid{grid-template-columns:1fr;}}
 
-.tx-card-amount.positive{color:#3FA35B;}
-.tx-card-amount.negative{color:#B3392C;}
+.tx-card-amount.positive{color:#4ADE80;}
+.tx-card-amount.negative{color:#F87171;}
 
-.tx-status-completed{color:#3FA35B;}
-.tx-status-pending{color:#C79A3D;}
-.tx-status-failed{color:#B3392C;}
+.tx-status-completed{color:#4ADE80;}
+.tx-status-pending{color:#38BDF8;}
+.tx-status-failed{color:#F87171;}
 
 .tx-empty-state{text-align:center;padding:60px 20px;}
 .tx-empty-icon{font-size:48px;margin-bottom:12px;}
@@ -421,11 +426,11 @@ input[type="password"]{padding-right:46px;}
 .ref-bonus-box{border-left:4px solid var(--accent);}
 .ref-team-box{border-left:4px solid var(--teal);}
 .ref-stat-top{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
-.ref-stat-amount{font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--accent);}
+.ref-stat-amount{font-size:22px;font-weight:800;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;color:var(--accent);}
 .ref-link-section{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.2);}
 .ref-link-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;display:block;}
 .ref-link-box{display:flex;gap:8px;align-items:center;}
-.ref-link-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:12px;color:var(--accent);outline:none;}
+.ref-link-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:12px;color:var(--accent);outline:none;}
 .ref-copy-btn{background:var(--accent);border:none;border-radius:10px;padding:12px 16px;font-weight:700;color:#fff;cursor:pointer;font-size:12px;white-space:nowrap;}
 .ref-copy-btn:active{transform:scale(.95);}
 .ref-link-hint{font-size:10px;color:var(--muted);margin-top:8px;}
@@ -434,7 +439,7 @@ input[type="password"]{padding-right:46px;}
 .ref-commission-item{display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface2);border-radius:10px;margin-bottom:8px;}
 .ref-commission-item:last-child{margin-bottom:0;}
 .ref-level{background:var(--accent);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;}
-.ref-pct{font-weight:800;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:14px;color:var(--gold);min-width:35px;}
+.ref-pct{font-weight:800;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:14px;color:var(--gold);min-width:35px;}
 .ref-desc{font-size:12px;color:var(--muted);flex:1;}
 .ref-empty-state{text-align:center;padding:40px 20px;}
 .ref-empty-emoji{font-size:48px;margin-bottom:12px;}
@@ -446,7 +451,7 @@ input[type="password"]{padding-right:46px;}
 .cascade-hero{display:flex;flex-direction:column;align-items:center;padding:8px 0 20px;}
 .cascade-you{background:var(--accent);color:#0A0D0A;font-weight:800;font-size:14px;padding:10px 28px;border:1px solid var(--accent);letter-spacing:1px;}
 .cascade-line{width:1px;height:16px;background:var(--border);}
-.cascade-row{display:flex;align-items:center;gap:10px;width:100%;max-width:280px;padding:10px 14px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;}
+.cascade-row{display:flex;align-items:center;gap:10px;width:100%;max-width:280px;padding:10px 14px;border:1px solid var(--border);font-family:'Manrope',sans-serif;}
 .cascade-row.l1{background:rgba(57,255,136,.06);}
 .cascade-row.l2{background:rgba(57,255,136,.03);}
 .cascade-row.l3{background:transparent;}
@@ -460,16 +465,16 @@ input[type="password"]{padding-right:46px;}
 .ref-member-avatar img{width:100%;height:100%;object-fit:cover;}
 .ref-member-body{flex:1;min-width:0;}
 .ref-member-meta{display:flex;gap:7px;align-items:center;margin-top:3px;}
-.ref-member-level2{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:5px;}
-.rlvl-1{background:rgba(16,185,129,.14);color:#2F8F7A;}
-.rlvl-2{background:rgba(240,184,79,.18);color:#8F6A22;}
-.rlvl-3{background:rgba(139,124,246,.16);color:#8A7B3E;}
+.ref-member-level2{font-family:'Manrope',sans-serif;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:5px;}
+.rlvl-1{background:rgba(16,185,129,.14);color:#38BDF8;}
+.rlvl-2{background:rgba(240,184,79,.18);color:#38BDF8;}
+.rlvl-3{background:rgba(139,124,246,.16);color:#38BDF8;}
 .ref-member-status2{font-size:10.5px;color:var(--muted);}
-.ref-member-status2.earning{color:#2F8F7A;font-weight:700;}
+.ref-member-status2.earning{color:#38BDF8;font-weight:700;}
 .ref-member-right{text-align:right;flex-shrink:0;}
-.ref-member-invested{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:12px;font-weight:700;color:var(--text);}
+.ref-member-invested{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:12px;font-weight:700;color:var(--text);}
 .ref-member-invested-label{font-size:8.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-top:1px;}
-.ref-member-bonus{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:11px;font-weight:800;color:#8F6A22;margin-top:5px;}
+.ref-member-bonus{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:11px;font-weight:800;color:#38BDF8;margin-top:5px;}
 .ref-member-item{display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;}
 .ref-member-name{font-weight:700;color:var(--text);font-size:13px;}
 .ref-member-info{display:flex;gap:12px;align-items:center;font-size:11px;}
@@ -477,33 +482,21 @@ input[type="password"]{padding-right:46px;}
 .ref-member-status{color:var(--muted);}
 
 /* Community Cards */
-.community-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;cursor:pointer;transition:transform .2s, box-shadow .2s;box-shadow:0 4px 14px rgba(10,22,61,.06);}
+.community-card{background:var(--surface2);border:none;border-radius:14px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;cursor:pointer;transition:transform .2s;}
 .community-card:active{transform:scale(.97);}
 .community-wa:hover, .community-wa:active{border-color:rgba(37,211,102,.5);}
 .community-tg:hover, .community-tg:active{border-color:rgba(33,150,243,.5);}
 .community-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.community-title{font-size:12px;font-weight:800;color:var(--text);margin-bottom:2px;}
+.community-title{font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;color:var(--text);}
 .community-desc{font-size:10px;color:var(--muted);line-height:1.3;}
 
 /* WA Button */
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;margin-left:auto;background:#25D366;border:none;border-radius:14px;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#fff;cursor:pointer;}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;margin-left:auto;background:#25D366;border:none;border-radius:14px;padding:12px 20px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;}
 .wa-btn:active{transform:scale(.98);}
 
 
 
-/* === Terminal style overrides === */
-.welcome-card,.stat-box,.action-btn,.avatar-picker-card,.community-card,
-.profile-card,.profile-info-section,.profile-stat-card,.settings-list,
-.tx-card,.ref-box,.ref-stat-box,.ref-commission-item,.ref-link-section,
-.investment-progress,.locked-banner,.plan-footer,.charge-note,.deposit-note,
-.menu-btn,.close-menu,.emoji-option,.topbar,.wgm-card,.ref-member-item2,
-.ref-members-list,.phone-prefix-wrap,.tx-search-input,.tx-table-wrapper,
-input,select,.field-wrap,.summary-box{
- border:1px solid var(--border) !important;
-}
 ::placeholder{color:var(--muted);opacity:.7;}
-.nav-label,.inner-title,.stat-label,.action-btn span,.settings-row,
-.page-title,.tx-name,.member-name{letter-spacing:.3px;}
 </style>
 </head>
 <body>
@@ -529,7 +522,7 @@ input,select,.field-wrap,.summary-box{
  <div class="field-error" id="login-pw-err">Please enter your password</div>
  </div>
  <div class="field-error" id="login-general-err" style="text-align:center;margin-bottom:10px;font-size:12px;"></div>
- <button class="submit-btn" onclick="doLogin()">ENTER</button>
+ <button class="submit-btn" onclick="doLogin()">Enter</button>
  <div class="auth-switch">Don't have an account? <a onclick="showAuth('register-page')">Register Now</a></div>
  </div>
 </div>
@@ -575,7 +568,7 @@ input,select,.field-wrap,.summary-box{
  <div class="field-error" id="reg-pw-err">Password must be at least 6 characters</div>
  </div>
  <div class="field-error" id="reg-general-err" style="text-align:center;margin-bottom:10px;font-size:12px;"></div>
- <button class="submit-btn" onclick="doRegister()">CREATE_WALLET</button>
+ <button class="submit-btn" onclick="doRegister()">Create Wallet</button>
  <div class="auth-switch">Already have an account? <a onclick="showAuth('login-page')">Sign In</a></div>
  </div>
 </div>
@@ -594,38 +587,22 @@ input,select,.field-wrap,.summary-box{
 
  <!-- HOME / DASHBOARD -->
  <div class="dash-section active" id="sec-home">
- <div class="section" style="padding-top:14px;">
- <div class="welcome-card">
- <div class="welcome-avatar" id="dash-welcome-avatar">—</div>
- <div class="welcome-text">
- <div class="welcome-greeting">WELCOME_BACK, <span id="dash-username">—</span></div>
- <button class="welcome-copy-link" onclick="copyRef()"><span></span>COPY_INVITE_LINK</button>
- </div>
- <button class="welcome-share-btn" onclick="shareRefLink()"><span></span>INVITE</button>
- </div>
+ <div class="section" style="padding-top:18px;">
+ <div class="home-greeting">Good evening, <span id="dash-username">—</span></div>
+ <div class="balance-hero-label">Total balance</div>
+ <div class="balance-hero" id="stat-balance">UGX 0</div>
+ <div class="balance-hero-delta">↑ <span id="stat-earnings">UGX 0</span> in earnings</div>
  </div>
  <div class="section">
  <div class="stats-card">
- <div class="stats-grid">
+ <div class="stats-grid stats-grid-2">
  <div class="stat-box">
- <div class="stat-icon"></div>
- <div class="stat-value dep" id="stat-balance">UGX 0</div>
- <div class="stat-label">BALANCE</div>
- </div>
- <div class="stat-box">
- <div class="stat-icon"></div>
- <div class="stat-value earn" id="stat-earnings">UGX 0</div>
- <div class="stat-label">EARNINGS</div>
- </div>
- <div class="stat-box">
- <div class="stat-icon"></div>
- <div class="stat-value total" id="stat-stake">UGX 0</div>
  <div class="stat-label">Invested</div>
+ <div class="stat-value total" id="stat-stake">UGX 0</div>
  </div>
  <div class="stat-box">
- <div class="stat-icon"></div>
- <div class="stat-value with" id="stat-withdrawn">UGX 0</div>
  <div class="stat-label">Withdraws</div>
+ <div class="stat-value with" id="stat-withdrawn">UGX 0</div>
  </div>
  </div>
  </div>
@@ -633,8 +610,8 @@ input,select,.field-wrap,.summary-box{
 
  <div class="section">
  <div class="action-grid">
- <button class="action-btn" onclick="switchTab('deposit')"><span class="btn-icon"></span>Invest</button>
- <button class="action-btn btn-withdraw" onclick="switchTab('withdraw')"><span class="btn-icon"></span>WITHDRAW</button>
+ <button class="action-btn action-btn-primary" onclick="switchTab('deposit')"><span class="btn-icon"></span>Invest</button>
+ <button class="action-btn" onclick="switchTab('withdraw')"><span class="btn-icon"></span>Withdraw</button>
  <button class="action-btn" onclick="switchTab('reinvest')"><span class="btn-icon"></span>Re-invest</button>
  <button class="action-btn" onclick="switchTab('history')"><span class="btn-icon"></span>Records</button>
  <button class="action-btn" onclick="switchTab('team')"><span class="btn-icon"></span>Referrals</button>
@@ -643,15 +620,16 @@ input,select,.field-wrap,.summary-box{
  </div>
  <div class="section" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
  <div class="community-card community-wa" onclick="openWaGroup()">
- <div class="community-icon" style="background:rgba(37,211,102,.15);">💬</div>
- <div><div class="community-title">WHATSAPP_CHANNEL</div><div class="community-desc">JOIN_OFFICIAL_CHANNEL</div></div>
+ <div><div class="community-title">WhatsApp Channel</div></div>
  </div>
  <div class="community-card community-tg" onclick="openTelegramGroup()">
- <div class="community-icon" style="background:rgba(33,150,243,.15);">✈️</div>
- <div><div class="community-title">TELEGRAM_GROUP</div><div class="community-desc">JOIN_OFFICIAL_COMMUNITY</div></div>
+ <div><div class="community-title">Telegram Group</div></div>
  </div>
  </div>
  </div>
+
+ <!-- dash-welcome-avatar kept off-page for renderAvatarInto's null-safe call -->
+ <div id="dash-welcome-avatar" style="display:none;"></div>
 
  <!-- Floating WhatsApp Icon -->
  <a href="#" id="whatsapp-float-btn" class="whatsapp-float" target="_blank">
@@ -665,50 +643,50 @@ input,select,.field-wrap,.summary-box{
 
  <!-- Wallet - New Tab -->
  <div class="dash-section" id="sec-wallet">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">WALLET</div><div class="inner-sub">Balance breakdown &amp; quick actions</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Wallet</div><div class="inner-sub">Balance breakdown &amp; quick actions</div></div></div>
  <div class="section">
  <div class="stats-card">
  <div class="stats-grid">
  <div class="stat-box">
  <div class="stat-icon"></div>
  <div class="stat-value dep" id="wallet-stat-balance">UGX 0</div>
- <div class="stat-label">BALANCE</div>
+ <div class="stat-label">Balance</div>
  </div>
  <div class="stat-box">
  <div class="stat-icon"></div>
  <div class="stat-value earn" id="wallet-stat-earnings">UGX 0</div>
- <div class="stat-label">EARNINGS</div>
+ <div class="stat-label">Earnings</div>
  </div>
  <div class="stat-box">
  <div class="stat-icon"></div>
  <div class="stat-value total" id="wallet-stat-stake">UGX 0</div>
- <div class="stat-label">ACTIVE_STAKE</div>
+ <div class="stat-label">Active Stake</div>
  </div>
  <div class="stat-box">
  <div class="stat-icon"></div>
  <div class="stat-value with" id="wallet-stat-withdrawn">UGX 0</div>
- <div class="stat-label">WITHDRAWN</div>
+ <div class="stat-label">Withdrawn</div>
  </div>
  </div>
  </div>
  </div>
  <div class="section">
  <div class="action-grid">
- <button class="action-btn" onclick="switchTab('deposit')"><span class="btn-icon"></span>ADD_FUNDS</button>
- <button class="action-btn btn-withdraw" onclick="switchTab('withdraw')"><span class="btn-icon"></span>WITHDRAW</button>
- <button class="action-btn" onclick="switchTab('reinvest')"><span class="btn-icon"></span>COMPOUND</button>
- <button class="action-btn" onclick="switchTab('team')"><span class="btn-icon"></span>INVITE</button>
+ <button class="action-btn" onclick="switchTab('deposit')"><span class="btn-icon"></span>Add Funds</button>
+ <button class="action-btn btn-withdraw" onclick="switchTab('withdraw')"><span class="btn-icon"></span>Withdraw</button>
+ <button class="action-btn" onclick="switchTab('reinvest')"><span class="btn-icon"></span>Compound</button>
+ <button class="action-btn" onclick="switchTab('team')"><span class="btn-icon"></span>Invite</button>
  </div>
  </div>
  </div>
 
  <!-- History - New Card Design -->
  <div class="dash-section" id="sec-history">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">ACTIVITY_LOG</div><div class="inner-sub" id="history-filter-label">All your transactions</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Activity</div><div class="inner-sub" id="history-filter-label">All your transactions</div></div></div>
  
  <!-- Search -->
  <div style="margin-bottom:16px;">
- <input type="text" id="tx-search-box" placeholder="> SEARCH_TX..." class="tx-search-input" oninput="renderHistory()">
+ <input type="text" id="tx-search-box" placeholder=" Search transactions..." class="tx-search-input" oninput="renderHistory()">
  </div>
 
  <!-- Transaction Cards -->
@@ -719,39 +697,39 @@ input,select,.field-wrap,.summary-box{
 
  <!-- Referral Team -->
  <div class="dash-section" id="sec-team">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">NETWORK</div><div class="inner-sub">Grow your network &amp; earn</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Network</div><div class="inner-sub">Grow your network &amp; earn</div></div></div>
  <div class="section">
  <div class="ref-new-container">
  <div class="cascade-hero">
  <div class="cascade-you">YOU</div>
  <div class="cascade-line"></div>
- <div class="cascade-row l1"><span class="cascade-tag">L1</span><span class="cascade-pct" id="ref-ring-l1">10%</span><span class="cascade-desc">DIRECT</span></div>
+ <div class="cascade-row l1"><span class="cascade-tag">L1</span><span class="cascade-pct" id="ref-ring-l1">10%</span><span class="cascade-desc">Direct</span></div>
  <div class="cascade-line"></div>
- <div class="cascade-row l2"><span class="cascade-tag">L2</span><span class="cascade-pct" id="ref-ring-l2">4%</span><span class="cascade-desc">2ND_TIER</span></div>
+ <div class="cascade-row l2"><span class="cascade-tag">L2</span><span class="cascade-pct" id="ref-ring-l2">4%</span><span class="cascade-desc">2nd tier</span></div>
  <div class="cascade-line"></div>
- <div class="cascade-row l3"><span class="cascade-tag">L3</span><span class="cascade-pct" id="ref-ring-l3">2%</span><span class="cascade-desc">3RD_TIER</span></div>
+ <div class="cascade-row l3"><span class="cascade-tag">L3</span><span class="cascade-pct" id="ref-ring-l3">2%</span><span class="cascade-desc">3rd tier</span></div>
  </div>
  <div class="ref-stat-box ref-bonus-box">
- <div class="ref-stat-top">BONUSES_EARNED</div>
+ <div class="ref-stat-top">Bonuses Earned</div>
  <div class="ref-stat-amount" id="total-ref-earned-new">UGX 0</div>
  </div>
  <div class="ref-stat-box ref-team-box">
- <div class="ref-stat-top">TEAM_SIZE</div>
+ <div class="ref-stat-top">Team Size</div>
  <div class="ref-stat-amount" id="ref-team-count">0</div>
  </div>
  <div class="ref-link-section">
- <div class="ref-link-label">YOUR_REFERRAL_CODE</div>
+ <div class="ref-link-label">Your Referral Code</div>
  <div class="ref-link-box">
  <input type="text" class="ref-link-input" id="ref-url-new" readonly>
- <button class="ref-copy-btn" onclick="copyRef()">COPY</button>
+ <button class="ref-copy-btn" onclick="copyRef()">Copy</button>
  </div>
  <div class="ref-link-hint">Share this link to invite friends</div>
  </div>
  <div class="ref-commission-info">
- <div class="ref-commission-title">EARN_ON_3_LEVELS</div>
- <div class="ref-commission-item"><span class="ref-level">L1</span><span class="ref-pct" id="ref-pct-l1-new">10%</span><span class="ref-desc">DIRECT_REFERRALS</span></div>
- <div class="ref-commission-item"><span class="ref-level">L2</span><span class="ref-pct" id="ref-pct-l2-new">4%</span><span class="ref-desc">THEIR_REFERRALS</span></div>
- <div class="ref-commission-item"><span class="ref-level">L3</span><span class="ref-pct" id="ref-pct-l3-new">2%</span><span class="ref-desc">3RD_LEVEL</span></div>
+ <div class="ref-commission-title">Earn on 3 Levels</div>
+ <div class="ref-commission-item"><span class="ref-level">L1</span><span class="ref-pct" id="ref-pct-l1-new">10%</span><span class="ref-desc">Direct referrals</span></div>
+ <div class="ref-commission-item"><span class="ref-level">L2</span><span class="ref-pct" id="ref-pct-l2-new">4%</span><span class="ref-desc">Their referrals</span></div>
+ <div class="ref-commission-item"><span class="ref-level">L3</span><span class="ref-pct" id="ref-pct-l3-new">2%</span><span class="ref-desc">3rd level</span></div>
  </div>
  <div id="ref-members-new"><div class="ref-empty-state"><div class="ref-empty-emoji"></div><div class="ref-empty-msg">No team members yet</div><div class="ref-empty-hint">Invite friends to start earning</div></div></div>
  </div>
@@ -760,7 +738,7 @@ input,select,.field-wrap,.summary-box{
 
  <!-- Returns Plan -->
  <div class="dash-section" id="sec-plan">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">GROWTH_PLAN</div><div class="inner-sub">10% daily for 80 days (800% total)</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Growth</div><div class="inner-sub">10% daily for 80 days (800% total)</div></div></div>
  <div class="section">
  <div class="plan-wrap">
  <div class="plan-header"><div class="plan-header-title">Lumina Invest Growth Plan — 10% Daily × 80 Days = 800% Total Return</div></div>
@@ -786,7 +764,7 @@ input,select,.field-wrap,.summary-box{
  </div>
  <div class="section">
  <div class="ref-commission-info">
- <div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--text);margin-bottom:10px;">Referral Program</div>
+ <div style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;color:var(--text);margin-bottom:10px;">Referral Program</div>
  <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px;">Earn a bonus every time someone you referred — or someone in their downline — makes a deposit. Bonuses pay out instantly across 3 levels:</div>
  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--surface2);border-radius:10px;">
@@ -809,7 +787,7 @@ input,select,.field-wrap,.summary-box{
 
  <!-- Profile -->
  <div class="dash-section" id="sec-profile">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">ACCOUNT</div><div class="inner-sub">Manage your profile</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Account</div><div class="inner-sub">Manage your profile</div></div></div>
  <div class="section">
  <div class="profile-compact-row">
  <div class="profile-compact-avatar" id="profile-avatar-lg">—</div>
@@ -821,12 +799,12 @@ input,select,.field-wrap,.summary-box{
 
  <div class="profile-info-section">
  <div class="profile-section-title">Account Details</div>
- <div class="profile-info-item"><span class="profile-info-label">PHONE_NUMBER</span><span class="profile-info-value" id="profile-phone-simple">—</span></div>
- <div class="profile-info-item"><span class="profile-info-label">REGISTERED_DATE</span><span class="profile-info-value" id="profile-date-simple">—</span></div>
+ <div class="profile-info-item"><span class="profile-info-label">Phone Number</span><span class="profile-info-value" id="profile-phone-simple">—</span></div>
+ <div class="profile-info-item"><span class="profile-info-label">Registered Date</span><span class="profile-info-value" id="profile-date-simple">—</span></div>
  </div>
 
  <div class="settings-list">
- <div class="settings-row" onclick="toggleSettingsForm('pwd')"><span class="settings-row-label">CHANGE_PASSWORD</span><span class="settings-chevron" id="pwd-chevron">›</span></div>
+ <div class="settings-row" onclick="toggleSettingsForm('pwd')"><span class="settings-row-label">Change Password</span><span class="settings-chevron" id="pwd-chevron">›</span></div>
  <div class="settings-form" id="pwd-form">
  <div class="settings-form-inner">
  <div class="field-group"><label class="field-label">Current Password</label><input type="password" id="cp-old-pw" placeholder="Enter current password"></div>
@@ -834,27 +812,27 @@ input,select,.field-wrap,.summary-box{
  <div class="field-group"><label class="field-label">Confirm New Password</label><input type="password" id="cp-confirm-pw" placeholder="Repeat new password"></div>
  <div class="field-error" id="cp-pw-err">Error</div>
  <div class="settings-form-actions">
- <button class="settings-btn-cancel" onclick="toggleSettingsForm('pwd')">CLOSE</button>
- <button class="settings-btn-save" onclick="submitChangePassword()">UPDATE</button>
+ <button class="settings-btn-cancel" onclick="toggleSettingsForm('pwd')">Close</button>
+ <button class="settings-btn-save" onclick="submitChangePassword()">Update</button>
  </div>
  </div>
  </div>
 
- <div class="settings-row" onclick="toggleSettingsForm('phone')"><span class="settings-row-label">CHANGE_PHONE_NUMBER</span><span class="settings-chevron" id="phone-chevron">›</span></div>
+ <div class="settings-row" onclick="toggleSettingsForm('phone')"><span class="settings-row-label">Change Phone Number</span><span class="settings-chevron" id="phone-chevron">›</span></div>
  <div class="settings-form" id="phone-form">
  <div class="settings-form-inner">
  <div class="field-group"><label class="field-label">New Phone Number</label><input type="tel" id="cp-new-phone" placeholder="0700012345" maxlength="10" oninput="regPhoneInput(this)"></div>
  <div class="field-hint">10 digits starting with 0</div>
  <div class="field-error" id="cp-phone-err">Error</div>
  <div class="settings-form-actions">
- <button class="settings-btn-cancel" onclick="toggleSettingsForm('phone')">CLOSE</button>
- <button class="settings-btn-save" onclick="submitChangePhone()">UPDATE</button>
+ <button class="settings-btn-cancel" onclick="toggleSettingsForm('phone')">Close</button>
+ <button class="settings-btn-save" onclick="submitChangePhone()">Update</button>
  </div>
  </div>
  </div>
 
- <div class="settings-row" onclick="openChangeAvatar()"><span class="settings-row-label">CHANGE_AVATAR</span><span class="settings-chevron">›</span></div>
- <div class="settings-row" onclick="toggleSettingsForm('info')"><span class="settings-row-label">EDIT_INFO</span><span class="settings-chevron" id="info-chevron">›</span></div>
+ <div class="settings-row" onclick="openChangeAvatar()"><span class="settings-row-label">Change Avatar</span><span class="settings-chevron">›</span></div>
+ <div class="settings-row" onclick="toggleSettingsForm('info')"><span class="settings-row-label">Edit Info</span><span class="settings-chevron" id="info-chevron">›</span></div>
  <div class="settings-form" id="info-form">
  <div class="settings-form-inner">
  <div class="field-group"><label class="field-label">Country</label>
@@ -864,20 +842,20 @@ input,select,.field-wrap,.summary-box{
  </select>
  </div>
  <div class="settings-form-actions">
- <button class="settings-btn-cancel" onclick="toggleSettingsForm('info')">CLOSE</button>
- <button class="settings-btn-save" onclick="submitEditInfo()">UPDATE</button>
+ <button class="settings-btn-cancel" onclick="toggleSettingsForm('info')">Close</button>
+ <button class="settings-btn-save" onclick="submitEditInfo()">Update</button>
  </div>
  </div>
  </div>
  </div>
 
- <button class="logout-btn-new" onclick="doLogout()">LOG_OUT</button>
+ <button class="logout-btn-new" onclick="doLogout()">Log Out</button>
  </div>
  </div>
 
  <!-- Deposit -->
  <div class="dash-section" id="sec-deposit">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">ADD_FUNDS</div><div class="inner-sub">Top up your wallet</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Add Funds</div><div class="inner-sub">Top up your wallet</div></div></div>
  <div class="section">
  <div class="action-card">
  <div class="field-group">
@@ -892,14 +870,14 @@ input,select,.field-wrap,.summary-box{
  <div class="field-error" id="dep-amount-err">Please check the amount limits</div>
  </div>
  <div class="deposit-note" id="tax-note" style="display:none;font-size:11px;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);color:var(--gold);">You will pay: <strong id="tax-amount">UGX 0</strong>(includes 4% URA tax)</div>
- <button class="green-btn" id="dep-submit-btn" onclick="doDeposit()">ADD_FUNDS</button>
+ <button class="green-btn" id="dep-submit-btn" onclick="doDeposit()">Add Funds</button>
  </div>
  </div>
  </div>
 
  <!-- Withdraw -->
  <div class="dash-section" id="sec-withdraw">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">WITHDRAW</div><div class="inner-sub">Cash out your BALANCE</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Withdraw</div><div class="inner-sub">Cash out your BALANCE</div></div></div>
  <div class="section">
  <div id="withdraw-locked-msg" class="locked-banner" style="display:none">Withdrawals are currently disabled. Please contact support.</div>
  <div class="action-card">
@@ -916,14 +894,14 @@ input,select,.field-wrap,.summary-box{
  <div class="field-wrap"><span class="field-icon"></span><input type="number" id="with-amount" placeholder="Enter amount" min="5000" oninput="updateWithdrawPreview()"></div>
  <div class="field-error" id="with-amount-err">Minimum withdrawal is <span id="with-min-display">UGX 10,000</span></div>
  </div>
- <button class="red-btn" id="with-submit-btn" onclick="doWithdraw()">SEND_TO_MOBILE</button>
+ <button class="red-btn" id="with-submit-btn" onclick="doWithdraw()">Send to Mobile</button>
  </div>
  </div>
  </div>
 
  <!-- Re-Invest -->
  <div class="dash-section" id="sec-reinvest">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">COMPOUND_EARNINGS</div><div class="inner-sub">Grow your stake, not your balance</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Compound Earnings</div><div class="inner-sub">Grow your stake, not your balance</div></div></div>
  <div class="section">
  <div class="action-card">
  <div class="field-group">
@@ -935,7 +913,7 @@ input,select,.field-wrap,.summary-box{
  <div class="field-wrap"><span class="field-icon"></span><input type="number" id="reinvest-amount" placeholder="Minimum 10,000" min="10000"></div>
  <div class="field-error" id="reinvest-amount-err">Minimum re-invest is UGX 10,000</div>
  </div>
- <button class="green-btn" onclick="doReinvest()">COMPOUND_NOW</button>
+ <button class="green-btn" onclick="doReinvest()">Compound Now</button>
  </div>
  </div>
  </div>
@@ -953,11 +931,11 @@ input,select,.field-wrap,.summary-box{
  <p style="margin-bottom:18px;">Whether you're investing UGX 10,000 or UGX 100 million, the promise is the same: consistency, transparency, and a little bit of extra love in your pocket every single day. Welcome to Lumina Invest — where patience truly pays.</p>
 
  <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.15);">
- <div style="background:linear-gradient(135deg,var(--gold),#8F6A22);color:#15201A;text-align:center;font-weight:800;font-size:14px;padding:14px 12px;line-height:1.4;">
+ <div style="background:linear-gradient(135deg,var(--gold),#38BDF8);color:#1B2733;text-align:center;font-weight:800;font-size:14px;padding:14px 12px;line-height:1.4;">
  Lumina Invest Growth Plan — 10% Daily × 80 Days = 800% Total Return
  </div>
  <div style="overflow-x:auto;">
- <table style="width:100%;border-collapse:collapse;background:#0f0f0f;font-family:'JetBrains Mono',monospace;">
+ <table style="width:100%;border-collapse:collapse;background:#1B2733;font-family:'Manrope',sans-serif;">
  <thead>
  <tr style="background:#161616;">
  <th style="color:var(--gold);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;padding:12px 10px;text-align:left;white-space:nowrap;">Deposit (UGX)</th>
@@ -978,12 +956,12 @@ input,select,.field-wrap,.summary-box{
  </div>
 
  <nav class="bottom-nav">
- <div class="nav-item active" onclick="switchTab('home')"><span class="nav-icon">🏠</span><span class="nav-label">OVERVIEW</span></div>
- <div class="nav-item" onclick="switchTab('wallet')"><span class="nav-icon">💳</span><span class="nav-label">WALLET</span></div>
- <div class="nav-item" onclick="switchTab('plan')"><span class="nav-icon">📊</span><span class="nav-label">GROWTH</span></div>
- <div class="nav-item" onclick="switchTab('team')"><span class="nav-icon">👥</span><span class="nav-label">NETWORK</span></div>
- <div class="nav-item" onclick="switchTab('history')"><span class="nav-icon">📋</span><span class="nav-label">ACTIVITY</span></div>
- <div class="nav-item" onclick="switchTab('profile')"><span class="nav-icon">👤</span><span class="nav-label">ACCOUNT</span></div>
+ <div class="nav-item active" onclick="switchTab('home')"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></div>
+ <div class="nav-item" onclick="switchTab('wallet')"><span class="nav-icon">💳</span><span class="nav-label">Wallet</span></div>
+ <div class="nav-item" onclick="switchTab('plan')"><span class="nav-icon">📊</span><span class="nav-label">Growth</span></div>
+ <div class="nav-item" onclick="switchTab('team')"><span class="nav-icon">👥</span><span class="nav-label">Network</span></div>
+ <div class="nav-item" onclick="switchTab('history')"><span class="nav-icon">📋</span><span class="nav-label">Activity</span></div>
+ <div class="nav-item" onclick="switchTab('profile')"><span class="nav-icon">👤</span><span class="nav-label">Account</span></div>
  </nav>
 
 
@@ -1128,7 +1106,7 @@ input,select,.field-wrap,.summary-box{
  <button class="plan-modal-close" onclick="closeAuthPlanModal()">✕</button>
  <div class="plan-modal-header">Lumina Invest Growth Plan — 10% Daily × 80 Days = 800% Total Return</div>
  <div style="overflow-x:auto;">
- <table style="width:100%;border-collapse:collapse;background:#0f0f0f;font-family:'JetBrains Mono',monospace;">
+ <table style="width:100%;border-collapse:collapse;background:#1B2733;font-family:'Manrope',sans-serif;">
  <thead>
  <tr style="background:#161616;">
  <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">Deposit (UGX)</th>
@@ -1655,7 +1633,7 @@ function buildGrowthPlanRows() {
  return tiers.map((deposit, i) => {
  const daily = Math.round(deposit * 0.10);
  const total = daily * 80;
- const rowBg = i % 2 === 0 ? '#0f0f0f' : '#161616';
+ const rowBg = i % 2 === 0 ? '#1B2733' : '#161616';
  return `<tr style="background:${rowBg};border-top:1px solid #262626;">
  <td style="padding:12px 9px;color:#fff;font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;">${fmt(deposit).replace('UGX ', '')}</td>
  <td style="padding:12px 9px;color:#22c55e;font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;">${fmt(daily).replace('UGX ', '')}</td>
@@ -1857,9 +1835,9 @@ function updateProfileUI() {
  const statusEl = document.getElementById('profile-status-simple');
  if (statusEl) {
  const isActive = !!currentUser.activated;
- statusEl.textContent = isActive ? 'EARNING' : 'NEW_MEMBER';
+ statusEl.textContent = isActive ? 'Earning' : 'New Member';
  statusEl.style.background = isActive ? 'rgba(16,185,129,.15)' : 'rgba(107,118,144,.15)';
- statusEl.style.color = isActive ? '#0a8a5f' : '#6b7690';
+ statusEl.style.color = isActive ? '#4ADE80' : '#6b7690';
  }
  document.getElementById('with-phone-display').textContent = currentUser.phone || '—';
  const cpCountryEl = document.getElementById('cp-country');
@@ -2066,7 +2044,7 @@ function renderTeam() {
  <div class="ref-member-name">${r.username}</div>
  <div class="ref-member-meta">
  <span class="ref-member-level2 ${lvlClass}">L${r.level}</span>
- <span class="ref-member-status2 ${isActive ? 'earning' : ''}">${isActive ? 'EARNING' : 'NEW_MEMBER'}</span>
+ <span class="ref-member-status2 ${isActive ? 'earning' : ''}">${isActive ? 'Earning' : 'New Member'}</span>
  </div>
  </div>
  <div class="ref-member-right">
