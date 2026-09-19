@@ -29,7 +29,7 @@
  --accent3:#39FF88;
  --warn:#FF6B5E;
  --gold:#D9A441;
- --text:#CFFCE0;
+ --text:#E8FFF0;
  --muted:#5C7A67;
  --success:#39FF88;
  --danger:#FF6B5E;
@@ -80,11 +80,11 @@ body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--tex
 .welcome-header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;text-align:center;padding:28px 20px 20px;}
 .welcome-title{font-size:18px;font-weight:800;}
 .welcome-body{padding:20px;}
-.welcome-msg{font-size:13.5px;line-height:1.6;color:var(--text);margin-bottom:18px;}
-.welcome-msg b{color:var(--accent);}
+.welcome-msg{font-size:13.5px;line-height:1.6;color:#E8FFF0 !important;margin-bottom:18px;font-weight:500;}
+.welcome-msg b{color:var(--accent) !important;font-weight:700;}
 .wa-tab{display:flex;align-items:center;gap:12px;background:rgba(37,211,102,.10);border:1px solid rgba(37,211,102,.35);border-radius:14px;padding:13px 14px;cursor:pointer;transition:transform .15s;}
 .wa-tab:active{transform:scale(.98);}
-.wa-text-title{font-size:13.5px;font-weight:800;color:var(--text);}
+.wa-text-title{font-size:13.5px;font-weight:800;color:#E8FFF0 !important;}
 .wa-text-sub{font-size:11px;color:var(--muted);}
 .wa-arrow{margin-left:auto;color:#25D366;font-size:18px;}
 .auth-page.active{display:flex;}
@@ -138,8 +138,6 @@ input[type="password"]{padding-right:46px;}
 .brand-icon img{width:100%;height:100%;object-fit:cover;}
 .brand-name{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:0.2px;}
 .topbar-right{display:flex;align-items:center;gap:10px;}
-.theme-toggle{background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:14px;cursor:pointer;padding:8px;color:var(--navy);transition:.3s;}
-.theme-toggle:active{transform:scale(.95);}
 .username-top{background:var(--navy);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;flex-shrink:0;cursor:pointer;}
 .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;opacity:0;pointer-events:none;transition:opacity .3s;}
 .menu-overlay.open{opacity:1;pointer-events:all;}
@@ -445,17 +443,16 @@ input[type="password"]{padding-right:46px;}
 .ref-members-list{display:flex;flex-direction:column;gap:10px;background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:16px;padding:16px;margin-top:16px;box-shadow:0 8px 24px rgba(0,0,0,.2);}
 
 /* Network Rings hero */
-.rings-hero{position:relative;width:220px;height:220px;margin:6px auto 20px;}
-.ring{position:absolute;border-radius:50%;border:1.5px dashed rgba(27,42,82,.16);top:50%;left:50%;transform:translate(-50%,-50%);}
-.ring1{width:220px;height:220px;}
-.ring2{width:154px;height:154px;}
-.ring3{width:88px;height:88px;}
-.ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent3),#2F8F7A);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px;box-shadow:0 0 28px rgba(16,185,129,.35);}
-.ring-tag{position:absolute;background:var(--navy);color:#fff;border-radius:8px;padding:5px 9px;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:5px;white-space:nowrap;box-shadow:0 4px 12px rgba(22,35,74,.25);}
-.ring-tag .pct{color:#4FAE7C;}
-.tag-l1{top:-2px;left:50%;transform:translateX(-50%);}
-.tag-l2{top:50%;right:-10px;transform:translateY(-50%);}
-.tag-l3{bottom:-2px;left:50%;transform:translateX(-50%);}
+.cascade-hero{display:flex;flex-direction:column;align-items:center;padding:8px 0 20px;}
+.cascade-you{background:var(--accent);color:#0A0D0A;font-weight:800;font-size:14px;padding:10px 28px;border:1px solid var(--accent);letter-spacing:1px;}
+.cascade-line{width:1px;height:16px;background:var(--border);}
+.cascade-row{display:flex;align-items:center;gap:10px;width:100%;max-width:280px;padding:10px 14px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;}
+.cascade-row.l1{background:rgba(57,255,136,.06);}
+.cascade-row.l2{background:rgba(57,255,136,.03);}
+.cascade-row.l3{background:transparent;}
+.cascade-tag{font-weight:700;font-size:11px;color:var(--muted);width:22px;}
+.cascade-pct{font-weight:800;font-size:13px;color:var(--gold);}
+.cascade-desc{margin-left:auto;font-size:9.5px;color:var(--muted);letter-spacing:.5px;}
 
 /* Richer member rows */
 .ref-member-item2{display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;}
@@ -591,7 +588,6 @@ input,select,.field-wrap,.summary-box{
  <div class="brand"><div class="brand-icon"><img src="logo.png" alt="Lumina Invest"></div><div class="brand-name">Lumina Invest</div></div>
  </div>
  <div class="topbar-right">
- <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()"></button>
  <div class="username-top" id="dash-avatar" onclick="openMenu()">—</div>
  </div>
  </div>
@@ -726,36 +722,36 @@ input,select,.field-wrap,.summary-box{
  <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">NETWORK</div><div class="inner-sub">Grow your network &amp; earn</div></div></div>
  <div class="section">
  <div class="ref-new-container">
- <div class="rings-hero">
- <div class="ring ring1"></div>
- <div class="ring ring2"></div>
- <div class="ring ring3"></div>
- <div class="ring-center">YOU</div>
- <div class="ring-tag tag-l1">L1 <span class="pct" id="ref-ring-l1">10%</span></div>
- <div class="ring-tag tag-l2">L2 <span class="pct" id="ref-ring-l2">4%</span></div>
- <div class="ring-tag tag-l3">L3 <span class="pct" id="ref-ring-l3">2%</span></div>
+ <div class="cascade-hero">
+ <div class="cascade-you">YOU</div>
+ <div class="cascade-line"></div>
+ <div class="cascade-row l1"><span class="cascade-tag">L1</span><span class="cascade-pct" id="ref-ring-l1">10%</span><span class="cascade-desc">DIRECT</span></div>
+ <div class="cascade-line"></div>
+ <div class="cascade-row l2"><span class="cascade-tag">L2</span><span class="cascade-pct" id="ref-ring-l2">4%</span><span class="cascade-desc">2ND_TIER</span></div>
+ <div class="cascade-line"></div>
+ <div class="cascade-row l3"><span class="cascade-tag">L3</span><span class="cascade-pct" id="ref-ring-l3">2%</span><span class="cascade-desc">3RD_TIER</span></div>
  </div>
  <div class="ref-stat-box ref-bonus-box">
- <div class="ref-stat-top">Bonuses Earned</div>
+ <div class="ref-stat-top">BONUSES_EARNED</div>
  <div class="ref-stat-amount" id="total-ref-earned-new">UGX 0</div>
  </div>
  <div class="ref-stat-box ref-team-box">
- <div class="ref-stat-top">Team Size</div>
+ <div class="ref-stat-top">TEAM_SIZE</div>
  <div class="ref-stat-amount" id="ref-team-count">0</div>
  </div>
  <div class="ref-link-section">
- <div class="ref-link-label">Your Referral Code</div>
+ <div class="ref-link-label">YOUR_REFERRAL_CODE</div>
  <div class="ref-link-box">
  <input type="text" class="ref-link-input" id="ref-url-new" readonly>
- <button class="ref-copy-btn" onclick="copyRef()">Copy</button>
+ <button class="ref-copy-btn" onclick="copyRef()">COPY</button>
  </div>
  <div class="ref-link-hint">Share this link to invite friends</div>
  </div>
  <div class="ref-commission-info">
- <div class="ref-commission-title">Earn on 3 Levels</div>
+ <div class="ref-commission-title">EARN_ON_3_LEVELS</div>
  <div class="ref-commission-item"><span class="ref-level">L1</span><span class="ref-pct" id="ref-pct-l1-new">10%</span><span class="ref-desc">DIRECT_REFERRALS</span></div>
  <div class="ref-commission-item"><span class="ref-level">L2</span><span class="ref-pct" id="ref-pct-l2-new">4%</span><span class="ref-desc">THEIR_REFERRALS</span></div>
- <div class="ref-commission-item"><span class="ref-level">L3</span><span class="ref-pct" id="ref-pct-l3-new">2%</span><span class="ref-desc">3rd level</span></div>
+ <div class="ref-commission-item"><span class="ref-level">L3</span><span class="ref-pct" id="ref-pct-l3-new">2%</span><span class="ref-desc">3RD_LEVEL</span></div>
  </div>
  <div id="ref-members-new"><div class="ref-empty-state"><div class="ref-empty-emoji"></div><div class="ref-empty-msg">No team members yet</div><div class="ref-empty-hint">Invite friends to start earning</div></div></div>
  </div>
@@ -1425,7 +1421,6 @@ async function calculateAndPayDailyProfits() {
 // Loading screen hides immediately after login check
 // ============================================================
 async function initApp() {
- initTheme();
  startSettingsListener();
  
  const savedUser = localStorage.getItem('pp_current_user');
@@ -1619,45 +1614,6 @@ function openMenu() {
 function closeMenu() {
  document.getElementById('side-menu').classList.remove('open');
  document.getElementById('menu-overlay').classList.remove('open');
-}
-
-function toggleTheme() {
- const root = document.documentElement;
- const isDark = localStorage.getItem('pp_theme') === 'dark';
- const newTheme = isDark ? 'light' : 'dark';
- localStorage.setItem('pp_theme', newTheme);
- applyTheme(newTheme);
-}
-
-function applyTheme(theme) {
- const root = document.documentElement;
- const toggle = document.getElementById('theme-toggle');
- if (theme === 'light') {
- root.style.setProperty('--bg', '#eef1f6');
- root.style.setProperty('--surface', '#ffffff');
- root.style.setProperty('--surface2', '#f4f6fa');
- root.style.setProperty('--surface3', '#eef1f6');
- root.style.setProperty('--border', 'rgba(10,22,61,0.08)');
- root.style.setProperty('--text', '#0f1b3c');
- root.style.setProperty('--muted', '#6b7690');
- root.style.setProperty('--accent3', '#3FA35B');
- if (toggle) toggle.textContent = '';
- } else {
- root.style.setProperty('--bg', '#10291D');
- root.style.setProperty('--surface', '#0f1d3a');
- root.style.setProperty('--surface2', '#14203a');
- root.style.setProperty('--surface3', '#1a2a4a');
- root.style.setProperty('--border', 'rgba(255,255,255,0.1)');
- root.style.setProperty('--text', '#FFFFFF');
- root.style.setProperty('--muted', '#A0B4D1');
- root.style.setProperty('--accent3', '#4FAE7C');
- if (toggle) toggle.textContent = '';
- }
-}
-
-function initTheme() {
- const savedTheme = localStorage.getItem('pp_theme') || 'light';
- applyTheme(savedTheme);
 }
 
 function showTerms() { 
