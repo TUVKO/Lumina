@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <meta property="og:title" content="Lumina Invest — Smart Investment Platform">
-<meta property="og:description" content="Grow your money with 10% daily profit over 80 days. Trusted by thousands. Register free today.">
-<meta property="og:image" content="https://nexohub19.site/logo.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
-<meta property="og:url" content="https://nexohub19.site/">
+<meta property="og:description" content="Grow your money with 10% daily profit over 50 days. Trusted by thousands. Register free today.">
+<meta property="og:image" content="https://tuvko.github.io/Lumina/logo.png?v=2">
+<meta property="og:url" content="https://tuvko.github.io/Lumina/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://nexohub19.site/logo.png">
+<meta name="twitter:image" content="https://tuvko.github.io/Lumina/logo.png?v=2">
 <title>Lumina Invest — Grow Your Wealth</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0F1720">
@@ -222,14 +220,14 @@ input[type="password"]{padding-right:46px;}
  right:20px;
  width:52px;
  height:52px;
- background:var(--navy);
+ background:#25D366;
  border-radius:50%;
  display:flex;
  align-items:center;
  justify-content:center;
  font-size:22px;
  cursor:pointer;
- box-shadow:0 6px 20px rgba(22,35,74,.4);
+ box-shadow:0 6px 20px rgba(37,211,102,.45);
  z-index:300;
  transition:transform .2s;
  color:#fff;
@@ -252,17 +250,17 @@ input[type="password"]{padding-right:46px;}
 .plan-header-title{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;color:#1B2733;letter-spacing:0.4px;}
 .table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0;background:#000000;}
 .plan-table{width:100%;border-collapse:collapse;min-width:0;background:#000000;}
-.plan-table thead tr{background:#1B2733;}
-.plan-table thead th{padding:8px 6px;font-size:8.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#38BDF8;text-align:center;border-bottom:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.08);}
+.plan-table thead tr{background:#000000;}
+.plan-table thead th{padding:6px 4px;font-size:8px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#fff;text-align:center;border-bottom:1px solid rgba(255,255,255,.22);border-right:1px solid rgba(255,255,255,.08);}
 .plan-table thead th:last-child{border-right:none;}
 .plan-table tbody tr{border-bottom:1px solid rgba(255,255,255,.08);}
-.plan-table tbody tr:nth-child(odd){background:#0D120D;}
+.plan-table tbody tr:nth-child(odd){background:#000000;}
 .plan-table tbody tr:nth-child(even){background:#000000;}
-.plan-table tbody td{padding:7px 5px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:10px;font-weight:600;text-align:center;border-right:1px solid rgba(255,255,255,.08);color:#fff;}
+.plan-table tbody td{padding:4px 4px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:9px;font-weight:600;text-align:center;border-right:1px solid rgba(255,255,255,.08);color:#fff;}
 .plan-table tbody td:last-child{border-right:none;}
-.plan-table tbody td:first-child{color:#fff;font-weight:800;font-size:10.5px;}
-.plan-table tbody td:nth-child(2){color:#4ADE80;font-weight:700;font-size:10px;}
-.plan-table tbody td:nth-child(3){color:#38BDF8;font-weight:800;font-size:10.5px;}
+.plan-table tbody td:first-child{color:#fff;font-weight:800;font-size:9px;}
+.plan-table tbody td:nth-child(2){color:#fff;font-weight:600;font-size:9px;}
+.plan-table tbody td:nth-child(3){color:#fff;font-weight:700;font-size:9px;}
 .plan-footer{padding:12px;background:var(--surface2);}
 .start-invest-btn{width:100%;background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);border:none;border-radius:12px;padding:13px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#fff;cursor:pointer;}
 .start-invest-btn:active{transform:scale(.98);}
@@ -535,6 +533,39 @@ input[type="password"]{padding-right:46px;}
 
 
 ::placeholder{color:var(--muted);opacity:.7;}
+
+/* ===== Growth tab: heading above the returns table ===== */
+.plan-title{padding:10px 12px 8px;background:#000000;border-bottom:1px solid rgba(255,255,255,.12);text-align:center;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:.9px;color:#fff;}
+
+/* ===== Overview: referral card ===== */
+.rc-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:14px;}
+.rc-title{font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;color:var(--text);}
+.rc-msg{font-size:12px;color:var(--muted);line-height:1.5;margin:4px 0 12px;}
+.rc-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 12px;font-family:'Manrope',sans-serif;font-size:12px;color:var(--accent);outline:none;text-overflow:ellipsis;}
+.rc-actions{display:flex;gap:8px;margin-top:10px;}
+.rc-btn{flex:1;border:none;border-radius:12px;padding:12px 10px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:transform .15s,background .2s;}
+.rc-btn:active{transform:scale(.97);}
+.rc-copy{background:var(--accent);color:#0F1720;}
+.rc-copy.done{background:#4ADE80;}
+.rc-share{background:rgba(37,211,102,.14);color:#7BE3A0;}
+
+/* ===== Overview: market preview (swipeable animated cards) ===== */
+.mk-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;}
+.mk-title{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.8px;color:var(--text);}
+.mk-note{font-size:10px;color:var(--muted);}
+.mk-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;}
+.mk-track::-webkit-scrollbar{display:none;}
+.mk-card{position:relative;flex:0 0 86%;height:196px;border-radius:16px;overflow:hidden;scroll-snap-align:start;background:#02100a;border:1px solid rgba(74,222,128,.16);}
+.mk-card canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:block;}
+.mk-info{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;padding:12px 14px;pointer-events:none;}
+.mk-sym{font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;color:#fff;}
+.mk-name{font-size:10px;color:rgba(255,255,255,.55);margin-top:1px;}
+.mk-price{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:22px;font-weight:800;color:#fff;margin-top:6px;}
+.mk-chg{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:rgba(74,222,128,.16);color:#4ADE80;}
+.mk-chg.down{background:rgba(249,115,22,.16);color:#FB923C;}
+.mk-dots{display:flex;justify-content:center;gap:6px;margin-top:10px;}
+.mk-dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.18);transition:width .2s,background .2s;cursor:pointer;}
+.mk-dot.on{width:16px;background:var(--accent);}
 </style>
 </head>
 <body>
@@ -669,6 +700,24 @@ input[type="password"]{padding-right:46px;}
  <div><div class="community-title">Telegram Group</div></div>
  </div>
  </div>
+
+ <div class="section">
+ <div class="rc-card">
+ <div class="rc-title">Invite &amp; Earn</div>
+ <div class="rc-msg">Invite friends with your link and earn commission when they invest.</div>
+ <input type="text" class="rc-input" id="ref-url-home" readonly>
+ <div class="rc-actions">
+ <button class="rc-btn rc-copy" id="rc-copy-btn" onclick="copyRefHome()">Copy</button>
+ <button class="rc-btn rc-share" onclick="shareRefHome()">Share</button>
+ </div>
+ </div>
+ </div>
+
+ <div class="section">
+ <div class="mk-head"><div class="mk-title">MARKET PREVIEW</div><div class="mk-note">Simulated data</div></div>
+ <div class="mk-track" id="mk-track"></div>
+ <div class="mk-dots" id="mk-dots"></div>
+ </div>
  </div>
 
  <!-- dash-welcome-avatar kept off-page for renderAvatarInto's null-safe call -->
@@ -787,25 +836,31 @@ input[type="password"]{padding-right:46px;}
 
  <!-- Returns Plan -->
  <div class="dash-section" id="sec-plan">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Growth</div><div class="inner-sub">10% daily for 80 days (800% total)</div></div></div>
- <div class="section">
+ <div class="section" style="padding-top:18px;">
  <div class="plan-wrap">
- <div class="plan-header"><div class="plan-header-title">Lumina Invest Growth Plan — 10% Daily × 80 Days = 800% Total Return</div></div>
+ <div class="plan-title">EXAMPLES OF RETURNS</div>
  <div class="table-wrapper">
  <table class="plan-table">
- <thead><tr><th>DEPOSIT (UGX)</th><th>DAILY PROFIT (10%)</th><th>80-DAY TOTAL (UGX)</th></tr></thead>
+ <thead><tr><th>DEPOSIT (UGX)</th><th>DAILY PROFIT (10%)</th><th>50-DAY TOTAL (UGX)</th></tr></thead>
  <tbody>
- <tr><td>10,000</td><td>1,000</td><td>80,000</td></tr>
- <tr><td>20,000</td><td>2,000</td><td>160,000</td></tr>
- <tr><td>50,000</td><td>5,000</td><td>400,000</td></tr>
- <tr><td>100,000</td><td>10,000</td><td>800,000</td></tr>
- <tr><td>200,000</td><td>20,000</td><td>1,600,000</td></tr>
- <tr><td>500,000</td><td>50,000</td><td>4,000,000</td></tr>
- <tr><td>1,000,000</td><td>100,000</td><td>8,000,000</td></tr>
- <tr><td>2,000,000</td><td>200,000</td><td>16,000,000</td></tr>
- <tr><td>5,000,000</td><td>500,000</td><td>40,000,000</td></tr>
- <tr><td>10,000,000</td><td>1,000,000</td><td>80,000,000</td></tr>
- <tr><td>20,000,000</td><td>2,000,000</td><td>160,000,000</td></tr>
+ <tr><td>10,000</td><td>1,000</td><td>50,000</td></tr>
+ <tr><td>15,000</td><td>1,500</td><td>75,000</td></tr>
+ <tr><td>20,000</td><td>2,000</td><td>100,000</td></tr>
+ <tr><td>30,000</td><td>3,000</td><td>150,000</td></tr>
+ <tr><td>50,000</td><td>5,000</td><td>250,000</td></tr>
+ <tr><td>70,000</td><td>7,000</td><td>350,000</td></tr>
+ <tr><td>100,000</td><td>10,000</td><td>500,000</td></tr>
+ <tr><td>150,000</td><td>15,000</td><td>750,000</td></tr>
+ <tr><td>200,000</td><td>20,000</td><td>1,000,000</td></tr>
+ <tr><td>300,000</td><td>30,000</td><td>1,500,000</td></tr>
+ <tr><td>500,000</td><td>50,000</td><td>2,500,000</td></tr>
+ <tr><td>700,000</td><td>70,000</td><td>3,500,000</td></tr>
+ <tr><td>1,000,000</td><td>100,000</td><td>5,000,000</td></tr>
+ <tr><td>1,500,000</td><td>150,000</td><td>7,500,000</td></tr>
+ <tr><td>2,000,000</td><td>200,000</td><td>10,000,000</td></tr>
+ <tr><td>5,000,000</td><td>500,000</td><td>25,000,000</td></tr>
+ <tr><td>10,000,000</td><td>1,000,000</td><td>50,000,000</td></tr>
+ <tr><td>20,000,000</td><td>2,000,000</td><td>100,000,000</td></tr>
  </tbody>
  </table>
  </div>
@@ -907,14 +962,14 @@ input[type="password"]{padding-right:46px;}
  <p style="font-weight:800;font-size:17px;margin-bottom:12px;">Lumina Invest — Grow Your Wealth, One Day at a Time 💙</p>
  <p style="margin-bottom:14px;">Lumina Invest was built on a simple idea: your money should work as hard as you do — every single day, without you having to lift a finger.</p>
  <p style="margin-bottom:14px;">Here's the journey. The moment you join, we welcome you with a free UGX 4,000 bonus — no deposit required, just our way of saying thank you for trusting us. When you're ready to grow further, you can invest anywhere from UGX 10,000 up to UGX 2,350,000, and the instant you do, you receive 10% of that amount back immediately as a welcome profit — before the real magic even begins.</p>
- <p style="margin-bottom:14px;">From there, your investment goes to work quietly in the background. Every day, for 80 days, 10% of your active stake is added straight to your balance — automatically, reliably, day after day. By the end of the full cycle, an investment can return up to 800% of what you put in. No charts to watch, no manual claiming, no stress — just steady, compounding growth happening for you around the clock.</p>
+ <p style="margin-bottom:14px;">From there, your investment goes to work quietly in the background. Every day, for 50 days, 10% of your active stake is added straight to your balance — automatically, reliably, day after day. By the end of the full cycle, an investment can return up to 500% of what you put in. No charts to watch, no manual claiming, no stress — just steady, compounding growth happening for you around the clock.</p>
  <p style="margin-bottom:14px;">And it doesn't stop there. Lumina Invest also believes in the power of community. Share your referral link with friends and family, and you'll earn 10% from anyone you personally bring in, 4% from their referrals, and 2% from the level after that — three layers deep, rewarding you for building a network, not just for going it alone.</p>
  <p style="margin-bottom:14px;">When you're ready to enjoy your earnings, withdrawing is simple and fast, sent directly to your mobile money — a small 10% service charge keeps the platform running smoothly for everyone.</p>
  <p style="margin-bottom:18px;">Whether you're investing UGX 10,000 or UGX 100 million, the promise is the same: consistency, transparency, and a little bit of extra love in your pocket every single day. Welcome to Lumina Invest — where patience truly pays.</p>
 
  <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.15);">
  <div style="background:linear-gradient(135deg,var(--gold),#38BDF8);color:#1B2733;text-align:center;font-weight:800;font-size:14px;padding:14px 12px;line-height:1.4;">
- Lumina Invest Growth Plan — 10% Daily × 80 Days = 800% Total Return
+ Lumina Invest Growth Plan — 10% Daily × 50 Days = 500% Total Return
  </div>
  <div style="overflow-x:auto;">
  <table style="width:100%;border-collapse:collapse;background:#1B2733;font-family:'Manrope',sans-serif;">
@@ -922,7 +977,7 @@ input[type="password"]{padding-right:46px;}
  <tr style="background:#161616;">
  <th style="color:var(--gold);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;padding:12px 10px;text-align:left;white-space:nowrap;">Deposit (UGX)</th>
  <th style="color:var(--gold);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;padding:12px 10px;text-align:left;white-space:nowrap;">Daily Profit (10%)</th>
- <th style="color:var(--gold);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;padding:12px 10px;text-align:left;white-space:nowrap;">80-Day Total (UGX)</th>
+ <th style="color:var(--gold);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;padding:12px 10px;text-align:left;white-space:nowrap;">50-Day Total (UGX)</th>
  </tr>
  </thead>
  <tbody id="growth-plan-table-body"></tbody>
@@ -1077,14 +1132,14 @@ input[type="password"]{padding-right:46px;}
 <div class="plan-modal-overlay" id="plan-modal-overlay">
  <div class="plan-modal-card">
  <button class="plan-modal-close" onclick="closeAuthPlanModal()">✕</button>
- <div class="plan-modal-header">Lumina Invest Growth Plan — 10% Daily × 80 Days = 800% Total Return</div>
+ <div class="plan-modal-header">Lumina Invest Growth Plan — 10% Daily × 50 Days = 500% Total Return</div>
  <div style="overflow-x:auto;">
  <table style="width:100%;border-collapse:collapse;background:#1B2733;font-family:'Manrope',sans-serif;">
  <thead>
  <tr style="background:#161616;">
  <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">Deposit (UGX)</th>
  <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">Daily (10%)</th>
- <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">80-Day Total</th>
+ <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">50-Day Total</th>
  </tr>
  </thead>
  <tbody id="auth-plan-table-body"></tbody>
@@ -1286,6 +1341,12 @@ let settingsData = {
 let profitInterval = null;
 let userListener = null;
 
+// Investment cycle length. New investments run 50 days; investments that were
+// already running (no cycleDays saved on them) keep their original 80 days.
+const CYCLE_DAYS_NEW = 50;
+const CYCLE_DAYS_LEGACY = 80;
+function cycleDaysOf(ai) { return (ai && ai.cycleDays) ? ai.cycleDays : CYCLE_DAYS_LEGACY; }
+
 // ============================================================
 // FIXED: Daily profit calculation (ONCE per calendar day) - ATOMIC UPDATE
 // Reads fresh data from Firebase, calculates profit, updates atomically
@@ -1334,7 +1395,8 @@ async function calculateAndPayDailyProfits() {
  
  // STEP 7: Update daysRun in activeInvestment
  let newDaysRun = (userData.activeInvestment?.daysRun || 0) + daysDiff;
- if (newDaysRun > 80) newDaysRun = 80;
+ const cycleDays = cycleDaysOf(userData.activeInvestment);
+ if (newDaysRun > cycleDays) newDaysRun = cycleDays;
  
  // STEP 8: Prepare activeInvestment object (handle if null/missing)
  let updatedActiveInvestment = userData.activeInvestment || { daysRun: 0 };
@@ -1495,10 +1557,328 @@ function shareRefLink() {
  const url = document.getElementById('ref-url-new');
  const link = url && url.value ? url.value : '';
  const waGroupLink = settingsData.waGroup || '';
- const message = "*New just launched*\n*Lumina Invest is live*\nRegister using my link below to get your welcome bonus of UGX 4000\n\nHow it works?\nEarn 10% daily profits on your investment.\n\nMinimum investment is UGX 10000\n\nMinimum withdrawal UGX 5000\n\n10% daily for 80 days\n\n" + link + "\n\nWhatsApp channel:\n" + waGroupLink + "\n\nRegister i will guide you.";
+ const message = "*New just launched*\n*Lumina Invest is live*\nRegister using my link below to get your welcome bonus of UGX 4000\n\nHow it works?\nEarn 10% daily profits on your investment.\n\nMinimum investment is UGX 10000\n\nMinimum withdrawal UGX 5000\n\n10% daily for 50 days\n\n" + link + "\n\nWhatsApp channel:\n" + waGroupLink + "\n\nRegister i will guide you.";
  const waUrl = 'https://wa.me/?text=' + encodeURIComponent(message);
  window.open(waUrl, '_blank');
 }
+
+// ============================================================
+// Overview: referral card actions (Copy / Share)
+// ============================================================
+function copyRefHome() {
+  const input = document.getElementById('ref-url-home');
+  const btn = document.getElementById('rc-copy-btn');
+  if (!input || !input.value) return;
+  const done = () => {
+    if (!btn) return;
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('done');
+    clearTimeout(btn._t);
+    btn._t = setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600);
+  };
+  const fallback = () => {
+    try {
+      input.focus(); input.select(); input.setSelectionRange(0, input.value.length);
+      if (document.execCommand('copy')) done();
+    } catch (e) {}
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(input.value).then(done).catch(fallback);
+  } else {
+    fallback();
+  }
+}
+
+function shareRefHome() {
+  const input = document.getElementById('ref-url-home');
+  const link = input && input.value ? input.value : '';
+  if (!link) return;
+  const msg = 'Join me on Lumina Invest and get a UGX 4,000 welcome bonus 👉 ' + link;
+  const viaWhatsApp = () => window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  if (navigator.share) {
+    navigator.share({ text: msg }).catch(err => { if (!err || err.name !== 'AbortError') viaWhatsApp(); });
+  } else {
+    viaWhatsApp();
+  }
+}
+
+// ============================================================
+// Overview: MARKET PREVIEW - simulated, animated trading cards
+// (decorative prices, drawn on <canvas>; only visible cards animate)
+// ============================================================
+const MK_N = 30;
+const MK_MARKETS = [
+  { sym: 'BTC/USD',       name: 'Bitcoin',          pre: '$', base: 67250, vol: 0.0016,  rng: 0.012,  dec: 2 },
+  { sym: 'ETH/USD',       name: 'Ethereum',         pre: '$', base: 3520,  vol: 0.0019,  rng: 0.014,  dec: 2 },
+  { sym: 'USDT',          name: 'Tether · USD',     pre: '$', base: 1.0,   vol: 0.00007, rng: 0.0008, dec: 4 },
+  { sym: 'London Coffee', name: 'Robusta · USD/t',  pre: '$', base: 4120,  vol: 0.0008,  rng: 0.006,  dec: 0 },
+  { sym: 'Gold',          name: 'XAU/USD · per oz', pre: '$', base: 2650,  vol: 0.0006,  rng: 0.0045, dec: 2 },
+  { sym: 'Crude Oil',     name: 'WTI · per barrel', pre: '$', base: 71.4,  vol: 0.001,   rng: 0.008,  dec: 2 },
+  { sym: 'EUR/USD',       name: 'Euro · US Dollar', pre: '',  base: 1.085, vol: 0.00028, rng: 0.002,  dec: 4 }
+];
+const MK = { cards: [], raf: 0, last: 0, pageVis: false, reduce: false };
+
+function mkFmt(m, v) {
+  return m.pre + v.toLocaleString('en-US', { minimumFractionDigits: m.dec, maximumFractionDigits: m.dec });
+}
+
+function mkMove(m, k) {
+  const pull = (m.base - m.price) / m.base * 0.02;
+  m.price *= 1 + (Math.random() - 0.5) * 2 * m.vol * k + pull;
+}
+
+function mkTkText() {
+  if (Math.random() < 0.5) return (Math.random() * 900 + 100).toFixed(3);
+  return (Math.random() < 0.5 ? '▲' : '▼') + (Math.random() * 3).toFixed(2) + '%';
+}
+
+function mkSeed(m) {
+  m.price = m.base;
+  m.open = m.base;
+  m.candles = [];
+  for (let i = 0; i < MK_N; i++) {
+    const o = m.price;
+    let hi = o, lo = o;
+    for (let s = 0; s < 6; s++) {
+      mkMove(m, 1);
+      if (m.price > hi) hi = m.price;
+      if (m.price < lo) lo = m.price;
+    }
+    m.candles.push({ o: o, h: hi, l: lo, c: m.price });
+  }
+  m.tk = [];
+  for (let i = 0; i < 12; i++) {
+    m.tk.push({
+      x: Math.random(), y: Math.random(),
+      sp: 0.02 + Math.random() * 0.03,
+      up: Math.random() > 0.45,
+      sz: 9 + Math.random() * 6,
+      a: 0.10 + Math.random() * 0.10,
+      txt: mkTkText()
+    });
+  }
+  m.acc = 0; m.slide = 0; m.n = 0; m.vis = false;
+}
+
+function mkShowPrice(m) {
+  const ch = (m.price / m.open - 1) * 100;
+  m.priceEl.textContent = mkFmt(m, m.price);
+  m.chgEl.textContent = (ch >= 0 ? '▲ ' : '▼ ') + Math.abs(ch).toFixed(2) + '%';
+  m.chgEl.classList.toggle('down', ch < 0);
+}
+
+function mkTick(m) {
+  mkMove(m, 0.55);
+  const c = m.candles[m.candles.length - 1];
+  c.c = m.price;
+  if (m.price > c.h) c.h = m.price;
+  if (m.price < c.l) c.l = m.price;
+  m.n++;
+  if (m.n % 5 === 0) {
+    m.candles.push({ o: m.price, h: m.price, l: m.price, c: m.price });
+    m.candles.shift();
+    m.slide = MK.reduce ? 0 : 1;
+  }
+  mkShowPrice(m);
+}
+
+function mkResize(m) {
+  const cv = m.cv;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (!w || !h) return false;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  if (m.w !== w || m.h !== h || m.dpr !== dpr) {
+    m.w = w; m.h = h; m.dpr = dpr;
+    cv.width = Math.round(w * dpr);
+    cv.height = Math.round(h * dpr);
+  }
+  return true;
+}
+
+function mkDraw(m, dt, now) {
+  const ctx = m.ctx, W = m.w, H = m.h, N = m.candles.length;
+  ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+
+  // background + soft "globe" glow on the right
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#04170d'); bg.addColorStop(1, '#010604');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+  const gg = ctx.createRadialGradient(W * 0.92, H * 0.45, 0, W * 0.92, H * 0.45, H * 0.95);
+  gg.addColorStop(0, 'rgba(34,197,94,.24)'); gg.addColorStop(1, 'rgba(34,197,94,0)');
+  ctx.fillStyle = gg; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = 'rgba(120,255,160,.10)'; ctx.lineWidth = 1;
+  [H * 0.55, H * 0.78].forEach(r => { ctx.beginPath(); ctx.arc(W * 0.98, H * 0.48, r, Math.PI * 0.55, Math.PI * 1.45); ctx.stroke(); });
+
+  // chart area + vertical scale (eased so it never jumps)
+  const top = H * 0.38, bot = H * 0.94, padX = 10;
+  let hi = -Infinity, lo = Infinity;
+  for (let i = 0; i < N; i++) { const c = m.candles[i]; if (c.h > hi) hi = c.h; if (c.l < lo) lo = c.l; }
+  const mid = (hi + lo) / 2;
+  const span = Math.max((hi - lo) * 1.3, m.base * m.rng);
+  const tLo = mid - span / 2, tHi = mid + span / 2;
+  if (m.lo === undefined) { m.lo = tLo; m.hi = tHi; }
+  const e = Math.min(1, dt / 400);
+  m.lo += (tLo - m.lo) * e; m.hi += (tHi - m.hi) * e;
+  const yOf = p => bot - (p - m.lo) / (m.hi - m.lo) * (bot - top);
+
+  // faint grid
+  ctx.strokeStyle = 'rgba(255,255,255,.05)';
+  for (let g = 0; g <= 3; g++) { const y = top + (bot - top) * g / 3; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+  // drifting ticker numbers (green up / orange down)
+  ctx.textBaseline = 'middle';
+  for (const t of m.tk) {
+    t.x -= t.sp * dt / 1000;
+    if (t.x < -0.25) { t.x = 1.05; t.y = Math.random(); t.txt = mkTkText(); t.up = Math.random() > 0.45; }
+    ctx.font = '700 ' + t.sz.toFixed(1) + 'px Manrope, sans-serif';
+    ctx.fillStyle = t.up ? 'rgba(74,222,128,' + t.a + ')' : 'rgba(251,146,60,' + t.a + ')';
+    ctx.fillText(t.txt, t.x * W, H * 0.36 + t.y * H * 0.58);
+  }
+
+  // candle geometry
+  const cw = (W - padX * 2) / N, bw = Math.max(2, cw * 0.58), off = m.slide * cw;
+  const xOf = i => padX + i * cw + cw / 2 + off;
+
+  // line through closes (+ soft area under it)
+  const pts = [];
+  for (let i = 0; i < N; i++) pts.push({ x: xOf(i), y: yOf(m.candles[i].c) });
+  const path = () => {
+    ctx.beginPath();
+    pts.forEach((p, i) => {
+      if (i === 0) { ctx.moveTo(p.x, p.y); return; }
+      const q = pts[i - 1];
+      ctx.quadraticCurveTo(q.x, q.y, (q.x + p.x) / 2, (q.y + p.y) / 2);
+    });
+    ctx.lineTo(pts[N - 1].x, pts[N - 1].y);
+  };
+  path();
+  ctx.lineTo(pts[N - 1].x, bot); ctx.lineTo(pts[0].x, bot); ctx.closePath();
+  const ag = ctx.createLinearGradient(0, top, 0, bot);
+  ag.addColorStop(0, 'rgba(74,222,128,.20)'); ag.addColorStop(1, 'rgba(74,222,128,0)');
+  ctx.fillStyle = ag; ctx.fill();
+
+  // candles
+  for (let i = 0; i < N; i++) {
+    const c = m.candles[i], x = xOf(i), up = c.c >= c.o;
+    const col = up ? '#22C55E' : '#F97316';
+    ctx.shadowColor = col; ctx.shadowBlur = 5 * m.dpr;
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, yOf(c.h)); ctx.lineTo(x, yOf(c.l)); ctx.stroke();
+    const yo = yOf(c.o), yc = yOf(c.c);
+    ctx.fillRect(x - bw / 2, Math.min(yo, yc), bw, Math.max(1.5, Math.abs(yc - yo)));
+  }
+
+  // glowing line
+  ctx.shadowColor = 'rgba(134,255,170,.95)'; ctx.shadowBlur = 10 * m.dpr;
+  ctx.strokeStyle = 'rgba(150,255,185,.95)'; ctx.lineWidth = 1.6;
+  path(); ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // live price marker (pulsing) + dashed level
+  const last = pts[N - 1], pulse = (Math.sin(now / 300) + 1) / 2;
+  ctx.setLineDash([3, 4]); ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(padX, last.y); ctx.lineTo(W, last.y); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(134,255,170,' + (0.18 + pulse * 0.25).toFixed(2) + ')';
+  ctx.beginPath(); ctx.arc(last.x, last.y, 4 + pulse * 4, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(last.x, last.y, 2.4, 0, Math.PI * 2); ctx.fill();
+}
+
+function mkActive() {
+  return MK.pageVis && document.visibilityState === 'visible' && MK.cards.some(m => m.vis);
+}
+
+function mkKick() {
+  if (!MK.raf && mkActive()) { MK.last = 0; MK.raf = requestAnimationFrame(mkFrame); }
+}
+
+function mkFrame(ts) {
+  MK.raf = 0;
+  if (!mkActive()) return;
+  const gap = MK.reduce ? 1500 : 33;
+  if (MK.last && ts - MK.last < gap) { MK.raf = requestAnimationFrame(mkFrame); return; }
+  const dt = MK.last ? Math.min(ts - MK.last, MK.reduce ? 1600 : 120) : 16;
+  MK.last = ts;
+  for (const m of MK.cards) {
+    if (!m.vis) {
+      // paint one still frame for cards peeking in at the edge, so they are never blank
+      if (!m.drawn && mkResize(m)) { mkDraw(m, 16, ts); m.drawn = true; }
+      continue;
+    }
+    if (!mkResize(m)) continue;
+    m.drawn = true;
+    m.acc += dt;
+    while (m.acc >= 700) { m.acc -= 700; mkTick(m); }
+    m.slide = Math.max(0, m.slide - dt / 450);
+    mkDraw(m, dt, ts);
+  }
+  MK.raf = requestAnimationFrame(mkFrame);
+}
+
+function mkInit() {
+  const track = document.getElementById('mk-track');
+  const dotsEl = document.getElementById('mk-dots');
+  if (!track || !dotsEl) return;
+  MK.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  MK_MARKETS.forEach((cfg, idx) => {
+    const m = Object.assign({}, cfg);
+    const card = document.createElement('div');
+    card.className = 'mk-card';
+    card.innerHTML = '<canvas></canvas>' +
+      '<div class="mk-info"><div><div class="mk-sym"></div><div class="mk-name"></div><div class="mk-price"></div></div>' +
+      '<div class="mk-chg"></div></div>';
+    card.querySelector('.mk-sym').textContent = m.sym;
+    card.querySelector('.mk-name').textContent = m.name;
+    m.card = card;
+    m.cv = card.querySelector('canvas');
+    m.ctx = m.cv.getContext('2d');
+    m.priceEl = card.querySelector('.mk-price');
+    m.chgEl = card.querySelector('.mk-chg');
+    mkSeed(m);
+    mkShowPrice(m);
+    card._mk = m;
+    track.appendChild(card);
+    MK.cards.push(m);
+
+    const dot = document.createElement('div');
+    dot.className = 'mk-dot' + (idx === 0 ? ' on' : '');
+    dot.addEventListener('click', () => {
+      track.scrollTo({ left: idx * (card.offsetWidth + 10), behavior: 'smooth' });
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  const dots = Array.prototype.slice.call(dotsEl.children);
+  track.addEventListener('scroll', () => {
+    const step = MK.cards[0].card.offsetWidth + 10;
+    const max = track.scrollWidth - track.clientWidth;
+    let idx = Math.round(track.scrollLeft / step);
+    if (max > 0 && track.scrollLeft >= max - 4) idx = MK.cards.length - 1;
+    dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+  }, { passive: true });
+
+  if ('IntersectionObserver' in window) {
+    const ioCards = new IntersectionObserver(es => {
+      es.forEach(en => { const m = en.target._mk; if (m) m.vis = en.isIntersecting; });
+      mkKick();
+    }, { root: track, threshold: 0.2 });
+    const ioPage = new IntersectionObserver(es => {
+      MK.pageVis = es[es.length - 1].isIntersecting;
+      mkKick();
+    }, { threshold: 0.05 });
+    MK.cards.forEach(m => ioCards.observe(m.card));
+    ioPage.observe(track);
+  } else {
+    MK.pageVis = true;
+    MK.cards.forEach(m => { m.vis = true; });
+    mkKick();
+  }
+  document.addEventListener('visibilitychange', mkKick);
+}
+try { mkInit(); } catch (err) { console.warn('Market preview init error:', err); }
 
 function openTelegramGroup() {
  if (settingsData.telegramGroup) window.open(settingsData.telegramGroup, '_blank');
@@ -1616,7 +1996,7 @@ function buildGrowthPlanRows() {
  ];
  return tiers.map((deposit, i) => {
  const daily = Math.round(deposit * 0.10);
- const total = daily * 80;
+ const total = daily * 50;
  const rowBg = i % 2 === 0 ? '#1B2733' : '#161616';
  return `<tr style="background:${rowBg};border-top:1px solid #262626;">
  <td style="padding:12px 9px;color:#fff;font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;">${fmt(deposit).replace('UGX ', '')}</td>
@@ -1795,6 +2175,8 @@ function updateReferralLink() {
  const refUrlEl = document.getElementById('ref-url');
  if (refUrlEl) refUrlEl.textContent = refLink;
  document.getElementById('ref-url-new').value = refLink;
+ const homeRef = document.getElementById('ref-url-home');
+ if (homeRef) homeRef.value = refLink;
 }
 
 function renderAvatarInto(el, avatarValue, fallbackInitial) {
@@ -2113,7 +2495,7 @@ async function checkPendingDeposits(username) {
  await userRef.update({ 
  stake: newStake, 
  balance: newBalance,
- activeInvestment: { amount: newStake, startDate: dateStr(), daysLeft: 80, dailyProfit: 0 },
+ activeInvestment: { amount: newStake, startDate: dateStr(), daysLeft: CYCLE_DAYS_NEW, cycleDays: CYCLE_DAYS_NEW, dailyProfit: 0 },
  lastProfitDate: getDateKey(new Date())
  });
  
@@ -2207,8 +2589,8 @@ async function doDeposit() {
  const newBalance = (currentUser.balance || 0) + profit;
  const todayKey = getDateKey(new Date());
  let newActiveInvestment = currentUser.activeInvestment || null;
- if (!newActiveInvestment || newActiveInvestment.daysRun >= 80) {
- newActiveInvestment = { amount: newStake, startDate: new Date().toISOString(), daysRun: 0, lastPaidDate: todayKey };
+ if (!newActiveInvestment || newActiveInvestment.daysRun >= cycleDaysOf(newActiveInvestment)) {
+ newActiveInvestment = { amount: newStake, startDate: new Date().toISOString(), daysRun: 0, cycleDays: CYCLE_DAYS_NEW, lastPaidDate: todayKey };
  } else {
  newActiveInvestment.amount = newStake;
  }
@@ -2450,8 +2832,8 @@ async function doReinvest() {
  const newBalance = balance - amount + profit;
  const newStake = (currentUser.stake || 0) + amount;
  let newActiveInvestment = currentUser.activeInvestment || null;
- if (!newActiveInvestment || newActiveInvestment.daysRun >= 80) {
- newActiveInvestment = { amount: newStake, startDate: new Date().toISOString(), daysRun: 0, lastPaidDate: todayKey };
+ if (!newActiveInvestment || newActiveInvestment.daysRun >= cycleDaysOf(newActiveInvestment)) {
+ newActiveInvestment = { amount: newStake, startDate: new Date().toISOString(), daysRun: 0, cycleDays: CYCLE_DAYS_NEW, lastPaidDate: todayKey };
  } else {
  newActiveInvestment.amount = newStake;
  }
