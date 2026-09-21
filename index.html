@@ -634,6 +634,24 @@ input[type="password"]{padding-right:46px;}
 #register-page .submit-btn{height:58px;padding:0;border-radius:999px;background:linear-gradient(180deg,#43C1FA,#0EA5E9);color:#fff;font-weight:900;font-size:16px;letter-spacing:0;text-transform:none;box-shadow:0 12px 24px rgba(14,165,233,.35);margin-top:8px;}
 #register-page .auth-switch{color:#6B84A3;font-weight:700;margin-top:16px;}
 #register-page .auth-switch a{color:#0EA5E9;font-weight:900;}
+
+/* ===== Manual deposit: full-screen wait popup ===== */
+#md-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:100000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(7,11,25,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);touch-action:none;}
+#md-overlay.show{display:flex;}
+.md-card{width:100%;max-width:380px;background:#131C2B;border:1px solid var(--border);border-radius:24px;padding:28px 22px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.md-spin{width:54px;height:54px;margin:0 auto 16px;border-radius:50%;border:4px solid rgba(56,189,248,.18);border-top-color:#38BDF8;animation:mdspin 1s linear infinite;}
+.md-spin.ok{animation:none;border-color:#4ADE80;background:rgba(74,222,128,.12);position:relative;}
+.md-spin.ok::after{content:'\2713';position:absolute;inset:0;display:grid;place-items:center;font-size:26px;font-weight:800;color:#4ADE80;}
+.md-spin.bad{animation:none;border-color:#F87171;background:rgba(248,113,113,.12);position:relative;}
+.md-spin.bad::after{content:'\00D7';position:absolute;inset:0;display:grid;place-items:center;font-size:32px;font-weight:800;color:#F87171;line-height:1;}
+@keyframes mdspin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){.md-spin{animation-duration:4s;}}
+.md-title{font-family:'Manrope',sans-serif;font-size:19px;font-weight:800;color:#fff;margin-bottom:8px;}
+.md-msg{font-size:14px;line-height:1.6;color:var(--muted);}
+.md-msg b{color:#fff;}
+.md-timer{margin-top:14px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:24px;font-weight:800;color:#fff;}
+.md-warn{margin-top:12px;font-size:12px;font-weight:700;color:var(--gold);}
+.md-btn{margin-top:18px;width:100%;height:50px;border:0;border-radius:14px;background:var(--accent);color:#0F1720;font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -953,7 +971,7 @@ input[type="password"]{padding-right:46px;}
  <span id="ref-pct-l3-plan" style="font-size:14px;font-weight:800;color:var(--accent);">2%</span>
  </div>
  </div>
- <div style="font-size:10px;color:var(--muted);line-height:1.5;">These percentages are set by the platform admin and may be adjusted at any time. Current rates shown above always reflect the latest settings.</div>
+ <div style="font-size:10px;color:var(--muted);line-height:1.5;">These percentages are set by the platform and may be adjusted at any time. Current rates shown above always reflect the latest settings.</div>
  </div>
  </div>
  </div>
@@ -976,6 +994,7 @@ input[type="password"]{padding-right:46px;}
  <div class="field-error" id="dep-amount-err">Please check the amount limits</div>
  </div>
  <div class="deposit-note" id="tax-note" style="display:none;font-size:11px;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);color:var(--gold);">You will pay: <strong id="tax-amount">UGX 0</strong>(includes 4% URA tax)</div>
+ <div class="deposit-note" id="dep-manual-note" style="display:none;">You will receive a payment prompt on your phone to confirm.</div>
  <button class="green-btn" id="dep-submit-btn" onclick="doDeposit()">Add Funds</button>
  </div>
  </div>
@@ -1164,6 +1183,16 @@ input[type="password"]{padding-right:46px;}
 
 <div class="toast" id="toast">Done!</div>
 <div class="popup-banner" id="popup-banner"></div>
+<div id="md-overlay" role="dialog" aria-modal="true" aria-live="polite">
+ <div class="md-card">
+ <div class="md-spin" id="md-spin"></div>
+ <div class="md-title" id="md-title"></div>
+ <div class="md-msg" id="md-msg"></div>
+ <div class="md-timer" id="md-timer">10:00</div>
+ <div class="md-warn" id="md-warn">Please don't leave or close this page.</div>
+ <button class="md-btn" id="md-close" style="display:none;" onclick="closeManualDeposit()">OK</button>
+ </div>
+</div>
 
 <!-- Avatar Picker -->
 <div class="avatar-picker-overlay" id="avatar-picker-overlay">
@@ -1384,7 +1413,7 @@ function openChangeAvatar() {
 let currentUsername = null;
 let settingsData = {
  uraTax: 4, withdrawCharge: 10, refL1: 10, refL2: 4, refL3: 2,
- waGroup: '', waSupport: '', telegramGroup: '', withdrawLocked: false, withdrawApproval: false,
+ waGroup: '', waSupport: '', telegramGroup: '', withdrawLocked: false, withdrawApproval: false, depositManual: false,
  minDeposit: 10000, maxDeposit: 2350000, minWithdraw: 10000, waNumber: '', marzApiKey: ''
 };
 let profitInterval = null;
@@ -2079,6 +2108,8 @@ function buildGrowthPlanRows() {
 }
 
 function switchTab(tab) {
+ if (typeof mdReqKey !== 'undefined' && mdReqKey && !mdResolved) return; // frozen while a deposit request is open
+ if (tab === 'deposit') updateDepositModeUI();
  if (tab === 'withdraw' && settingsData.withdrawLocked) {
  // Silent - no modal
  return;
@@ -2122,6 +2153,7 @@ function startSettingsListener() {
 }
 
 function updateUIWithSettings() {
+ updateDepositModeUI();
  const minWith = settingsData.minWithdraw || 10000;
  const withMinDisplay = document.getElementById('with-min-display');
  if (withMinDisplay) withMinDisplay.textContent = fmt(minWith);
@@ -2221,6 +2253,7 @@ function startUserListener(username) {
  userListener = db.ref('users/' + safeKey(username)).on('value', (snap) => {
  if (snap.exists()) {
  currentUser = snap.val();
+ mdSync();
  updateBalanceUI();
  renderHistory();
  renderTeam();
@@ -2536,7 +2569,7 @@ async function checkPendingDeposits(username) {
  for (const [key, txn] of Object.entries(transactions)) {
  // Only check pending deposits
  if (txn.type !== 'Deposit' || txn.status !== 'pending') continue;
- if (!txn.marzUUID) continue;
+ if (!txn.marzUUID || txn.manual) continue; // manual requests are never processed automatically
  
  try {
  // Silently check Marz status (max 20 attempts = ~100 seconds)
@@ -2588,6 +2621,235 @@ async function sendAdminNotification(type, username, amount, message) {
 }
 
 // ============================================================
+// MANUAL DEPOSIT - request is confirmed by our team; the app is
+// frozen behind a wait popup until the request is resolved or
+// times out (10 minutes). Nothing is sent to MarzPay in this mode.
+// ============================================================
+const MD_WAIT_MS = 10 * 60 * 1000;
+let mdReqKey = null, mdReq = null, mdListener = null, mdTimer = null;
+let mdResolved = false, mdOffset = 0, mdExpiring = false, mdOpen = false;
+const mdDismissed = {};
+
+function mdEsc(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function mdNow() { return Date.now() + mdOffset; }
+function mdBanner(msg) {
+ const popup = document.getElementById('popup-banner');
+ if (!popup) return;
+ popup.textContent = msg; popup.classList.add('show');
+ setTimeout(() => popup.classList.remove('show'), 2200);
+}
+async function mdLoadOffset() {
+ try { const s = await db.ref('.info/serverTimeOffset').once('value'); mdOffset = Number(s.val()) || 0; } catch (e) {}
+}
+async function isDepositManualNow() {
+ const snap = await db.ref('settings/depositManual').once('value');
+ return snap.val() === true;
+}
+
+function updateDepositModeUI() {
+ const note = document.getElementById('dep-manual-note');
+ const btn = document.getElementById('dep-submit-btn');
+ const manual = settingsData.depositManual === true;
+ if (note) note.style.display = manual ? 'block' : 'none';
+ if (btn && !btn.disabled) btn.textContent = manual ? 'Send Request' : 'Add Funds';
+}
+
+async function submitManualDeposit(phoneDigits, amount) {
+ const btn = document.getElementById('dep-submit-btn');
+ btn.disabled = true;
+ try {
+ const uKey = safeKey(currentUsername);
+ const openSnap = await db.ref('users/' + uKey + '/manualDepositReq').once('value');
+ if (openSnap.val()) { delete mdDismissed[openSnap.val()]; attachManualDeposit(openSnap.val()); return; } // one request at a time
+ await mdLoadOffset();
+ const depPrefix = currentUser && currentUser.country === 'KE' ? '+254' : '+256';
+ const fullPhone = depPrefix + phoneDigits.slice(1);
+ const uraTax = (settingsData.uraTax || 4) / 100;
+ const totalAmount = Math.ceil(amount * (1 + uraTax));
+ const now = mdNow();
+ const stamp = Date.now();
+ const reqKey = 'dreq_' + stamp;
+ const txKey = 'tx_dep_req_' + stamp;
+ await db.ref('pendingDeposits/' + reqKey).set({
+ username: currentUsername, userId: uKey, phone: fullPhone, amount: amount,
+ taxPaid: totalAmount - amount, totalAmount: totalAmount, txKey: txKey,
+ date: dateStr(), createdAt: now, expiresAt: now + MD_WAIT_MS, status: 'pending'
+ });
+ await db.ref('users/' + uKey).update({
+ manualDepositReq: reqKey,
+ ['transactions/' + txKey]: { type: 'Deposit', amount: amount, note: 'Deposit request - awaiting confirmation', date: dateStr(), status: 'pending', manual: true }
+ });
+ sendAdminNotification('deposit_request', currentUsername, amount, 'Deposit request waiting for confirmation');
+ document.getElementById('dep-phone').value = '';
+ document.getElementById('dep-amount').value = '';
+ document.getElementById('tax-note').style.display = 'none';
+ attachManualDeposit(reqKey);
+ } catch (e) {
+ console.error('Manual deposit error:', e);
+ mdBanner('Could not send the request. Please try again.');
+ } finally {
+ btn.disabled = false;
+ updateDepositModeUI();
+ }
+}
+
+// ---- wait popup ------------------------------------------------
+function mdBeforeUnload(e) { e.preventDefault(); e.returnValue = ''; return ''; }
+
+function mdOpenOverlay() {
+ if (mdOpen) return;
+ mdOpen = true;
+ document.getElementById('md-overlay').classList.add('show');
+ document.body.style.overflow = 'hidden';
+ const dash = document.getElementById('dashboard-page');
+ if (dash) dash.setAttribute('inert', '');
+ try { history.pushState({ mdlock: true }, '', location.href); } catch (e) {}
+ window.addEventListener('beforeunload', mdBeforeUnload);
+}
+
+function mdCloseOverlay() {
+ if (!mdOpen) return;
+ mdOpen = false;
+ document.getElementById('md-overlay').classList.remove('show');
+ document.body.style.overflow = '';
+ const dash = document.getElementById('dashboard-page');
+ if (dash) dash.removeAttribute('inert');
+ window.removeEventListener('beforeunload', mdBeforeUnload);
+}
+
+function attachManualDeposit(reqKey) {
+ detachManualDeposit();
+ mdReqKey = reqKey; mdResolved = false; mdReq = null;
+ mdLoadOffset();
+ mdRender('pending', null);
+ mdOpenOverlay();
+ mdListener = db.ref('pendingDeposits/' + reqKey).on('value', snap => mdOnRequest(snap.val()));
+ mdTimer = setInterval(mdTick, 1000);
+}
+
+function detachManualDeposit() {
+ if (mdReqKey && mdListener) { try { db.ref('pendingDeposits/' + mdReqKey).off('value', mdListener); } catch (e) {} }
+ mdListener = null;
+ if (mdTimer) { clearInterval(mdTimer); mdTimer = null; }
+}
+
+function mdPhoneShown(req) { return mdEsc(String((req && req.phone) || '').replace(/^\+25[64]/, '0')); }
+
+function mdRender(status, req) {
+ const spin = document.getElementById('md-spin'), title = document.getElementById('md-title'), msg = document.getElementById('md-msg');
+ const timer = document.getElementById('md-timer'), warn = document.getElementById('md-warn'), close = document.getElementById('md-close');
+ const phone = mdPhoneShown(req);
+ spin.className = 'md-spin';
+ timer.style.display = 'none'; warn.style.display = 'none'; close.style.display = 'none';
+ if (status === 'pending') {
+ title.textContent = 'Deposit request sent';
+ msg.innerHTML = 'You will receive a payment prompt shortly' + (phone ? ' on <b>' + phone + '</b>' : '') + '. Confirm it with your mobile money PIN.';
+ timer.style.display = 'block'; warn.style.display = 'block';
+ } else if (status === 'processed') {
+ title.textContent = 'Payment prompt sent';
+ msg.innerHTML = 'A payment prompt was sent' + (phone ? ' to <b>' + phone + '</b>' : '') + '. Enter your mobile money PIN on your phone to confirm.';
+ timer.style.display = 'block'; warn.style.display = 'block';
+ } else if (status === 'processing') {
+ title.textContent = 'Confirming your deposit';
+ msg.textContent = 'Almost done. Please wait a moment.';
+ warn.style.display = 'block';
+ } else if (status === 'approved') {
+ spin.classList.add('ok');
+ title.textContent = 'Deposit successful';
+ msg.innerHTML = '<b>' + mdEsc(fmt(req && req.amount)) + '</b> has been added to your stake.';
+ close.style.display = 'block';
+ } else if (status === 'rejected') {
+ spin.classList.add('bad');
+ title.textContent = 'Deposit failed';
+ msg.textContent = 'We could not confirm your payment. If you were charged, please contact support.';
+ close.style.display = 'block';
+ } else { // expired / closed
+ spin.classList.add('bad');
+ title.textContent = 'Request timed out';
+ msg.textContent = 'We did not receive a confirmation in time. If you were charged, please contact support.';
+ close.style.display = 'block';
+ }
+}
+
+function mdOnRequest(req) {
+ if (!mdReqKey) return;
+ if (!req) { mdFinish('closed', null); return; }
+ mdReq = req;
+ const st = req.status;
+ if (st === 'pending' || st === 'processed' || st === 'processing') { mdRender(st, req); mdTick(); return; }
+ mdFinish(st, req);
+}
+
+function mdFinish(status, req) {
+ if (mdResolved) return;
+ mdResolved = true;
+ detachManualDeposit();
+ mdRender(status, req);
+ // tidy the user's own record if the party that resolved it could not
+ const uKey = safeKey(currentUsername);
+ db.ref('users/' + uKey + '/manualDepositReq').remove().catch(() => {});
+ if (req && req.txKey && status !== 'approved') {
+ const cur = currentUser && currentUser.transactions && currentUser.transactions[req.txKey];
+ if (cur && cur.status === 'pending') {
+ db.ref('users/' + uKey + '/transactions/' + req.txKey).update({ status: 'failed', note: 'Deposit request not confirmed' }).catch(() => {});
+ }
+ }
+}
+
+function mdTick() {
+ if (!mdReq || mdResolved) return;
+ if (mdReq.status !== 'pending' && mdReq.status !== 'processed') return;
+ const left = Math.max(0, (mdReq.expiresAt || 0) - mdNow());
+ const m = Math.floor(left / 60000), sec = Math.floor((left % 60000) / 1000);
+ const el = document.getElementById('md-timer');
+ if (el) el.textContent = String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+ if (left <= 0) mdExpire(mdReqKey);
+}
+
+async function mdExpire(reqKey) {
+ if (mdExpiring) return;
+ mdExpiring = true;
+ try {
+ const res = await db.ref('pendingDeposits/' + reqKey).transaction(cur => {
+ if (cur === null) return null;
+ if ((cur.status === 'pending' || cur.status === 'processed') && (cur.expiresAt || 0) <= mdNow()) {
+ cur.status = 'expired'; cur.resolvedAt = mdNow(); return cur;
+ }
+ return; // already handled: leave as is
+ });
+ if (res && res.committed && res.snapshot && res.snapshot.val()) {
+ const req = res.snapshot.val();
+ const uKey = req.userId || safeKey(req.username);
+ const us = await db.ref('users/' + uKey).once('value');
+ if (us.exists()) {
+ await db.ref('users/' + uKey).update({
+ manualDepositReq: null,
+ ['transactions/' + req.txKey]: { type: 'Deposit', amount: req.amount, note: 'Deposit request timed out', date: dateStr(), status: 'failed', manual: true }
+ });
+ }
+ await db.ref('adminTransactions/adm_dep_' + Date.now()).set({ type: 'Deposit', username: req.username, phone: req.phone, amount: req.amount, reference: reqKey, date: dateStr(), status: 'failed' });
+ }
+ } catch (e) { console.warn('Expire error:', e); }
+ finally { mdExpiring = false; }
+}
+
+function closeManualDeposit() {
+ if (!mdResolved) return;
+ if (mdReqKey) mdDismissed[mdReqKey] = true;
+ mdCloseOverlay();
+ mdReqKey = null; mdReq = null;
+ updateBalanceUI();
+ renderHistory();
+ switchTab('home');
+}
+
+// Called on every user-record update: re-opens the popup after a reload while a request is open
+function mdSync() {
+ const key = currentUser && currentUser.manualDepositReq;
+ if (key && key !== mdReqKey && !mdDismissed[key]) attachManualDeposit(key);
+}
+
+// ============================================================
 // DEPOSIT - PIN popup only, auto-closes 1 sec, redirect to home
 // ============================================================
 async function doDeposit() {
@@ -2599,6 +2861,11 @@ async function doDeposit() {
  const amount = parseInt(document.getElementById('dep-amount').value) || 0;
  if (amount < minDep) { setErr('dep-amount-err', true, 'Minimum deposit is ' + fmt(minDep)); return; }
  if (amount > maxDep) { setErr('dep-amount-err', true, 'Maximum deposit is ' + fmt(maxDep)); return; }
+ // Deposit mode is re-read at this moment so a page opened before the switch can never start an automatic payment
+ let manualMode = false;
+ try { manualMode = await isDepositManualNow(); }
+ catch (e) { mdBanner('Connection problem. Please try again.'); return; }
+ if (manualMode) { await submitManualDeposit(phoneDigits, amount); return; }
  if (!settingsData.marzApiKey) { 
  sendAdminNotification('deposit_error', currentUsername, amount, 'Payment API not configured');
  return; 
@@ -3056,6 +3323,7 @@ async function doLogout() {
 })();
 
 window.addEventListener('popstate', (e) => {
+ if (mdReqKey && !mdResolved) { history.pushState({ mdlock: true }, '', location.href); return; } // no leaving while a deposit request is open
  const state = e.state;
  suppressHistoryPush = true;
  if (!state) {

@@ -176,6 +176,19 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
 .admin-footer-divider{color:var(--border);font-size:8px;}
 @media(max-width:900px){.sidebar{width:60px;}.sidebar-brand,.sidebar-sub,.nav-item span:not(.nav-icon){display:none;}.main-content{margin-left:60px;}.stats-row{grid-template-columns:repeat(2,1fr);}.admin-footer{left:60px;}}
 .phone-prefix-badge,.active{border:1px solid var(--border) !important;}
+
+/* ===== Deposit requests: cards (work on a phone screen) ===== */
+.dep-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.dep-head-title{font-size:14px;font-weight:700;color:var(--text);}
+.dep-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
+.dep-card{background:var(--surface2);border:1px solid var(--border);padding:14px;min-width:0;}
+.dep-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;}
+.dep-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--border);font-size:12px;}
+.dep-row .k{color:var(--muted);font-size:10px;letter-spacing:.6px;flex:0 0 auto;}
+.dep-row .v{text-align:right;min-width:0;word-break:break-word;}
+.dep-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.dep-actions .btn{flex:1 1 90px;padding:10px 12px;}
+.dep-empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:12px;border:1px dashed var(--border);}
 </style>
 </head>
 <body>
@@ -291,6 +304,7 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
  <div class="nav-item" onclick="showPage('pg-users')"><span class="nav-icon">👥</span><span>MEMBERS</span></div>
  <div class="nav-item" onclick="showPage('pg-tube')"><span class="nav-icon">📈</span><span>ACTIVE_STAKES</span></div>
  <div class="nav-item" onclick="showPage('pg-transactions')"><span class="nav-icon">💳</span><span>MONEY_FLOW</span></div>
+ <div class="nav-item" onclick="showPage('pg-deposits')"><span class="nav-icon">💰</span><span>DEPOSIT_REQUESTS</span><span class="nav-badge" id="deposits-nav-badge">0</span></div>
  <div class="nav-item" onclick="showPage('pg-withdrawals')"><span class="nav-icon">💸</span><span>PAYOUT_REQUESTS</span><span class="nav-badge" id="withdrawals-nav-badge">0</span></div>
  <div class="nav-item" onclick="showPage('pg-debit')"><span class="nav-icon">➖</span><span>MANUAL_DEBIT</span></div>
  <div class="nav-item" onclick="showPage('pg-sog')"><span class="nav-icon">🔍</span><span>DATA_RESET</span></div>
@@ -369,6 +383,25 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
  </div>
 
  <!-- WITHDRAWALS -->
+ <div class="page" id="pg-deposits">
+ <div class="page-title">DEPOSIT_REQUESTS</div>
+ <div class="page-sub">Manual deposits — mark processed, then confirm or decline</div>
+ <div class="stats-row" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr));margin-bottom:24px;">
+ <div class="stat-card"><div class="stat-card-label">OPEN</div><div class="stat-card-val gold" id="dep-stat-open">0</div></div>
+ <div class="stat-card"><div class="stat-card-label">APPROVED</div><div class="stat-card-val emerald" id="dep-stat-approved">0</div></div>
+ <div class="stat-card"><div class="stat-card-label">OPEN_AMOUNT</div><div class="stat-card-val red" id="dep-stat-amount">UGX 0</div></div>
+ </div>
+ <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+ <button class="btn btn-save" onclick="filterDeposits('open')">Open</button>
+ <button class="btn btn-approve" onclick="filterDeposits('approved')">Approved</button>
+ <button class="btn btn-reject" onclick="filterDeposits('rejected')">Rejected</button>
+ <button class="btn btn-reject" onclick="filterDeposits('expired')">Expired</button>
+ <button class="btn btn-edit" onclick="filterDeposits('all')">All</button>
+ </div>
+ <div class="dep-head"><div class="dep-head-title">Deposit Requests</div><span id="dep-count" style="font-size:12px;color:var(--muted);">0 requests</span></div>
+ <div class="dep-list" id="dep-list"><div class="dep-empty">No deposit requests yet</div></div>
+ </div>
+
  <div class="page" id="pg-withdrawals">
  <div class="page-title">PAYOUT_REQUESTS</div>
  <div class="page-sub">Withdrawal requests — confirm or decline</div>
@@ -518,6 +551,19 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
  </div>
  </div>
 
+ <!-- Deposit Mode + Chipper link -->
+ <div class="settings-section">
+ <div class="settings-title">Deposit Mode</div>
+ <div class="settings-sub">When ON, deposits are handled manually: requests appear in DEPOSIT_REQUESTS and nothing is sent to MarzPay. When OFF, deposits are automatic.</div>
+ <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
+ <button class="btn btn-success" onclick="setDepositManual(true)">Manual Deposits ON</button>
+ <button class="btn btn-danger" onclick="setDepositManual(false)">Automatic OFF</button>
+ <span id="deposit-mode-status" style="font-size:13px;color:var(--muted);">Checking...</span>
+ </div>
+ <div class="settings-row"><span class="settings-label">Chipper Payment Link</span><input type="url" class="settings-input" id="chipper-link-input" placeholder="https://pay.chippercash.com/user/..."><button class="btn btn-save" onclick="saveChipperLink()">Save</button></div>
+ <div class="settings-sub" style="margin-top:8px;">Only you can see this link. The PROCESSED button opens it with the amount added.</div>
+ </div>
+
  <!-- Withdrawal Control -->
  <div class="danger-zone">
  <div class="danger-title">Withdrawal Control</div>
@@ -665,6 +711,7 @@ let allSettings = {
  waGroup: '', waSupport: '', waNumber: '',
  withdrawLocked: false,
  withdrawApproval: false,
+ depositManual: false,
  minDeposit: 10000,
  maxDeposit: 2350000,
  minWithdraw: 10000,
@@ -678,6 +725,10 @@ let wdFilter = 'pending';
 let debitTargetUser = null;
 let debitHistory = [];
 let allWithdrawals = {};
+let allDeposits = {};
+let allAdminSettings = {};
+let depFilter = 'open';
+let depositsCb = null, adminSettingsCb = null, depTickInterval = null, depTickN = 0, srvOffset = 0;
 let awHistory = [];
 let allAdminTransactions = {};
 
@@ -722,6 +773,23 @@ function startRealtimeListeners() {
  updateWithdrawalsBadge();
  });
  
+ // Manual deposit requests + admin-only settings (Chipper link)
+ if (depositsCb) db.ref('pendingDeposits').off('value', depositsCb);
+ depositsCb = (snap) => {
+ allDeposits = snap.val() || {};
+ renderDepositsStats();
+ renderDepositsTable();
+ updateDepositsBadge();
+ sweepExpiredDeposits();
+ };
+ db.ref('pendingDeposits').on('value', depositsCb);
+ if (adminSettingsCb) db.ref('adminSettings').off('value', adminSettingsCb);
+ adminSettingsCb = (snap) => { allAdminSettings = snap.val() || {}; loadChipperUI(); };
+ db.ref('adminSettings').on('value', adminSettingsCb);
+ loadServerOffset();
+ if (depTickInterval) clearInterval(depTickInterval);
+ depTickInterval = setInterval(depTick, 1000);
+
  // Real-time admin transactions listener
  if (adminTxUnsubscribe) adminTxUnsubscribe();
  adminTxUnsubscribe = db.ref('adminTransactions').on('value', (snap) => {
@@ -995,7 +1063,7 @@ async function saveEditUser() {
  updates['transactions/dep_admin_' + Date.now()] = {
  type: 'Deposit',
  amount: addedAmount,
- note: 'Admin credited to STAKE',
+ note: 'Credited to STAKE',
  date: dateStr(),
  status: 'completed'
  };
@@ -1382,7 +1450,7 @@ async function processDebit() {
  ['transactions/' + txKey]: {
  type: 'Withdrawal',
  amount: -amt,
- note: 'Admin Debit from BALANCE',
+ note: 'Debit from BALANCE',
  date: dateStr(),
  status: 'completed'
  }
@@ -1496,6 +1564,12 @@ function loadSettingsUI() {
  approvalStatus.textContent = s.withdrawApproval ? 'Manual Approval ON' : 'Automatic';
  approvalStatus.style.color = s.withdrawApproval ? 'var(--gold)' : 'var(--success)';
  }
+
+ const depStatus = document.getElementById('deposit-mode-status');
+ if (depStatus) {
+ depStatus.textContent = s.depositManual ? 'Manual Deposits ON' : 'Automatic';
+ depStatus.style.color = s.depositManual ? 'var(--gold)' : 'var(--success)';
+ }
 }
 
 function toggleApiKeyVis() {
@@ -1602,6 +1676,268 @@ async function saveRefPct() {
 async function lockWithdrawals(lock) {
  await db.ref('settings/withdrawLocked').set(lock);
  toast(lock ? 'Withdrawals paused' : 'Withdrawals resumed', lock ? '#f87171' : undefined);
+}
+
+// ============================================================
+// MANUAL DEPOSITS - Deposit Mode, Chipper link, DEPOSIT_REQUESTS
+// ============================================================
+const MD_WAIT_MS = 10 * 60 * 1000;
+const CYCLE_DAYS_NEW = 50;
+const CYCLE_DAYS_LEGACY = 80;
+function cycleDaysOf(ai) { return (ai && ai.cycleDays) ? ai.cycleDays : CYCLE_DAYS_LEGACY; }
+function getDateKey(d) {
+ if (!d) d = new Date();
+ return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function escHtml(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function srvNow() { return Date.now() + srvOffset; }
+async function loadServerOffset() {
+ try { const s = await db.ref('.info/serverTimeOffset').once('value'); srvOffset = Number(s.val()) || 0; } catch (e) {}
+}
+function localPhone(p) { return String(p || '').replace(/^\+25[46]/, '0'); }
+function isOpenDeposit(d) { return d && (d.status === 'pending' || d.status === 'processed'); }
+
+async function setDepositManual(val) {
+ await db.ref('settings/depositManual').set(val);
+ toast(val ? 'Manual deposits ON — nothing is sent to MarzPay' : 'Automatic deposits ON', val ? undefined : '#38bdf8');
+}
+
+async function saveChipperLink() {
+ const v = document.getElementById('chipper-link-input').value.trim();
+ if (v) {
+ let ok = false;
+ try { ok = new URL(v).protocol === 'https:'; } catch (e) {}
+ if (!ok) { toast('Enter a full link that starts with https://', '#f87171'); return; }
+ }
+ await db.ref('adminSettings/chipperLink').set(v);
+ toast(v ? 'Chipper link saved' : 'Chipper link cleared');
+}
+
+function loadChipperUI() {
+ const inp = document.getElementById('chipper-link-input');
+ if (inp && document.activeElement !== inp) inp.value = allAdminSettings.chipperLink || '';
+}
+
+function buildChipperUrl(link, amount) {
+ try { const u = new URL(link); u.searchParams.set('amount', String(amount)); return u.toString(); }
+ catch (e) { return link; }
+}
+
+function openChipperWindow(d) {
+ const link = String(allAdminSettings.chipperLink || '').trim();
+ if (!link) { toast('Save your Chipper payment link in CONFIGURATION first', '#f87171'); return false; }
+ const w = window.open(buildChipperUrl(link, d.totalAmount || d.amount), '_blank');
+ if (w) { try { w.opener = null; } catch (e) {} } else { toast('Allow pop-ups to open the payment page', '#f87171'); }
+ return true;
+}
+
+function updateDepositsBadge() {
+ const count = Object.values(allDeposits).filter(isOpenDeposit).length;
+ const badge = document.getElementById('deposits-nav-badge');
+ if (!badge) return;
+ if (count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
+ else { badge.style.display = 'none'; }
+}
+
+function renderDepositsStats() {
+ const vals = Object.values(allDeposits);
+ const open = vals.filter(isOpenDeposit);
+ document.getElementById('dep-stat-open').textContent = open.length;
+ document.getElementById('dep-stat-approved').textContent = vals.filter(v => v.status === 'approved').length;
+ document.getElementById('dep-stat-amount').textContent = fmt(open.reduce((a, v) => a + (v.amount || 0), 0));
+}
+
+function filterDeposits(f) { depFilter = f; renderDepositsTable(); }
+
+function depStatusInfo(st) {
+ if (st === 'approved') return ['Approved', 'var(--success)'];
+ if (st === 'rejected') return ['Rejected', 'var(--warn)'];
+ if (st === 'expired') return ['Expired', 'var(--muted)'];
+ if (st === 'processed') return ['Processed', 'var(--accent)'];
+ if (st === 'processing') return ['Crediting...', 'var(--gold)'];
+ return ['Pending', 'var(--gold)'];
+}
+
+function renderDepositsTable() {
+ const list = document.getElementById('dep-list');
+ const countEl = document.getElementById('dep-count');
+ if (!list) return;
+ let entries = Object.entries(allDeposits);
+ if (depFilter === 'open') entries = entries.filter(([k, v]) => isOpenDeposit(v) || v.status === 'processing');
+ else if (depFilter !== 'all') entries = entries.filter(([k, v]) => v.status === depFilter);
+ entries.sort((a, b) => b[0].localeCompare(a[0]));
+ if (countEl) countEl.textContent = entries.length + ' requests';
+ if (!entries.length) { list.innerHTML = '<div class="dep-empty">No deposit requests here</div>'; return; }
+ list.innerHTML = entries.map(([k, v]) => {
+ const [label, color] = depStatusInfo(v.status);
+ let actions = '';
+ if (v.status === 'pending') {
+ actions = `<button class="btn btn-save" onclick="markDepositProcessed('${k}')">PROCESSED</button>
+ <button class="btn btn-reject" onclick="rejectDeposit('${k}')">REJECT</button>`;
+ } else if (v.status === 'processed') {
+ actions = `<button class="btn btn-edit" onclick="openChipperFor('${k}')">OPEN LINK</button>
+ <button class="btn btn-approve" onclick="approveDeposit('${k}')">APPROVE</button>
+ <button class="btn btn-reject" onclick="rejectDeposit('${k}')">REJECT</button>`;
+ } else if (v.status === 'expired') {
+ actions = `<button class="btn btn-approve" onclick="approveDeposit('${k}')">APPROVE ANYWAY</button>`;
+ }
+ const timeRow = isOpenDeposit(v)
+ ? `<div class="dep-row"><span class="k">TIME LEFT</span><span class="v mono" data-exp="${Number(v.expiresAt) || 0}">--:--</span></div>` : '';
+ return `<div class="dep-card">
+ <div class="dep-card-top"><strong>${escHtml(v.username || '—')}</strong><span style="font-size:11px;font-weight:700;color:${color};">${label}</span></div>
+ <div class="dep-row"><span class="k">DATE</span><span class="v mono" style="font-size:11px;">${escHtml(v.date || '—')}</span></div>
+ <div class="dep-row"><span class="k">PHONE</span><span class="v mono">${escHtml(localPhone(v.phone))} <button class="btn btn-edit" style="padding:2px 8px;font-size:10px;" onclick="copyDepField('${k}','phone')">Copy</button></span></div>
+ <div class="dep-row"><span class="k">AMOUNT</span><span class="v mono" style="color:var(--success);font-weight:800;">${fmt(v.amount)}</span></div>
+ <div class="dep-row"><span class="k">COLLECT TOTAL</span><span class="v mono" style="color:var(--gold);font-weight:800;">${fmt(v.totalAmount || v.amount)} <button class="btn btn-edit" style="padding:2px 8px;font-size:10px;" onclick="copyDepField('${k}','total')">Copy</button></span></div>
+ ${timeRow}
+ ${actions ? `<div class="dep-actions">${actions}</div>` : ''}
+ </div>`;
+ }).join('');
+ depTick();
+}
+
+function depTick() {
+ document.querySelectorAll('[data-exp]').forEach(el => {
+ const left = Math.max(0, Number(el.getAttribute('data-exp')) - srvNow());
+ el.textContent = String(Math.floor(left / 60000)).padStart(2, '0') + ':' + String(Math.floor((left % 60000) / 1000)).padStart(2, '0');
+ });
+ depTickN++;
+ if (depTickN % 5 === 0) sweepExpiredDeposits();
+}
+
+function copyText(text, msg) {
+ const done = () => toast(msg || 'Copied');
+ if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(() => toast('Copy failed', '#f87171'));
+ else { const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) {} t.remove(); }
+}
+function copyDepField(k, field) {
+ const d = allDeposits[k]; if (!d) return;
+ if (field === 'phone') copyText(localPhone(d.phone), 'Phone copied');
+ else copyText(String(d.totalAmount || d.amount), 'Amount copied');
+}
+function openChipperFor(k) { const d = allDeposits[k]; if (d) openChipperWindow(d); }
+
+// One-time claim of a request: only the caller that flips the status continues
+async function claimDeposit(key, from, to, extra, guard) {
+ const res = await db.ref('pendingDeposits/' + key).transaction(cur => {
+ if (cur === null) return null;
+ if (from.indexOf(cur.status) === -1) return;
+ if (guard && !guard(cur)) return;
+ cur.status = to;
+ Object.assign(cur, extra || {});
+ return cur;
+ });
+ return (res && res.committed && res.snapshot) ? res.snapshot.val() : null;
+}
+
+async function markDepositProcessed(key) {
+ const d = allDeposits[key];
+ if (!d || d.status !== 'pending') return;
+ if (!openChipperWindow(d)) return; // opens inside the tap so the browser allows it
+ const now = srvNow();
+ const got = await claimDeposit(key, ['pending'], 'processed', { processedAt: now, expiresAt: now + MD_WAIT_MS });
+ if (!got) toast('This request was already handled', '#f87171');
+ else toast('Marked as processed — the user has 10 minutes');
+}
+
+async function finalizeDepositFailure(key, d, note) {
+ const uKey = d.userId || safeKey(d.username);
+ const us = await db.ref('users/' + uKey).get();
+ if (us.exists()) {
+ await db.ref('users/' + uKey).update({
+ manualDepositReq: null,
+ ['transactions/' + d.txKey]: { type: 'Deposit', amount: d.amount, note: note, date: dateStr(), status: 'failed', manual: true }
+ });
+ }
+ await db.ref('adminTransactions/adm_dep_' + Date.now()).set({ type: 'Deposit', username: d.username, phone: d.phone, amount: d.amount, reference: key, date: dateStr(), status: 'failed' });
+}
+
+async function rejectDeposit(key) {
+ const d = allDeposits[key];
+ if (!d) return;
+ const ok = await confirmAction('Reject deposit?', 'The user will see this deposit as failed. Nothing is credited.');
+ if (!ok) return;
+ try {
+ const got = await claimDeposit(key, ['pending', 'processed'], 'rejected', { resolvedAt: srvNow() });
+ if (!got) { toast('This request was already handled', '#f87171'); return; }
+ await finalizeDepositFailure(key, got, 'Deposit request not confirmed');
+ toast('Deposit rejected');
+ } catch (e) { toast('Error: ' + e.message, '#f87171'); }
+}
+
+const depExpiring = {};
+async function sweepExpiredDeposits() {
+ const now = srvNow();
+ for (const [k, v] of Object.entries(allDeposits)) {
+ if (!isOpenDeposit(v) || (v.expiresAt || 0) > now || depExpiring[k]) continue;
+ depExpiring[k] = true;
+ try {
+ const got = await claimDeposit(k, ['pending', 'processed'], 'expired', { resolvedAt: now }, cur => (cur.expiresAt || 0) <= srvNow());
+ if (got) await finalizeDepositFailure(k, got, 'Deposit request timed out');
+ } catch (e) { console.warn('Expire error:', e); }
+ finally { delete depExpiring[k]; }
+ }
+}
+
+async function approveDeposit(key) {
+ const d = allDeposits[key];
+ if (!d) return;
+ const late = d.status === 'expired';
+ if (d.status !== 'processed' && !late) { toast('Mark it PROCESSED first', '#f87171'); return; }
+ const ok = await confirmAction(late ? 'Approve late payment?' : 'Approve deposit?',
+ (late ? 'This request timed out. ' : '') + 'Only approve after you have confirmed ' + fmt(d.totalAmount || d.amount) + ' from ' + d.username + ' in your Chipper account. ' + fmt(d.amount) + ' will be credited instantly.');
+ if (!ok) return;
+ const from = d.status;
+ let got;
+ try { got = await claimDeposit(key, [from], 'processing', {}); }
+ catch (e) { toast('Error: ' + e.message, '#f87171'); return; }
+ if (!got) { toast('This request was already handled', '#f87171'); return; }
+
+ let credited = false;
+ try {
+ await creditManualDeposit(key, got);
+ credited = true;
+ await db.ref('pendingDeposits/' + key).update({ status: 'approved', resolvedAt: srvNow() });
+ await db.ref('adminTransactions/adm_dep_' + Date.now()).set({ type: 'Deposit', username: got.username, phone: got.phone, amount: got.amount, reference: key, date: dateStr(), status: 'successful' });
+ toast('Deposit approved — ' + fmt(got.amount) + ' credited');
+ try { await creditReferralBonusesAdmin(got.username, got.amount); }
+ catch (e) { toast('Deposit credited, but check referral bonuses', '#f59e0b'); }
+ } catch (e) {
+ if (!credited) {
+ try { await db.ref('pendingDeposits/' + key).update({ status: from }); } catch (e2) {}
+ toast('Could not credit: ' + e.message, '#f87171');
+ } else {
+ toast('Credited, but a follow-up step failed: ' + e.message, '#f59e0b');
+ }
+ }
+}
+
+// Same effect as an automatic deposit: stake, 10% instant profit, investment cycle, history
+async function creditManualDeposit(key, d) {
+ const uKey = d.userId || safeKey(d.username);
+ const snap = await db.ref('users/' + uKey).get();
+ if (!snap.exists()) throw new Error('User not found');
+ const u = snap.val();
+ const amount = d.amount;
+ const profit = Math.floor(amount * 0.10);
+ const newStake = (u.stake || 0) + amount;
+ const newBalance = (u.balance || 0) + profit;
+ const todayKey = getDateKey(new Date());
+ let ai = u.activeInvestment || null;
+ if (!ai || ai.daysRun >= cycleDaysOf(ai)) {
+ ai = { amount: newStake, startDate: new Date().toISOString(), daysRun: 0, cycleDays: CYCLE_DAYS_NEW, lastPaidDate: todayKey };
+ } else {
+ ai.amount = newStake;
+ }
+ const ts = Date.now();
+ const updates = {
+ stake: newStake, balance: newBalance, activated: true, activeInvestment: ai, lastProfitDate: todayKey,
+ manualDepositReq: null,
+ ['deposits/dep_' + ts]: { amount: amount, taxPaid: d.taxPaid || 0, startDate: ts, daysRun: 0, lastPaidDate: todayKey },
+ ['transactions/' + (d.txKey || 'tx_dep_' + ts)]: { type: 'Deposit', amount: amount, note: 'Deposit confirmed (URA Tax: ' + fmt(d.taxPaid || 0) + ')', date: dateStr(), status: 'completed' },
+ ['transactions/tx_profit_' + ts]: { type: 'Profit', amount: profit, note: '10% instant profit on deposit', date: dateStr(), status: 'completed' }
+ };
+ await db.ref('users/' + uKey).update(updates);
 }
 
 async function setWithdrawApproval(val) {
@@ -2033,8 +2369,9 @@ function showPage(id) {
  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
  document.getElementById(id).classList.add('active');
  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
- const map = { 'pg-dashboard': 0, 'pg-users': 1, 'pg-tube': 2, 'pg-transactions': 3, 'pg-withdrawals': 4, 'pg-debit': 5, 'pg-sog': 6, 'pg-settings': 7, 'pg-admin-withdraw': 8 };
- if (map[id] !== undefined) document.querySelectorAll('.nav-item')[map[id]].classList.add('active');
+ const navEl = document.querySelector('.nav-item[onclick*="\'' + id + '\'"]');
+ if (navEl) navEl.classList.add('active');
+ if (id === 'pg-deposits') renderDepositsTable();
  if (id === 'pg-transactions') renderAdminTransactions();
  if (id === 'pg-withdrawals') renderWithdrawalsTable();
  if (id === 'pg-debit') renderDebitHistory();
