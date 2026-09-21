@@ -14,7 +14,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0F1720">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
  --bg:#0F1720;
@@ -64,12 +64,6 @@ body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);min
 .auth-page{display:none;flex-direction:column;min-height:100vh;padding:40px 24px;position:relative;}
 .auth-corner-logo{position:absolute;top:16px;left:16px;width:42px;height:42px;border-radius:12px;overflow:hidden;box-shadow:0 6px 16px rgba(22,35,74,.25);}
 .auth-corner-logo img{width:100%;height:100%;object-fit:cover;}
-.auth-plan-btn{position:absolute;top:16px;right:16px;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(22,35,74,.25);z-index:5;}
-.plan-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10001;align-items:center;justify-content:center;padding:20px;}
-.plan-modal-overlay.show{display:flex;}
-.plan-modal-card{background:#1B2733;border-radius:16px;max-width:480px;width:100%;max-height:80vh;overflow-y:auto;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.5);}
-.plan-modal-close{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;border:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;}
-.plan-modal-header{background:linear-gradient(135deg,var(--gold),#38BDF8);color:#1B2733;text-align:center;font-weight:800;font-size:13px;padding:16px 40px 14px 16px;line-height:1.4;}
 /* Welcome guidance popup */
 .welcome-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10001;align-items:center;justify-content:center;padding:20px;}
 .welcome-overlay.show{display:flex;}
@@ -566,20 +560,95 @@ input[type="password"]{padding-right:46px;}
 .mk-dots{display:flex;justify-content:center;gap:6px;margin-top:10px;}
 .mk-dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.18);transition:width .2s,background .2s;cursor:pointer;}
 .mk-dot.on{width:16px;background:var(--accent);}
+
+/* =====================================================
+   LOGIN PAGE - Glass (midnight, frosted card)
+   ===================================================== */
+#login-page{background:#070B1F;justify-content:center;padding:78px 0 24px;overflow:hidden;font-family:'Manrope',sans-serif;}
+#login-page .auth-deco{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+#login-page .auth-deco i{position:absolute;border-radius:50%;filter:blur(55px);}
+#login-page .auth-deco i:nth-child(1){width:250px;height:250px;background:#6D28D9;left:-80px;top:-30px;opacity:.65;}
+#login-page .auth-deco i:nth-child(2){width:230px;height:230px;background:#06B6D4;right:-90px;top:220px;opacity:.55;}
+#login-page .auth-deco i:nth-child(3){width:210px;height:210px;background:#DB2777;left:10px;bottom:-70px;opacity:.45;}
+@media (prefers-reduced-motion:no-preference){
+ #login-page .auth-deco i{animation:authDrift 14s ease-in-out infinite alternate;}
+ #login-page .auth-deco i:nth-child(2){animation-duration:18s;}
+ #login-page .auth-deco i:nth-child(3){animation-duration:22s;}
+}
+@keyframes authDrift{to{transform:translate(26px,-30px);}}
+#login-page .auth-corner-logo{z-index:3;top:18px;left:20px;width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.94);box-shadow:none;}
+#login-page .auth-hero{position:relative;z-index:2;text-align:center;padding:0 24px 20px;margin:0;}
+#login-page .auth-brand{font-family:'Sora',sans-serif;font-weight:800;font-size:30px;color:#fff;letter-spacing:-.3px;margin:0;}
+#login-page .auth-tagline{margin-top:6px;font-size:13px;color:#A9B8E8;letter-spacing:0;text-transform:none;}
+#login-page .auth-card{position:relative;z-index:2;margin:0 16px;padding:24px 20px 22px;border-radius:26px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);box-shadow:0 20px 50px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18);}
+#login-page .auth-title{font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#fff;margin:0;}
+#login-page .auth-subtitle{color:#A9B8E8;font-size:13px;margin:4px 0 18px;}
+#login-page .field-group{margin-bottom:12px;}
+#login-page .field-label{font-size:11.5px;font-weight:700;color:#B8C4F0;margin-bottom:6px;letter-spacing:.3px;text-transform:none;}
+#login-page .field-wrap input{height:52px;padding:0 14px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:16px;}
+#login-page .field-wrap input:focus{border-color:#22D3EE;box-shadow:0 0 0 4px rgba(34,211,238,.15);}
+#login-page .field-wrap input::placeholder{color:rgba(255,255,255,.4);}
+#login-page .field-wrap input[type="password"]{padding-right:64px;}
+#login-page .eye-btn{right:14px;color:#67E8F9;font-size:12px;font-weight:800;text-transform:none;letter-spacing:0;}
+#login-page .eye-btn:hover{color:#fff;}
+#login-page .submit-btn{height:54px;padding:0;border-radius:14px;background:linear-gradient(120deg,#06B6D4,#7C3AED 60%,#DB2777);color:#fff;font-weight:800;font-size:15px;letter-spacing:0;text-transform:none;box-shadow:0 12px 30px rgba(124,58,237,.45);margin-top:6px;}
+#login-page .auth-switch{color:#A9B8E8;margin-top:16px;}
+#login-page .auth-switch a{color:#fff;font-weight:800;}
+
+/* =====================================================
+   REGISTER PAGE - Fresh (bright, airy, friendly)
+   ===================================================== */
+#register-page{background:#F4F9FF;padding:12px 0 28px;overflow:hidden;font-family:'Nunito','Manrope',sans-serif;color:#0C2A4D;}
+#register-page .auth-deco{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+#register-page .auth-deco i{position:absolute;border-radius:50%;filter:blur(50px);}
+#register-page .auth-deco i:nth-child(1){width:260px;height:260px;background:#BAE6FD;right:-90px;top:-70px;opacity:.9;}
+#register-page .auth-deco i:nth-child(2){width:220px;height:220px;background:#C7F9E0;left:-90px;top:300px;opacity:.75;}
+#reg-referrer-display{position:relative;z-index:3;display:none;align-self:center;align-items:center;gap:4px;margin:14px auto 0;font-family:'Nunito','Manrope',sans-serif;font-size:12px;font-weight:700;color:#33507A;background:rgba(255,255,255,.88);border:1px solid #D2E6F8;padding:6px 12px;border-radius:999px;box-shadow:0 4px 12px rgba(12,42,77,.06);}
+#reg-referrer-display b{color:#0EA5E9;font-weight:900;}
+#register-page .auth-corner-logo{position:relative;top:auto;left:auto;align-self:center;margin:14px auto 0;z-index:2;width:76px;height:76px;border-radius:22px;background:#fff;box-shadow:0 12px 30px rgba(14,165,233,.22);}
+#register-page .auth-hero{position:relative;z-index:2;text-align:center;padding:14px 24px 8px;margin:0;}
+#register-page .auth-brand{font-family:'Nunito','Manrope',sans-serif;font-size:30px;font-weight:900;color:#0C2A4D;margin:0;letter-spacing:0;}
+#register-page .auth-tagline{margin-top:2px;color:#6B84A3;font-size:14px;font-weight:700;letter-spacing:0;text-transform:none;}
+#register-page .auth-card{position:relative;z-index:2;padding:14px 20px 0;}
+#register-page .auth-title{font-family:'Nunito','Manrope',sans-serif;font-size:26px;font-weight:900;color:#0C2A4D;margin:0;}
+#register-page .auth-subtitle{color:#6B84A3;font-size:14px;font-weight:600;margin:2px 0 18px;}
+#register-page .field-group{margin-bottom:12px;}
+#register-page .field-label{font-size:13px;font-weight:800;color:#33507A;margin:0 0 6px 4px;letter-spacing:0;text-transform:none;}
+#register-page .field-wrap input,
+#register-page .field-wrap select{height:56px;padding:0 18px;border-radius:18px;background:#fff;border:2px solid transparent;box-shadow:0 6px 18px rgba(12,42,77,.07);color:#0C2A4D;font-family:'Nunito','Manrope',sans-serif;font-size:16px;font-weight:700;}
+#register-page .field-wrap input:focus,
+#register-page .field-wrap select:focus{border-color:#38BDF8;box-shadow:0 8px 22px rgba(56,189,248,.25);}
+#register-page .field-wrap input::placeholder{color:#A3B5CC;font-weight:600;}
+#register-page .field-wrap input[type="password"]{padding-right:70px;}
+#register-page .field-wrap select{-webkit-appearance:none;appearance:none;padding-right:44px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5 7 7l5.5-5.5' fill='none' stroke='%2333507A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 18px center;}
+#register-page select option{background:#fff;color:#0C2A4D;}
+#register-page .eye-btn{right:18px;color:#0EA5E9;font-weight:900;font-size:13px;text-transform:none;letter-spacing:0;}
+#register-page .eye-btn:hover{color:#0C2A4D;}
+#register-page .field-hint{color:#6B84A3;font-weight:600;font-size:11px;padding-left:4px;}
+#register-page .field-error{color:#E11D48;font-weight:700;}
+#register-page .pw-strength{gap:6px;margin-top:8px;}
+#register-page .pw-bar{height:4px;border-radius:2px;background:#DCE7F5;}
+#register-page .pw-bar.weak{background:#F97316;}
+#register-page .pw-bar.medium{background:#F5B301;}
+#register-page .pw-bar.strong{background:#22C55E;}
+#register-page .submit-btn{height:58px;padding:0;border-radius:999px;background:linear-gradient(180deg,#43C1FA,#0EA5E9);color:#fff;font-weight:900;font-size:16px;letter-spacing:0;text-transform:none;box-shadow:0 12px 24px rgba(14,165,233,.35);margin-top:8px;}
+#register-page .auth-switch{color:#6B84A3;font-weight:700;margin-top:16px;}
+#register-page .auth-switch a{color:#0EA5E9;font-weight:900;}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- LOGIN (Glass style) -->
 <div class="auth-page" id="login-page">
+ <div class="auth-deco"><i></i><i></i><i></i></div>
  <div class="auth-corner-logo"><img src="logo.png" alt="Lumina Invest"></div>
  <div class="auth-hero">
  <div class="auth-brand">Lumina Invest</div>
- <div class="auth-tagline">Grow Your Wealth Daily</div>
+ <div class="auth-tagline">Your money, working every day</div>
  </div>
  <div class="auth-card">
- <div class="auth-title">Welcome Back</div>
- <div class="auth-subtitle">Sign in to your investment account</div>
+ <div class="auth-title">Welcome back</div>
+ <div class="auth-subtitle">Log in to see your balance and daily earnings</div>
  <div class="field-group">
  <label class="field-label">Username</label>
  <div class="field-wrap"><span class="field-icon"></span><input type="text" id="login-username" placeholder="Enter your username"></div>
@@ -591,23 +660,23 @@ input[type="password"]{padding-right:46px;}
  <div class="field-error" id="login-pw-err">Please enter your password</div>
  </div>
  <div class="field-error" id="login-general-err" style="text-align:center;margin-bottom:10px;font-size:12px;"></div>
- <button class="submit-btn" onclick="doLogin()">Enter</button>
- <div class="auth-switch">Don't have an account? <a onclick="showAuth('register-page')">Register Now</a></div>
+ <button class="submit-btn" onclick="doLogin()">Log In</button>
+ <div class="auth-switch">New here? <a onclick="showAuth('register-page')">Create an account</a></div>
  </div>
 </div>
 
-<!-- REGISTER -->
+<!-- REGISTER (Fresh style) -->
 <div class="auth-page" id="register-page">
+ <div class="auth-deco"><i></i><i></i></div>
+ <div id="reg-referrer-display"></div>
  <div class="auth-corner-logo"><img src="logo.png" alt="Lumina Invest"></div>
- <button class="auth-plan-btn" onclick="openAuthPlanModal()">Plan</button>
  <div class="auth-hero">
  <div class="auth-brand">Lumina Invest</div>
- <div class="auth-tagline">Start Earning Today</div>
- <div id="reg-referrer-display" style="display:none;font-size:11px;color:var(--accent);font-weight:700;margin-top:10px;text-align:center;"></div>
+ <div class="auth-tagline">Start earning every day</div>
  </div>
  <div class="auth-card">
- <div class="auth-title">Create Account</div>
- <div class="auth-subtitle">Get UGX 4,000 registration bonus</div>
+ <div class="auth-title">Create your account</div>
+ <div class="auth-subtitle">It takes less than a minute</div>
  <div class="field-group">
  <label class="field-label">Username</label>
  <div class="field-wrap"><span class="field-icon"></span><input type="text" id="reg-username" placeholder="Choose a username"></div>
@@ -618,8 +687,8 @@ input[type="password"]{padding-right:46px;}
  <div class="field-wrap"><span class="field-icon"></span>
  <select id="reg-country" onchange="updateRegPrefix()">
  <option value="">Select your country</option>
- <option value="UG">+256</option>
- <option value="KE">+254</option>
+ <option value="UG">Uganda (+256)</option>
+ <option value="KE">Kenya (+254)</option>
  </select>
  </div>
  <div class="field-error" id="reg-country-err">Please select your country</div>
@@ -637,8 +706,8 @@ input[type="password"]{padding-right:46px;}
  <div class="field-error" id="reg-pw-err">Password must be at least 6 characters</div>
  </div>
  <div class="field-error" id="reg-general-err" style="text-align:center;margin-bottom:10px;font-size:12px;"></div>
- <button class="submit-btn" onclick="doRegister()">Create Wallet</button>
- <div class="auth-switch">Already have an account? <a onclick="showAuth('login-page')">Sign In</a></div>
+ <button class="submit-btn" onclick="doRegister()">Create Account</button>
+ <div class="auth-switch">Already registered? <a onclick="showAuth('login-page')">Log In</a></div>
  </div>
 </div>
 
@@ -1128,26 +1197,6 @@ input[type="password"]{padding-right:46px;}
  </div>
 </div>
 
-<!-- Growth Plan popup (shown from Login/Register pages) -->
-<div class="plan-modal-overlay" id="plan-modal-overlay">
- <div class="plan-modal-card">
- <button class="plan-modal-close" onclick="closeAuthPlanModal()">✕</button>
- <div class="plan-modal-header">Lumina Invest Growth Plan — 10% Daily × 50 Days = 500% Total Return</div>
- <div style="overflow-x:auto;">
- <table style="width:100%;border-collapse:collapse;background:#1B2733;font-family:'Manrope',sans-serif;">
- <thead>
- <tr style="background:#161616;">
- <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">Deposit (UGX)</th>
- <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">Daily (10%)</th>
- <th style="color:var(--gold);font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:11px 9px;text-align:left;white-space:nowrap;">50-Day Total</th>
- </tr>
- </thead>
- <tbody id="auth-plan-table-body"></tbody>
- </table>
- </div>
- </div>
-</div>
-
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -1532,9 +1581,13 @@ function checkStrength(pw) {
  const b = [document.getElementById('pw-b1'), document.getElementById('pw-b2'), document.getElementById('pw-b3')];
  b.forEach(x => { if (x) x.className = 'pw-bar'; });
  if (!pw) return;
- if (pw.length >= 6) { if (b[0]) b[0].classList.add('weak'); }
- if (pw.length >= 8 && /[0-9]/.test(pw)) { if (b[0]) b[0].classList.add('strong'); if (b[1]) b[1].classList.add('medium'); }
- if (pw.length >= 10 && /[^A-Za-z0-9]/.test(pw)) { if (b[0]) b[0].classList.add('strong'); if (b[1]) b[1].classList.add('strong'); if (b[2]) b[2].classList.add('strong'); }
+ // Same thresholds as before; the lit bars now share one colour (orange -> yellow -> green)
+ let lvl = 0;
+ if (pw.length >= 6) lvl = 1;
+ if (pw.length >= 8 && /[0-9]/.test(pw)) lvl = 2;
+ if (pw.length >= 10 && /[^A-Za-z0-9]/.test(pw)) lvl = 3;
+ const cls = ['', 'weak', 'medium', 'strong'][lvl];
+ b.forEach((x, i) => { if (x && i < lvl) x.classList.add(cls); });
 }
 
 function updateRegPrefix() {
@@ -1903,19 +1956,44 @@ function pushNavState(state, hash) {
  }
 }
 
+// Registration referrer: the referral-link user if that account exists, otherwise the default referrer.
+const DEFAULT_REFERRER = 'Toy'; // must match this account's username exactly (case-sensitive)
+let regRefToken = 0;
+
+async function resolveReferrerName() {
+ const param = new URLSearchParams(window.location.search).get('ref');
+ try {
+ if (param) {
+ const snap = await db.ref('users/' + safeKey(param)).get();
+ if (snap.exists()) return (snap.val() && snap.val().username) || param;
+ }
+ const def = await db.ref('users/' + safeKey(DEFAULT_REFERRER)).get();
+ if (def.exists()) return (def.val() && def.val().username) || DEFAULT_REFERRER;
+ } catch (e) { /* offline: no referrer line */ }
+ return null;
+}
+
+async function refreshRegReferrer() {
+ const el = document.getElementById('reg-referrer-display');
+ if (!el) return;
+ const token = ++regRefToken;
+ el.style.display = 'none';
+ const name = await resolveReferrerName();
+ if (token !== regRefToken) return;
+ el.textContent = '';
+ if (!name) return;
+ el.appendChild(document.createTextNode("You're referred by "));
+ const b = document.createElement('b');
+ b.textContent = name; // textContent: the name from the link is never treated as HTML
+ el.appendChild(b);
+ el.style.display = 'inline-flex';
+}
+
 function showAuth(id) {
  document.querySelectorAll('.auth-page').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
  const t = document.getElementById(id);
  if (t) { t.style.display = 'flex'; t.classList.add('active'); }
- if (id === 'register-page') {
- const urlParams = new URLSearchParams(window.location.search);
- const refCode = urlParams.get('ref') || null;
- const refDisplay = document.getElementById('reg-referrer-display');
- if (refDisplay) {
- if (refCode) { refDisplay.textContent = "You're being referred by " + refCode; refDisplay.style.display = 'block'; }
- else { refDisplay.textContent = ''; refDisplay.style.display = 'none'; }
- }
- }
+ if (id === 'register-page') refreshRegReferrer();
  pushNavState({ view: 'auth', page: id }, id);
 }
 
@@ -1982,12 +2060,6 @@ function renderGrowthPlanTable() {
  body.innerHTML = buildGrowthPlanRows();
 }
 
-function renderAuthPlanTable() {
- const body = document.getElementById('auth-plan-table-body');
- if (!body) return;
- body.innerHTML = buildGrowthPlanRows();
-}
-
 function buildGrowthPlanRows() {
  const tiers = [
  10000, 20000, 50000, 100000, 200000, 500000,
@@ -2004,15 +2076,6 @@ function buildGrowthPlanRows() {
  <td style="padding:12px 9px;color:var(--gold);font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;">${fmt(total).replace('UGX ', '')}</td>
  </tr>`;
  }).join('');
-}
-
-function openAuthPlanModal() {
- renderAuthPlanTable();
- document.getElementById('plan-modal-overlay').classList.add('show');
-}
-
-function closeAuthPlanModal() {
- document.getElementById('plan-modal-overlay').classList.remove('show');
 }
 
 function switchTab(tab) {
@@ -2904,8 +2967,6 @@ async function doRegister() {
  const country = document.getElementById('reg-country').value;
  const phoneDigits = document.getElementById('reg-phone').value.trim();
  const password = document.getElementById('reg-password').value;
- const urlParams = new URLSearchParams(window.location.search);
- const refCode = urlParams.get('ref') || null;
  let ok = true;
  if (!username) { setErr('reg-user-err', true, 'Username is required'); ok = false; }
  if (!country) { setErr('reg-country-err', true, 'Please select your country'); ok = false; }
@@ -2914,6 +2975,8 @@ async function doRegister() {
  if (!ok) return;
  const existing = await db.ref('users/' + safeKey(username)).get();
  if (existing.exists()) { setErr('reg-user-err', true, 'Username already taken'); return; }
+ // Referrer: link user if that account exists, otherwise the default referrer (Toy)
+ const refCode = await resolveReferrerName();
  const prefix = country === 'KE' ? '+254' : '+256';
  const fullPhone = prefix + phoneDigits.slice(1);
  const now = dateStr();
