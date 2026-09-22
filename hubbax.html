@@ -174,20 +174,25 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
 .admin-footer-links{display:flex;align-items:center;gap:8px;}
 .admin-footer-link{background:none;border:none;color:var(--accent);font-size:10px;font-weight:700;cursor:pointer;}
 .admin-footer-divider{color:var(--border);font-size:8px;}
-@media(max-width:900px){.sidebar{width:60px;}.sidebar-brand,.sidebar-sub,.nav-item span:not(.nav-icon){display:none;}.main-content{margin-left:60px;}.stats-row{grid-template-columns:repeat(2,1fr);}.admin-footer{left:60px;}}
+@media(max-width:900px){.nav-item{position:relative;}.nav-badge{position:absolute;top:1px;right:1px;margin:0;padding:1px 5px;font-size:9px;line-height:14px;min-width:16px;justify-content:center;}.sidebar{width:60px;}.sidebar-brand,.sidebar-sub,.nav-item span:not(.nav-icon){display:none;}.main-content{margin-left:60px;}.stats-row{grid-template-columns:repeat(2,1fr);}.admin-footer{left:60px;}}
 .phone-prefix-badge,.active{border:1px solid var(--border) !important;}
 
-/* ===== Deposit requests: cards (work on a phone screen) ===== */
+/* ===== Deposit requests: one line per request (scrolls sideways on a phone) ===== */
 .dep-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .dep-head-title{font-size:14px;font-weight:700;color:var(--text);}
-.dep-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
-.dep-card{background:var(--surface2);border:1px solid var(--border);padding:14px;min-width:0;}
-.dep-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;}
-.dep-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--border);font-size:12px;}
-.dep-row .k{color:var(--muted);font-size:10px;letter-spacing:.6px;flex:0 0 auto;}
-.dep-row .v{text-align:right;min-width:0;word-break:break-word;}
-.dep-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
-.dep-actions .btn{flex:1 1 90px;padding:10px 12px;}
+.dep-list{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
+.dep-inner{display:flex;flex-direction:column;gap:6px;width:max-content;min-width:100%;}
+.dep-line{display:flex;align-items:center;gap:10px;white-space:nowrap;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);font-size:12px;}
+.dep-line .c-user{flex:0 0 66px;overflow:hidden;text-overflow:ellipsis;}
+.dep-line .c-time{flex:0 0 42px;color:var(--muted);font-size:11px;}
+.dep-line .c-phone{flex:0 0 142px;}
+.dep-line .c-amt{flex:0 0 198px;}
+.dep-line .c-amt i{font-style:normal;color:var(--muted);font-size:11px;}
+.dep-line .c-left{flex:0 0 44px;}
+.dep-line .c-status{flex:0 0 68px;font-size:11px;font-weight:700;}
+.dep-line .c-act{display:flex;gap:6px;flex:0 0 auto;}
+.dep-line .btn{padding:5px 10px;font-size:11px;}
+.dep-line .btn.cp{padding:2px 8px;font-size:10px;margin-left:4px;}
 .dep-empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:12px;border:1px dashed var(--border);}
 </style>
 </head>
@@ -561,7 +566,7 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
  <span id="deposit-mode-status" style="font-size:13px;color:var(--muted);">Checking...</span>
  </div>
  <div class="settings-row"><span class="settings-label">Chipper Payment Link</span><input type="url" class="settings-input" id="chipper-link-input" placeholder="https://pay.chippercash.com/user/..."><button class="btn btn-save" onclick="saveChipperLink()">Save</button></div>
- <div class="settings-sub" style="margin-top:8px;">Only you can see this link. The PROCESSED button opens it with the amount added.</div>
+ <div class="settings-sub" style="margin-top:8px;">Only you can see this link. PROCESSED opens your payment page; copy the phone and amount from the request and paste them there.</div>
  </div>
 
  <!-- Withdrawal Control -->
@@ -784,7 +789,7 @@ function startRealtimeListeners() {
  };
  db.ref('pendingDeposits').on('value', depositsCb);
  if (adminSettingsCb) db.ref('adminSettings').off('value', adminSettingsCb);
- adminSettingsCb = (snap) => { allAdminSettings = snap.val() || {}; loadChipperUI(); };
+ adminSettingsCb = (snap) => { allAdminSettings = snap.val() || {}; loadChipperUI(); renderDashboard(); };
  db.ref('adminSettings').on('value', adminSettingsCb);
  loadServerOffset();
  if (depTickInterval) clearInterval(depTickInterval);
@@ -916,16 +921,32 @@ function renderDashboard() {
  document.getElementById('d-active-investors').textContent = activeInvestors;
  
  const s = allSettings;
- document.getElementById('pct-summary').innerHTML = `
- <div class="pct-pill">Min Deposit <span>${fmt(s.minDeposit || 10000)}</span></div>
- <div class="pct-pill">URA Tax <span>${s.uraTax || 4}%</span></div>
- <div class="pct-pill">Withdrawal Charge <span>${s.withdrawCharge || 10}%</span></div>
- <div class="pct-pill">Ref L1 <span>${s.refL1 || 10}%</span></div>
- <div class="pct-pill">Ref L2 <span>${s.refL2 || 4}%</span></div>
- <div class="pct-pill">Ref L3 <span>${s.refL3 || 2}%</span></div>
- <div class="pct-pill">MarzPay API <span style="color:${s.marzApiKey ? 'var(--accent3)' : 'var(--warn)'};">${s.marzApiKey ? 'Set' : 'Not Set'}</span></div>
- <div class="pct-pill">Withdrawals <span style="color:${s.withdrawLocked ? 'var(--warn)' : 'var(--success)'};">${s.withdrawLocked ? 'PAUSED' : 'OPEN'}</span></div>
- `;
+ const OK = 'var(--success)', BAD = 'var(--warn)', MAN = 'var(--gold)', DIM = 'var(--muted)';
+ const pill = (label, text, color) => `<div class="pct-pill">${label} <span${color ? ` style="color:${color};"` : ''}>${text}</span></div>`;
+ const setPill = (label, value, missingColor) => (value && String(value).trim())
+ ? pill(label, 'Set', OK) : pill(label, 'Not Set', missingColor || BAD);
+ document.getElementById('pct-summary').innerHTML = [
+ // amounts
+ pill('Min Deposit', fmt(s.minDeposit || 10000)),
+ pill('Max Deposit', fmt(s.maxDeposit || 2350000)),
+ pill('Min Withdrawal', fmt(s.minWithdraw || 10000)),
+ pill('URA Tax', (s.uraTax || 4) + '%'),
+ pill('Withdrawal Charge', (s.withdrawCharge || 10) + '%'),
+ // commissions
+ pill('Ref L1', (s.refL1 || 10) + '%'),
+ pill('Ref L2', (s.refL2 || 4) + '%'),
+ pill('Ref L3', (s.refL3 || 2) + '%'),
+ // modes
+ pill('Deposits', s.depositManual ? 'Manual' : 'Automatic', s.depositManual ? MAN : OK),
+ pill('Withdrawal Approval', s.withdrawApproval ? 'Manual' : 'Automatic', s.withdrawApproval ? MAN : OK),
+ pill('Withdrawals', s.withdrawLocked ? 'PAUSED' : 'OPEN', s.withdrawLocked ? BAD : OK),
+ // connections
+ setPill('MarzPay API', s.marzApiKey),
+ setPill('Chipper Link', allAdminSettings.chipperLink, s.depositManual ? BAD : DIM),
+ setPill('WhatsApp Group', s.waGroup),
+ setPill('WhatsApp Support', s.waSupport),
+ setPill('WhatsApp Number', s.waNumber)
+ ].join('');
 }
 
 function filterUsers(val) { searchFilter = val; renderUsersTable(); }
@@ -1718,15 +1739,10 @@ function loadChipperUI() {
  if (inp && document.activeElement !== inp) inp.value = allAdminSettings.chipperLink || '';
 }
 
-function buildChipperUrl(link, amount) {
- try { const u = new URL(link); u.searchParams.set('amount', String(amount)); return u.toString(); }
- catch (e) { return link; }
-}
-
 function openChipperWindow(d) {
  const link = String(allAdminSettings.chipperLink || '').trim();
  if (!link) { toast('Save your Chipper payment link in CONFIGURATION first', '#f87171'); return false; }
- const w = window.open(buildChipperUrl(link, d.totalAmount || d.amount), '_blank');
+ const w = window.open(link, '_blank');
  if (w) { try { w.opener = null; } catch (e) {} } else { toast('Allow pop-ups to open the payment page', '#f87171'); }
  return true;
 }
@@ -1768,31 +1784,28 @@ function renderDepositsTable() {
  entries.sort((a, b) => b[0].localeCompare(a[0]));
  if (countEl) countEl.textContent = entries.length + ' requests';
  if (!entries.length) { list.innerHTML = '<div class="dep-empty">No deposit requests here</div>'; return; }
- list.innerHTML = entries.map(([k, v]) => {
+ list.innerHTML = '<div class="dep-inner">' + entries.map(([k, v]) => {
  const [label, color] = depStatusInfo(v.status);
  let actions = '';
  if (v.status === 'pending') {
- actions = `<button class="btn btn-save" onclick="markDepositProcessed('${k}')">PROCESSED</button>
- <button class="btn btn-reject" onclick="rejectDeposit('${k}')">REJECT</button>`;
+ actions = `<button class="btn btn-save" onclick="markDepositProcessed('${k}')">PROCESSED</button><button class="btn btn-reject" onclick="rejectDeposit('${k}')">REJECT</button>`;
  } else if (v.status === 'processed') {
- actions = `<button class="btn btn-edit" onclick="openChipperFor('${k}')">OPEN LINK</button>
- <button class="btn btn-approve" onclick="approveDeposit('${k}')">APPROVE</button>
- <button class="btn btn-reject" onclick="rejectDeposit('${k}')">REJECT</button>`;
+ actions = `<button class="btn btn-edit" onclick="openChipperFor('${k}')">OPEN LINK</button><button class="btn btn-approve" onclick="approveDeposit('${k}')">APPROVE</button><button class="btn btn-reject" onclick="rejectDeposit('${k}')">REJECT</button>`;
  } else if (v.status === 'expired') {
  actions = `<button class="btn btn-approve" onclick="approveDeposit('${k}')">APPROVE ANYWAY</button>`;
  }
- const timeRow = isOpenDeposit(v)
- ? `<div class="dep-row"><span class="k">TIME LEFT</span><span class="v mono" data-exp="${Number(v.expiresAt) || 0}">--:--</span></div>` : '';
- return `<div class="dep-card">
- <div class="dep-card-top"><strong>${escHtml(v.username || '—')}</strong><span style="font-size:11px;font-weight:700;color:${color};">${label}</span></div>
- <div class="dep-row"><span class="k">DATE</span><span class="v mono" style="font-size:11px;">${escHtml(v.date || '—')}</span></div>
- <div class="dep-row"><span class="k">PHONE</span><span class="v mono">${escHtml(localPhone(v.phone))} <button class="btn btn-edit" style="padding:2px 8px;font-size:10px;" onclick="copyDepField('${k}','phone')">Copy</button></span></div>
- <div class="dep-row"><span class="k">AMOUNT</span><span class="v mono" style="color:var(--success);font-weight:800;">${fmt(v.amount)}</span></div>
- <div class="dep-row"><span class="k">COLLECT TOTAL</span><span class="v mono" style="color:var(--gold);font-weight:800;">${fmt(v.totalAmount || v.amount)} <button class="btn btn-edit" style="padding:2px 8px;font-size:10px;" onclick="copyDepField('${k}','total')">Copy</button></span></div>
- ${timeRow}
- ${actions ? `<div class="dep-actions">${actions}</div>` : ''}
+ const time = v.createdAt ? new Date(v.createdAt).toLocaleTimeString('en-UG', { hour: '2-digit', minute: '2-digit' }) : '—';
+ const left = isOpenDeposit(v) ? `<span class="c-left mono" data-exp="${Number(v.expiresAt) || 0}">--:--</span>` : '<span class="c-left mono">—</span>';
+ return `<div class="dep-line">
+ <strong class="c-user">${escHtml(v.username || '—')}</strong>
+ <span class="c-time mono">${escHtml(time)}</span>
+ <span class="c-phone mono">${escHtml(localPhone(v.phone))}<button class="btn btn-edit cp" onclick="copyDepField('${k}','phone')">Copy</button></span>
+ <span class="c-amt mono"><b style="color:var(--gold);">${fmt(v.totalAmount || v.amount)}</b> <i>(${Number(v.amount || 0).toLocaleString()})</i><button class="btn btn-edit cp" onclick="copyDepField('${k}','total')">Copy</button></span>
+ ${left}
+ <span class="c-status" style="color:${color};">${label}</span>
+ <span class="c-act">${actions}</span>
  </div>`;
- }).join('');
+ }).join('') + '</div>';
  depTick();
 }
 
