@@ -404,9 +404,10 @@ input[type="password"]{padding-right:46px;}
 .tx-search-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'Manrope',sans-serif;font-size:14px;color:var(--text);outline:none;margin-bottom:12px;}
 .tx-search-input:focus{border-color:var(--accent);}
 
-.tx-cards-grid{display:flex;flex-direction:column;gap:8px;}
-.tx-card{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:9px 11px;cursor:pointer;transition:transform .15s;}
-.tx-card:active{transform:scale(.98);}
+.tx-cards-grid{display:flex;flex-direction:column;gap:0;}
+.tx-card{display:flex;align-items:center;gap:8px;background:transparent;border:0;border-bottom:1px solid var(--card-border);border-radius:0;padding:12px 2px;cursor:default;transition:opacity .15s;}
+.tx-cards-grid .tx-card:last-child{border-bottom:0;}
+.tx-card:active{opacity:.7;}
 .tx-card-header{display:flex;align-items:center;gap:10px;flex:1;min-width:0;margin-bottom:0;}
 .tx-card-icon{font-size:12px;width:26px;height:26px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--surface2);border-radius:7px;}
 .tx-card-type{font-size:11px;color:var(--text);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;max-width:72px;}
@@ -652,6 +653,27 @@ input[type="password"]{padding-right:46px;}
 .md-timer{margin-top:14px;font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums;font-size:24px;font-weight:800;color:#fff;}
 .md-warn{margin-top:12px;font-size:12px;font-weight:700;color:var(--gold);}
 .md-btn{margin-top:18px;width:100%;height:50px;border:0;border-radius:14px;background:var(--accent);color:#0F1720;font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;cursor:pointer;}
+
+/* ===== Welcome pop-up: orange themed, matches the app's card style ===== */
+.wgm-card{background:linear-gradient(180deg,#2A1206,#180B04);border:1px solid rgba(251,146,60,.35);}
+.wgm-banner{position:relative;overflow:hidden;padding:26px 20px 18px;text-align:center;background:radial-gradient(circle at 50% -10%,rgba(251,146,60,.35),transparent 60%),linear-gradient(160deg,#7C2D12,#431407);}
+.wgm-rays{position:absolute;inset:-40% -10%;background:repeating-conic-gradient(from 0deg,rgba(255,200,120,.10) 0deg 4deg,transparent 4deg 12deg);opacity:.7;pointer-events:none;}
+.wgm-logo-row{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;}
+.wgm-logo{width:34px;height:34px;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto;}
+.wgm-logo img{width:100%;height:100%;object-fit:contain;}
+.wgm-brand{font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;color:#FFE8D2;letter-spacing:.4px;}
+.wgm-title{position:relative;z-index:1;font-family:'Manrope',sans-serif;font-size:21px;font-weight:800;color:#FDBA74;}
+.wgm-body{padding:20px 18px 20px;}
+.wgm-label{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:7px 10px;margin:0 0 8px;border:1px solid rgba(251,146,60,.45);border-radius:999px;background:rgba(251,146,60,.08);color:#FDBA74;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.wgm-section{margin-bottom:16px;}
+.wgm-section:last-child{margin-bottom:0;}
+.wgm-line{font-size:13px;line-height:1.55;color:#F3E4D8;text-align:center;margin-bottom:12px;}
+.wgm-line b{color:#FDBA74;}
+.wgm-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:48px;border:none;border-radius:13px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;cursor:pointer;}
+.wgm-btn:active{transform:scale(.98);}
+.wgm-btn-deposit{background:linear-gradient(180deg,#FDBA74,#EA580C);color:#3A1207;box-shadow:0 8px 20px rgba(234,88,12,.35);}
+.wgm-btn-share{background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.4);color:#86EFAC;}
+.wgm-trust{margin-top:16px;padding-top:14px;border-top:1px solid rgba(251,146,60,.18);text-align:center;font-size:10.5px;line-height:1.6;color:#C79A7C;}
 </style>
 </head>
 <body>
@@ -1004,7 +1026,9 @@ input[type="password"]{padding-right:46px;}
  <div class="dash-section" id="sec-withdraw">
  <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Withdraw</div><div class="inner-sub">Cash out your BALANCE</div></div></div>
  <div class="section">
+ <div style="font-size:12.5px;font-weight:700;color:var(--accent);margin:-6px 0 14px;">Fast payouts, sent straight to your mobile money.</div>
  <div id="withdraw-locked-msg" class="locked-banner" style="display:none">Withdrawals are currently disabled. Please contact support.</div>
+ <div id="withdraw-pending-note" class="deposit-note" style="display:none;">You already have a withdrawal being processed. Please wait for it to finish.</div>
  <div class="action-card">
  <div class="field-group">
  <label class="field-label">Sending To</label>
@@ -1208,20 +1232,22 @@ input[type="password"]{padding-right:46px;}
 <div class="welcome-overlay" id="welcome-overlay">
  <div class="wgm-card">
  <button class="welcome-close" onclick="closeWelcomeModal()">✕</button>
- <div class="welcome-header">
- <div class="welcome-title">Welcome to Lumina Invest!</div>
+ <div class="wgm-banner"><div class="wgm-rays"></div>
+ <div class="wgm-logo-row"><span class="wgm-logo"><img src="logo.png" alt="Lumina Invest"></span><span class="wgm-brand">LUMINA INVEST</span></div>
+ <div class="wgm-title">Welcome!</div>
  </div>
- <div class="welcome-body">
- <div class="welcome-msg">
- Here's a quick tip to get started: earn <b>10% daily profit</b> on your investment. Minimum deposit is <b>UGX 10,000</b>, and you can withdraw once you reach the minimum of <b>UGX 5,000</b>. Need help along the way? Our support team is one tap away.
+ <div class="wgm-body">
+ <div class="wgm-section">
+ <div class="wgm-label">Start Investing</div>
+ <div class="wgm-line">Earn <b>10% daily profit</b>. Minimum deposit is <b>UGX 10,000</b>.</div>
+ <button class="wgm-btn wgm-btn-deposit" onclick="closeWelcomeModal();switchTab('deposit');">Deposit Now</button>
  </div>
- <div class="wa-tab" onclick="openWaGroup()">
- <div>
- <div class="wa-text-title">Join WhatsApp Community</div>
- <div class="wa-text-sub">Get updates, tips & support</div>
+ <div class="wgm-section">
+ <div class="wgm-label">Refer &amp; Earn</div>
+ <div class="wgm-line">Earn a <b>10% referral bonus</b> on each deposit your referral does.</div>
+ <button class="wgm-btn wgm-btn-share" onclick="shareRefHome()">Share My Link</button>
  </div>
- <div class="wa-arrow">›</div>
- </div>
+ <div class="wgm-trust">Trusted by a growing community of investors across Uganda.</div>
  </div>
  </div>
 </div>
@@ -2254,6 +2280,7 @@ function startUserListener(username) {
  if (snap.exists()) {
  currentUser = snap.val();
  mdSync();
+ wdSync();
  updateBalanceUI();
  renderHistory();
  renderTeam();
@@ -2435,7 +2462,9 @@ function renderHistory() {
  const isPending = tx.status === 'pending';
  const isFailed = tx.status === 'failed';
  const statusClass = isPending ? 'tx-status-pending' : isFailed ? 'tx-status-failed' : 'tx-status-completed';
- const statusText = isPending ? 'Pending' : isFailed ? 'Failed' : 'Completed';
+ const statusText = tx.type === 'Withdrawal'
+ ? (isPending ? 'Processing' : isFailed ? 'Withdrawal Cancelled' : 'Withdraw Completed')
+ : (isPending ? 'Pending' : isFailed ? 'Failed' : 'Completed');
  const amountClass = tx.amount >= 0 ? 'positive' : 'negative';
  const typeClass = typeClasses[tx.type] || 'tx-profit';
  const icon = typeIcons[tx.type] || '';
@@ -2644,6 +2673,14 @@ async function mdLoadOffset() {
 async function isDepositManualNow() {
  const snap = await db.ref('settings/depositManual').once('value');
  return snap.val() === true;
+}
+
+function wdSync() {
+ const note = document.getElementById('withdraw-pending-note');
+ const btn = document.getElementById('with-submit-btn');
+ const pending = !!(currentUser && currentUser.pendingWithdrawalReq);
+ if (note) note.style.display = pending ? 'block' : 'none';
+ if (btn) btn.disabled = pending;
 }
 
 function updateDepositModeUI() {
@@ -3010,6 +3047,7 @@ async function doWithdraw() {
  setErr('with-amount-err', true, "Withdrawals are available once you've made your first investment. Deposit at least UGX 10,000 to activate your account.");
  return; 
  }
+ if (currentUser.pendingWithdrawalReq) { setErr('with-amount-err', true, 'You already have a withdrawal being processed.'); return; }
  const minWith = settingsData.minWithdraw || 10000;
  const amount = parseInt(document.getElementById('with-amount').value) || 0;
  if (amount < minWith) { setErr('with-amount-err', true, 'Minimum withdrawal is ' + fmt(minWith)); return; }
@@ -3052,7 +3090,8 @@ async function doWithdraw() {
  await db.ref('users/' + safeKey(currentUsername)).update({ 
  balance: newBalance, 
  withdrawn: newWithdrawn, 
- [`transactions/${txKey}`]: { type: 'Withdrawal', amount: -amount, note: 'Withdrawal Pending', date: dateStr(), status: 'pending' } 
+ [`transactions/${txKey}`]: { type: 'Withdrawal', amount: -amount, note: 'Withdrawal is processing', date: dateStr(), status: 'pending' },
+ pendingWithdrawalReq: reqKey
  });
  
  // Create withdrawal request record
@@ -3088,13 +3127,14 @@ async function doWithdraw() {
  const refundedBalance = balance;
  await db.ref('users/' + safeKey(currentUsername)).update({ 
  balance: refundedBalance, 
- withdrawn: currentUser.withdrawn || 0 
+ withdrawn: currentUser.withdrawn || 0, 
+ pendingWithdrawalReq: null 
  });
  await db.ref('users/' + safeKey(currentUsername) + '/transactions/' + txKey).remove();
  await db.ref('adminTransactions/' + adminTxKey).update({ status: 'failed' });
  await sendAdminNotification('withdrawal_error', currentUsername, amount, 'Critical error: ' + error.message);
  }
- btn.disabled = false; btn.textContent = 'CASH OUT';
+ btn.disabled = false; btn.textContent = 'Send to Mobile';
  switchTab('home');
 }
 
@@ -3113,6 +3153,7 @@ async function processWithdrawalToMarz(reqKey, userPhone, sendAmount, reference,
  });
  await db.ref('pendingWithdrawals/' + reqKey).update({ status: 'approved', processed: true });
  await db.ref('adminTransactions/' + adminTxKey).update({ status: 'successful' });
+ await db.ref('users/' + userId + '/pendingWithdrawalReq').remove();
  } else {
  // Marz send failed - REFUND user instantly
  const userSnap = await db.ref('users/' + userId).get();
@@ -3123,7 +3164,8 @@ async function processWithdrawalToMarz(reqKey, userPhone, sendAmount, reference,
  await db.ref('users/' + userId).update({ 
  balance: refundedBalance,
  withdrawn: revertedWithdrawn,
- [`transactions/${txKey}`]: { type: 'Withdrawal', amount: -amount, note: 'Withdrawal Failed - Refunded', date: dateStr(), status: 'failed' }
+ [`transactions/${txKey}`]: { type: 'Withdrawal', amount: -amount, note: 'Withdrawal Failed - Refunded', date: dateStr(), status: 'failed' },
+ pendingWithdrawalReq: null
  });
  await db.ref('pendingWithdrawals/' + reqKey).update({ status: 'failed', processed: true });
  await db.ref('adminTransactions/' + adminTxKey).update({ status: 'failed' });
