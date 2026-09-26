@@ -674,13 +674,31 @@ input[type="password"]{padding-right:46px;}
 .wgm-btn-deposit{background:linear-gradient(180deg,#FDBA74,#EA580C);color:#3A1207;box-shadow:0 8px 20px rgba(234,88,12,.35);}
 .wgm-btn-share{background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.4);color:#86EFAC;}
 .wgm-trust{margin-top:16px;padding-top:14px;border-top:1px solid rgba(251,146,60,.18);text-align:center;font-size:10.5px;line-height:1.6;color:#C79A7C;}
+
+/* ===== Ambient animated background lines (Login, Register, Dashboard) ===== */
+.bg-line{position:absolute;left:-45%;height:1px;border-radius:1px;background:linear-gradient(90deg,transparent,var(--bl-color,rgba(56,189,248,.35)),transparent);}
+@media (prefers-reduced-motion:no-preference){
+ .bg-line{animation:bgLineDrift linear infinite;}
+}
+@keyframes bgLineDrift{from{transform:translateX(0);}to{transform:translateX(260%);}}
+.bg-line:nth-child(1){top:9%;width:46%;animation-duration:16s;animation-delay:-2s;}
+.bg-line:nth-child(2){top:23%;width:62%;animation-duration:21s;animation-delay:-9s;}
+.bg-line:nth-child(3){top:39%;width:38%;animation-duration:13s;animation-delay:-5s;}
+.bg-line:nth-child(4){top:56%;width:58%;animation-duration:19s;animation-delay:-14s;}
+.bg-line:nth-child(5){top:72%;width:44%;animation-duration:15s;animation-delay:-7s;}
+.bg-line:nth-child(6){top:87%;width:66%;animation-duration:23s;animation-delay:-11s;}
+#login-page .bg-line{--bl-color:rgba(103,232,249,.30);}
+#register-page .bg-line{--bl-color:rgba(12,42,77,.16);}
+.bg-lines{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.dashboard-page .bg-lines{z-index:-1;}
+.dashboard-page .bg-line{--bl-color:rgba(56,189,248,.14);}
 </style>
 </head>
 <body>
 
 <!-- LOGIN (Glass style) -->
 <div class="auth-page" id="login-page">
- <div class="auth-deco"><i></i><i></i><i></i></div>
+ <div class="auth-deco"><i></i><i></i><i></i><div class="bg-lines"><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span></div></div>
  <div class="auth-corner-logo"><img src="logo.png" alt="Lumina Invest"></div>
  <div class="auth-hero">
  <div class="auth-brand">Lumina Invest</div>
@@ -707,7 +725,7 @@ input[type="password"]{padding-right:46px;}
 
 <!-- REGISTER (Fresh style) -->
 <div class="auth-page" id="register-page">
- <div class="auth-deco"><i></i><i></i></div>
+ <div class="auth-deco"><i></i><i></i><div class="bg-lines"><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span></div></div>
  <div id="reg-referrer-display"></div>
  <div class="auth-corner-logo"><img src="logo.png" alt="Lumina Invest"></div>
  <div class="auth-hero">
@@ -742,7 +760,6 @@ input[type="password"]{padding-right:46px;}
  <div class="field-group">
  <label class="field-label">Password</label>
  <div class="field-wrap"><span class="field-icon"></span><input type="password" id="reg-password" placeholder="Min. 6 characters" oninput="checkStrength(this.value)"><button class="eye-btn" onclick="toggleEye('reg-password',this)">Show</button></div>
- <div class="pw-strength"><div class="pw-bar" id="pw-b1"></div><div class="pw-bar" id="pw-b2"></div><div class="pw-bar" id="pw-b3"></div></div>
  <div class="field-error" id="reg-pw-err">Password must be at least 6 characters</div>
  </div>
  <div class="field-error" id="reg-general-err" style="text-align:center;margin-bottom:10px;font-size:12px;"></div>
@@ -753,6 +770,7 @@ input[type="password"]{padding-right:46px;}
 
 <!-- DASHBOARD -->
 <div class="dashboard-page" id="dashboard-page">
+ <div class="bg-lines"><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span><span class="bg-line"></span></div>
  <div class="topbar">
  <div class="topbar-left">
  <div class="menu-btn" onclick="openMenu()"><span></span><span></span><span></span></div>
