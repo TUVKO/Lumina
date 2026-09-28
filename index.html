@@ -174,6 +174,7 @@ input[type="password"]{padding-right:46px;}
 .home-greeting{font-family:'Manrope',sans-serif;font-size:13px;color:var(--muted);margin-bottom:14px;}
 .balance-hero-label{font-family:'Manrope',sans-serif;font-size:11px;color:var(--muted);margin-bottom:4px;}
 .balance-hero{font-family:'Sora',sans-serif;font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.5px;}
+.debt-notice{display:none;margin:10px 0 0;padding:10px 12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.45);color:#ef4444;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;line-height:1.45;}
 .balance-hero-delta{font-family:'Manrope',sans-serif;font-size:12px;color:var(--accent);font-weight:700;margin-top:4px;}
 .stats-grid-2{grid-template-columns:1fr 1fr !important;}
 .welcome-greeting span{font-weight:800;}
@@ -794,6 +795,7 @@ input[type="password"]{padding-right:46px;}
  <div class="balance-hero-label">Total balance</div>
  <div class="balance-hero" id="stat-balance">UGX 0</div>
  <div class="balance-hero-delta">↑ <span id="stat-earnings">UGX 0</span> in earnings</div>
+ <div class="debt-notice" id="debt-notice-home"></div>
  </div>
  <div class="section">
  <div class="stats-card">
@@ -863,6 +865,7 @@ input[type="password"]{padding-right:46px;}
  <!-- Wallet - New Tab -->
  <div class="dash-section" id="sec-wallet">
  <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Wallet</div><div class="inner-sub">Balance breakdown &amp; quick actions</div></div></div>
+ <div class="section"><div class="debt-notice" id="debt-notice-wallet"></div></div>
  <div class="section">
  <div class="stats-card">
  <div class="stats-grid">
@@ -1348,6 +1351,8 @@ const db = firebase.database();
 const MARZ_API = 'https://polished-truth-f9c5.vallazvallax.workers.dev';
 
 function fmt(n) { return 'UGX ' + Number(n || 0).toLocaleString(); }
+// Balance display: a negative balance shows as -UGX 15,000
+function fmtBal(n) { n = Number(n || 0); return n < 0 ? '-UGX ' + Math.abs(n).toLocaleString() : fmt(n); }
 function dateStr() { 
  const d = new Date(); 
  return d.toLocaleDateString('en-UG', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + d.toLocaleTimeString('en-UG', { hour: '2-digit', minute: '2-digit' }); 
@@ -2262,11 +2267,19 @@ function updateBalanceUI() {
  const balance = currentUser.balance || 0;
  const withdrawn = currentUser.withdrawn || 0;
  document.getElementById('stat-stake').textContent = fmt(stake);
- document.getElementById('stat-balance').textContent = fmt(balance);
+ document.getElementById('stat-balance').textContent = fmtBal(balance);
  document.getElementById('stat-withdrawn').textContent = fmt(withdrawn);
- document.getElementById('reinvest-balance-display').textContent = fmt(balance);
+ document.getElementById('reinvest-balance-display').textContent = fmtBal(balance);
  const wStake = document.getElementById('wallet-stat-stake'); if (wStake) wStake.textContent = fmt(stake);
- const wBal = document.getElementById('wallet-stat-balance'); if (wBal) wBal.textContent = fmt(balance);
+ const wBal = document.getElementById('wallet-stat-balance'); if (wBal) wBal.textContent = fmtBal(balance);
+ // Negative balance: red amount + notice
+ const negColor = balance < 0 ? '#ef4444' : '';
+ ['stat-balance', 'wallet-stat-balance', 'reinvest-balance-display'].forEach(function (id) { const el = document.getElementById(id); if (el) el.style.color = negColor; });
+ ['debt-notice-home', 'debt-notice-wallet'].forEach(function (id) {
+ const el = document.getElementById(id); if (!el) return;
+ if (balance < 0) { el.textContent = 'Your balance is negative. You owe ' + fmt(Math.abs(balance)) + '. Your next earnings will clear it automatically.'; el.style.display = 'block'; }
+ else { el.style.display = 'none'; }
+ });
  const wWith = document.getElementById('wallet-stat-withdrawn'); if (wWith) wWith.textContent = fmt(withdrawn);
 
  // Total Earnings = registration Bonus + all Profit payouts + all Referral bonuses
@@ -3070,6 +3083,7 @@ async function doWithdraw() {
  const amount = parseInt(document.getElementById('with-amount').value) || 0;
  if (amount < minWith) { setErr('with-amount-err', true, 'Minimum withdrawal is ' + fmt(minWith)); return; }
  const balance = currentUser.balance || 0;
+ if (balance < 0) { setErr('with-amount-err', true, 'Your balance is negative (' + fmtBal(balance) + '). It must be cleared before you can withdraw.'); return; }
  if (balance < amount) { setErr('with-amount-err', true, 'Insufficient BALANCE.'); return; }
  const feePercent = (settingsData.withdrawCharge || 10) / 100;
  const fee = Math.floor(amount * feePercent);
@@ -3212,6 +3226,7 @@ async function doReinvest() {
  const amount = parseInt(document.getElementById('reinvest-amount').value) || 0;
  if (amount < 10000) { setErr('reinvest-amount-err', true, 'Minimum re-invest is UGX 10,000'); return; }
  const balance = currentUser.balance || 0;
+ if (balance < 0) { setErr('reinvest-amount-err', true, 'Your balance is negative (' + fmtBal(balance) + '). It must be cleared before you can re-invest.'); return; }
  if (balance < amount) { setErr('reinvest-amount-err', true, 'Insufficient BALANCE.'); return; }
  const profit = Math.floor(amount * 0.10);
  const now = dateStr();
