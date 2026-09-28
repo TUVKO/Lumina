@@ -1720,17 +1720,33 @@ function copyRefHome() {
   }
 }
 
+// Referral message shared on WhatsApp (minimums are read from the current Settings)
+function buildReferralMessage(link) {
+  const minW = Number(settingsData.minWithdraw) || 10000;
+  const minD = Number(settingsData.minDeposit) || 10000;
+  return '*New New New* 🔥\n' + link + '\n\n' +
+    '*Lumina Invest is now live!*\n' +
+    'Register with my link and receive a *UGX 4,000 welcome bonus* 🎁\n' +
+    '👉 ' + link + '\n\n' +
+    'Why join?\n\n' +
+    '✅ UGX 4,000 welcome bonus\n\n' +
+    '✅ Minimum withdrawal ' + minW + '\n\n' +
+    '✅ Daily profit for 50 days each investment\n\n' +
+    '✅ Minimum invest/deposit ' + minD + '\n\n' +
+    '✅ Earn *10% daily*\n\n' +
+    'Join today and start growing your money 💰\n' +
+    link + '\n\n' +
+    "Join now let's make money 💰 🤑 🤣🥰";
+}
+
+// Opens WhatsApp directly with the message filled in (no system share sheet)
 function shareRefHome() {
   const input = document.getElementById('ref-url-home');
   const link = input && input.value ? input.value : '';
   if (!link) return;
-  const msg = 'Join me on Lumina Invest and get a UGX 4,000 welcome bonus 👉 ' + link;
-  const viaWhatsApp = () => window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-  if (navigator.share) {
-    navigator.share({ text: msg }).catch(err => { if (!err || err.name !== 'AbortError') viaWhatsApp(); });
-  } else {
-    viaWhatsApp();
-  }
+  const url = 'https://wa.me/?text=' + encodeURIComponent(buildReferralMessage(link));
+  const w = window.open(url, '_blank');
+  if (!w) window.location.href = url;
 }
 
 // ============================================================
