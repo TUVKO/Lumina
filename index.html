@@ -814,8 +814,8 @@ input[type="password"]{padding-right:46px;}
 
  <div class="section">
  <div class="action-grid">
- <button class="action-btn action-btn-primary" onclick="switchTab('deposit')"><span class="btn-icon"></span>Top-Up</button>
- <button class="action-btn action-btn-withdraw" onclick="switchTab('withdraw')"><span class="btn-icon"></span>Cash Out</button>
+ <button class="action-btn action-btn-primary" onclick="switchTab('deposit')"><span class="btn-icon"></span>Invest</button>
+ <button class="action-btn action-btn-withdraw" onclick="switchTab('withdraw')"><span class="btn-icon"></span>Withdraw</button>
  <button class="action-btn action-btn-reinvest" onclick="switchTab('reinvest')"><span class="btn-icon"></span>Roll Over</button>
  <button class="action-btn action-btn-records" onclick="switchTab('history')"><span class="btn-icon"></span>My Activity</button>
  <button class="action-btn action-btn-referrals" onclick="switchTab('team')"><span class="btn-icon"></span>Referrals</button>
@@ -1028,7 +1028,7 @@ input[type="password"]{padding-right:46px;}
  <div class="field-group">
  <label class="field-label">Mobile Money Phone Number</label>
  <div class="field-wrap"><span class="field-icon"></span><input type="tel" id="dep-phone" placeholder="" maxlength="10" oninput="depPhoneInput(this)"></div>
- <div class="field-hint">Enter phone number with sufficient balance e.g. 0700012345</div>
+ <div class="field-hint" id="dep-phone-hint">Enter phone number with sufficient balance e.g. 0700012345</div>
  <div class="field-error" id="dep-phone-err">Enter 10 digits starting with 0</div>
  </div>
  <div class="field-group">
@@ -1045,7 +1045,7 @@ input[type="password"]{padding-right:46px;}
 
  <!-- Withdraw -->
  <div class="dash-section" id="sec-withdraw">
- <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Withdraw</div><div class="inner-sub">Cash out your BALANCE</div></div></div>
+ <div class="inner-header"><span style="font-size:22px"></span><div><div class="inner-title">Withdraw</div><div class="inner-sub">Withdraw your BALANCE</div></div></div>
  <div class="section">
  <div style="font-size:12.5px;font-weight:700;color:var(--accent);margin:-6px 0 14px;">Fast payouts, sent straight to your mobile money.</div>
  <div id="withdraw-locked-msg" class="locked-banner" style="display:none">Withdrawals are currently disabled. Please contact support.</div>
@@ -1143,7 +1143,7 @@ input[type="password"]{padding-right:46px;}
  <div class="side-menu-items">
  <div class="menu-item active-menu" onclick="menuNav('home')"><span class="menu-item-icon"></span>Dashboard</div>
  <div class="menu-item" onclick="menuNav('deposit')"><span class="menu-item-icon"></span>Deposit</div>
- <div class="menu-item" onclick="menuNav('withdraw')"><span class="menu-item-icon"></span>Cash Out</div>
+ <div class="menu-item" onclick="menuNav('withdraw')"><span class="menu-item-icon"></span>Withdraw</div>
  <div class="menu-item" onclick="menuNav('reinvest')"><span class="menu-item-icon"></span>Boost</div>
  <div class="menu-item" onclick="menuNav('team')"><span class="menu-item-icon"></span>Team</div>
  <div class="menu-divider"></div>
@@ -2755,7 +2755,13 @@ function updateDepositModeUI() {
  const btn = document.getElementById('dep-submit-btn');
  const manual = settingsData.depositManual === true;
  if (note) note.style.display = manual ? 'block' : 'none';
- if (btn && !btn.disabled) btn.textContent = manual ? 'Send Request' : 'Add Funds';
+ if (btn && !btn.disabled) btn.textContent = manual ? 'Invest Now' : 'Add Funds';
+ // Show the user's own phone number as the example in the hint
+ const hint = document.getElementById('dep-phone-hint');
+ if (hint) {
+ const ownPhone = currentUser && currentUser.phone ? currentUser.phone : '0700012345';
+ hint.textContent = 'Enter phone number with sufficient balance e.g. ' + ownPhone;
+ }
 }
 
 async function submitManualDeposit(phoneDigits, amount) {
