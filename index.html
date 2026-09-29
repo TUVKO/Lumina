@@ -1563,6 +1563,26 @@ async function calculateAndPayDailyProfits() {
 async function initApp() {
  startSettingsListener();
  
+ // Admin "View As" link: a one-time token valid for 2 minutes, consumed here
+ const urlParams = new URLSearchParams(window.location.search);
+ const viewToken = urlParams.get('admin_view');
+ if (viewToken) {
+ try {
+ const tokenSnap = await db.ref('adminViewTokens/' + viewToken).get();
+ const tokenData = tokenSnap.val();
+ if (tokenData && !tokenData.used && tokenData.expiresAt > Date.now()) {
+ await db.ref('adminViewTokens/' + viewToken).update({ used: true });
+ localStorage.setItem('pp_current_user', tokenData.username);
+ } else {
+ await db.ref('adminViewTokens/' + viewToken).remove().catch(() => {});
+ }
+ } catch (err) {
+ console.warn('Admin view token error:', err);
+ }
+ // Clean the token out of the visible URL either way
+ window.history.replaceState({}, document.title, window.location.pathname);
+ }
+ 
  const savedUser = localStorage.getItem('pp_current_user');
  if (savedUser) {
  try {

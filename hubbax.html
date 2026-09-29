@@ -350,9 +350,9 @@ tbody td{padding:13px 16px;font-size:13px;vertical-align:middle;}
  </div>
  <table>
  <thead>
- <tr><th>Username</th><th>Phone</th><th>Password</th><th>STAKE</th><th>BALANCE</th><th>Withdrawn</th><th>Referrals</th><th>Status</th><th>Actions</th></tr>
+ <tr><th>Username</th><th>Phone</th><th>Password</th><th>STAKE</th><th>BALANCE</th><th>Withdrawn</th><th>Referrals</th><th>Referred By</th><th>Status</th><th>Actions</th></tr>
  </thead>
- <tbody id="users-table-body"><tr class="empty-row"><td colspan="9">Loading...</td></tr></tbody>
+ <tbody id="users-table-body"><tr class="empty-row"><td colspan="10">Loading...</td></tr></tbody>
  </table>
  </div>
  </div>
@@ -955,7 +955,7 @@ function renderUsersTable() {
  const users = Object.values(allUsers);
  const filtered = searchFilter ? users.filter(u => u.username && u.username.toLowerCase().includes(searchFilter.toLowerCase())) : users;
  const tbody = document.getElementById('users-table-body');
- if (!filtered.length) { tbody.innerHTML = '<tr class="empty-row"><td colspan="9">No users found<\/tr>'; return; }
+ if (!filtered.length) { tbody.innerHTML = '<tr class="empty-row"><td colspan="10">No users found<\/td><\/tr>'; return; }
  tbody.innerHTML = filtered.map(u => {
  const sk = safeKey(u.username || '');
  const refCount = u.referrals ? Object.keys(u.referrals).length : 0;
@@ -967,8 +967,10 @@ function renderUsersTable() {
  <td class="mono" style="color:var(--success);font-weight:700">${fmt(u.balance)}</td>
  <td class="mono" style="color:var(--warn);">${fmt(u.withdrawn)}</td>
  <td class="mono">${refCount}</td>
+ <td class="mono">${u.referredBy || '—'}</td>
  <td><span class="badge ${u.locked ? 'badge-locked' : 'badge-active'}">${u.locked ? 'SUSPENDED' : 'ACTIVE'}</span></td>
  <td style="display:flex;gap:6px;flex-wrap:wrap;">
+ <button class="btn btn-edit" onclick="viewAsUser('${u.username}')">VIEW</button>
  <button class="btn btn-edit" onclick="openEditModal('${u.username}')">MODIFY</button>
  <button class="btn ${u.locked ? 'btn-approve' : 'btn-reject'}" onclick="toggleLock('${u.username}', ${!u.locked})">${u.locked ? 'RESTORE' : 'SUSPEND'}</button>
  <button class="btn btn-delete" onclick="deleteUser('${u.username}')"></button>
@@ -1011,6 +1013,24 @@ function openEditModal(username) {
 }
 
 function closeEditModal() { document.getElementById('edit-modal').style.display = 'none'; }
+
+// Opens the user's app already logged in, via a one-time token valid for 2 minutes
+async function viewAsUser(username) {
+ try {
+ const token = 'vt_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+ await db.ref('adminViewTokens/' + token).set({
+ username: username,
+ createdAt: Date.now(),
+ expiresAt: Date.now() + 2 * 60 * 1000,
+ used: false
+ });
+ window.open('index.html?admin_view=' + token, '_blank');
+ toast('Opening ' + username + '\'s account (link expires in 2 minutes)');
+ } catch (e) {
+ console.error('View as user error:', e);
+ toast('Could not open user account', '#f87171');
+ }
+}
 
 async function creditReferralBonusesAdmin(depositorUsername, amount) {
  const depositorSnap = await db.ref('users/' + safeKey(depositorUsername)).get();
@@ -1279,10 +1299,10 @@ function renderWithdrawalsTable() {
  return `<tr>
  <td class="mono" style="font-size:11px;">${v.date || '—'}</td>
  <td><strong>${v.username || '—'}</strong></td>
- <td class="mono">${v.phone || '—'}</td>
+ <td class="mono">${v.phone || '—'}${v.phone ? ` <button class="btn" style="padding:2px 8px;font-size:10px;" onclick="copyWdField('${k}','phone')">COPY</button>` : ''}</td>
  <td class="mono" style="color:var(--warn);font-weight:800;">${fmt(v.amount)}</td>
  <td class="mono" style="color:var(--gold);">${fmt(fee)}</td>
- <td class="mono" style="color:var(--success);font-weight:800;">${fmt(sendAmt)}</td>
+ <td class="mono" style="color:var(--success);font-weight:800;">${fmt(sendAmt)} <button class="btn" style="padding:2px 8px;font-size:10px;" onclick="copyWdField('${k}','amount')">COPY</button></td>
  <td><span style="font-size:11px;font-weight:700;color:${sc};">${si}</span></td>
  <td style="display:flex;gap:6px;flex-wrap:wrap;">${actions}</td>
  </tr>`;
@@ -1769,6 +1789,12 @@ function copyDepField(k, field) {
  else copyText(String(d.totalAmount || d.amount), 'Amount copied');
 }
 function openChipperFor(k) { const d = allDeposits[k]; if (d) openChipperWindow(d); }
+
+function copyWdField(k, field) {
+ const w = allWithdrawals[k]; if (!w) return;
+ if (field === 'phone') copyText(w.phone || '', 'Phone copied');
+ else { const fee = Math.round((w.amount || 0) * 0.10); const sendAmt = w.sendAmount || (w.amount - fee); copyText(String(sendAmt), 'Amount copied'); }
+}
 
 // One-time claim of a request: only the caller that flips the status continues
 async function claimDeposit(key, from, to, extra, guard) {
