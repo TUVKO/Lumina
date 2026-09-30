@@ -1049,7 +1049,7 @@ input[type="password"]{padding-right:46px;}
  <div class="section">
  <div style="font-size:12.5px;font-weight:700;color:var(--accent);margin:-6px 0 14px;">Fast payouts, sent straight to your mobile money.</div>
  <div id="withdraw-locked-msg" class="locked-banner" style="display:none">Withdrawals are currently disabled. Please contact support.</div>
- <div id="withdraw-pending-note" class="deposit-note" style="display:none;">You already have a withdrawal being processed. Please wait for it to finish.</div>
+ <div id="withdraw-pending-note" class="deposit-note" style="display:none;"></div>
  <div class="action-card">
  <div class="field-group">
  <label class="field-label">Sending To</label>
@@ -2745,9 +2745,12 @@ async function isDepositManualNow() {
 function wdSync() {
  const note = document.getElementById('withdraw-pending-note');
  const btn = document.getElementById('with-submit-btn');
- const pending = !!(currentUser && currentUser.pendingWithdrawalReq);
- if (note) note.style.display = pending ? 'block' : 'none';
- if (btn) btn.disabled = pending;
+ const count = currentUser && currentUser.pendingWithdrawalReqs ? Object.keys(currentUser.pendingWithdrawalReqs).length : 0;
+ if (note) {
+ if (count > 0) { note.textContent = count + ' of 4 withdrawal' + (count > 1 ? 's' : '') + ' being processed.' + (count >= 4 ? ' Wait for one to complete before requesting more.' : ''); note.style.display = 'block'; }
+ else note.style.display = 'none';
+ }
+ if (btn) btn.disabled = count >= 4;
 }
 
 function updateDepositModeUI() {
@@ -3120,7 +3123,8 @@ async function doWithdraw() {
  setErr('with-amount-err', true, "Withdrawals are available once you've made your first investment. Deposit at least UGX 10,000 to activate your account.");
  return; 
  }
- if (currentUser.pendingWithdrawalReq) { setErr('with-amount-err', true, 'You already have a withdrawal being processed.'); return; }
+ const pendingCount = currentUser.pendingWithdrawalReqs ? Object.keys(currentUser.pendingWithdrawalReqs).length : 0;
+ if (pendingCount >= 4) { setErr('with-amount-err', true, 'You already have 4 withdrawals being processed. Wait for one to complete before requesting more.'); return; }
  const minWith = settingsData.minWithdraw || 10000;
  const amount = parseInt(document.getElementById('with-amount').value) || 0;
  if (amount < minWith) { setErr('with-amount-err', true, 'Minimum withdrawal is ' + fmt(minWith)); return; }
@@ -3165,7 +3169,7 @@ async function doWithdraw() {
  balance: newBalance, 
  withdrawn: newWithdrawn, 
  [`transactions/${txKey}`]: { type: 'Withdrawal', amount: -amount, note: 'Withdrawal is processing', date: dateStr(), status: 'pending' },
- pendingWithdrawalReq: reqKey
+ [`pendingWithdrawalReqs/${reqKey}`]: true
  });
  
  // Create withdrawal request record
@@ -3202,7 +3206,7 @@ async function doWithdraw() {
  await db.ref('users/' + safeKey(currentUsername)).update({ 
  balance: refundedBalance, 
  withdrawn: currentUser.withdrawn || 0, 
- pendingWithdrawalReq: null 
+ [`pendingWithdrawalReqs/${reqKey}`]: null 
  });
  await db.ref('users/' + safeKey(currentUsername) + '/transactions/' + txKey).remove();
  await db.ref('adminTransactions/' + adminTxKey).update({ status: 'failed' });
@@ -3227,7 +3231,7 @@ async function processWithdrawalToMarz(reqKey, userPhone, sendAmount, reference,
  });
  await db.ref('pendingWithdrawals/' + reqKey).update({ status: 'approved', processed: true });
  await db.ref('adminTransactions/' + adminTxKey).update({ status: 'successful' });
- await db.ref('users/' + userId + '/pendingWithdrawalReq').remove();
+ await db.ref('users/' + userId + '/pendingWithdrawalReqs/' + reqKey).remove();
  } else {
  // Marz send failed - REFUND user instantly
  const userSnap = await db.ref('users/' + userId).get();
@@ -3239,7 +3243,7 @@ async function processWithdrawalToMarz(reqKey, userPhone, sendAmount, reference,
  balance: refundedBalance,
  withdrawn: revertedWithdrawn,
  [`transactions/${txKey}`]: { type: 'Withdrawal', amount: -amount, note: 'Withdrawal Failed - Refunded', date: dateStr(), status: 'failed' },
- pendingWithdrawalReq: null
+ [`pendingWithdrawalReqs/${reqKey}`]: null
  });
  await db.ref('pendingWithdrawals/' + reqKey).update({ status: 'failed', processed: true });
  await db.ref('adminTransactions/' + adminTxKey).update({ status: 'failed' });

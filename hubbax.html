@@ -1324,7 +1324,7 @@ async function approveWithdrawal(reqKey, userId, username, amount, sendAmount, p
  });
  await db.ref('pendingWithdrawals/' + reqKey).update({ status: 'approved', processed: true });
  if (adminTxKey) await db.ref('adminTransactions/' + adminTxKey).update({ status: 'successful' });
- await db.ref('users/' + userId + '/pendingWithdrawalReq').remove();
+ await db.ref('users/' + userId + '/pendingWithdrawalReqs/' + reqKey).remove();
 
  toast('Withdrawal marked as complete for ' + username);
  } catch (error) {
@@ -1355,6 +1355,7 @@ async function rejectWithdrawal(reqKey, userId, username, amount) {
  
  // Update withdrawal request status
  await db.ref('pendingWithdrawals/' + reqKey).update({ status: 'rejected' });
+ await db.ref('users/' + userId + '/pendingWithdrawalReqs/' + reqKey).remove();
  
  // Update admin transaction status to failed
  if (adminTxKey) {
